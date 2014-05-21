@@ -2,7 +2,12 @@
 
 	$.fn.usfe = function(options){
 		var defaults = {
+
+			//settings type = file
 			f_defaultFileName : 'Файл не выбран',
+			f_defaultFileNameDel : 'Файл не выбран',
+			f_defaultButtonName : 'Выбрать',
+			f_charDelete : '&#215;',
 		};
 
 		options = $.extend(defaults, options);
@@ -12,9 +17,9 @@
 			file : function(elem){
 
 				var fileWrap = $('<div class="file-wrap">'),
-					fileButton = $('<button type="button" class="file-button">Выбрать</button>'),
+					fileButton = $('<button type="button" class="file-button">'+ defaults.f_defaultButtonName + '</button>'),
 					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
-					fileDelete = $('<span class="delFile">&#215;</a>');
+					fileDelete = $('<span class="delFile">'+ defaults.f_charDelete  +'</a>');
 
 				$(fileWrap).append(elem, fileButton, fileName )
 				$('body').append(fileWrap);
@@ -87,24 +92,27 @@
 
 		        });
 
-		                // Функция удаления файла и замены текста
-        function funcDelete(){
-            var thisFile = $(this).parent().find('input[type="file"]');
-            $(thisFile).replaceWith($(thisFile).clone());
+		        // Функция удаления файла и замены текста
+        		function funcDelete(){
+		            var thisFile = $(this).parent().find('input[type="file"]');
+		            $(thisFile).replaceWith($(thisFile).clone());
 
-            $(this).parent().find(fileName).removeClass('select-file').text('Файл не выбран');
-            $(this).parent().find(fileName).animate({
-                opacity: '1',
-            },400)
+		            $(this).parent().find(fileName).removeClass('select-file').text(defaults.f_defaultFileNameDel);
+		            $(this).parent().find(fileName).animate({
+		                opacity: '1',
+		            },400)
 
-            $(this).remove();
-        }
+		            $(this).remove();
+        		};
 
 			},
+
 			text : function(){
 				console.log('ТЕКСТ')
 			}
-		}
+		};
+		//end methods
+
 
 		return this.each(function(){
 
