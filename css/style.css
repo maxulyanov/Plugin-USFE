@@ -12,7 +12,7 @@ ul{
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
 }
-input,select,option,border{
+input,select,option,button{
 	outline:0;
 	border:0;
 }
@@ -21,9 +21,12 @@ a{
 }
 
 
-//
 
-.file-wrap{
+body{
+	background: #f7f7f7;
+}
+
+.file-wrap {
 	overflow: hidden;
 	padding: 5px 5px 7px 5px;
 	margin: 10px 0;
