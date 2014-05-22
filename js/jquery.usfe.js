@@ -7,6 +7,7 @@
 			f_defaultFileName : 'Файл не выбран',
 			f_defaultFileNameDel : 'Файл не выбран',
 			f_defaultButtonName : 'Выбрать',
+			f_editButtonName : 'Изменить',
 			f_charDelete : '&#215;',
 		};
 
@@ -14,8 +15,10 @@
 
 		var methods = {
 
+			// (3.1)
 			file : function(elem){
 
+				// (3.1.1)
 				var fileWrap = $('<div class="file-wrap">'),
 					fileButton = $('<button type="button" class="file-button">'+ defaults.f_defaultButtonName + '</button>'),
 					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
@@ -27,18 +30,19 @@
 				elem = $(elem);
 
 				$(fileButton).on('click', function(){
-					// Имититация клика по inputFile
+
+					// (3.1.2)
 			        elem.click();
 
-			        // Есть ли поддержка file Api
+			        // (3.1.3)
 			        var fileApi = (window.File) ? true : false;
 
-			        // По событию change
+			        // (3.1.4)
 			        $(elem).on('change',function(){
 
 			            var fileNameText;
 
-			            // True и файл получен
+			            // (3.1.5)
 			            if(fileApi && elem[0].files[0]){
 			                fileNameText = elem[0].files[0].name;
 			            }
@@ -47,30 +51,35 @@
 			                fileNameText = fileNameText[fileNameText.length -1];             
 			            }
 
-			            // Если имя файла не получено
+			            // (3.1.6)
 			            if(!fileNameText.length){
 			                return;
 			            }
 
-			            // Изменяем поле с именем файла и текст на кнопки
+			            // (3.1.7)
 			            fileName.addClass('select-file').text(fileNameText);
-			            fileButton.text('Выбрать');
+			            fileButton.text(defaults.f_editButtonName);
 			            
 			            if(document.addEventListener){
-			                $(this).parent().append(fileDelete);
+			                $(elem).parent().append(fileDelete);
 			            }
+
+			            $(fileDelete).css({
+			            	display: 'block',
+			            	opacity: 1,
+			            })
 
 			        }).change();
 
 				});
 
-		        // Удаление выбранного файла
+		        // (3.1.8)
 		        $(fileDelete).on('click', function(){
 
-		            // Кешируем this в переменную
+		            // (3.1.9)
 		            var self = this;
 
-		            // Анимиции скрытия и изменения цвет
+		            // (3.1.10)
 		            $(this).parent().stop(true, true).animate({
 		                backgroundColor: '#f48475',
 		            },400).stop(true,true).animate({
@@ -85,33 +94,36 @@
 		                opacity: '0',
 		            });
 
-		            // Вызовем с задержкой функцию удаления
+		            // (3.1.11)
 		            setTimeout(function(){
 		                funcDelete.call($(self));
 		            }, 600);
 
 		        });
 
-		        // Функция удаления файла и замены текста
+		        // (3.1.11)
         		function funcDelete(){
-		            var thisFile = $(this).parent().find('input[type="file"]');
-		            $(thisFile).replaceWith($(thisFile).clone());
+
+		            var thisFile = elem;
+		            $(thisFile).replaceWith(thisFile.val('').clone(true));
 
 		            $(this).parent().find(fileName).removeClass('select-file').text(defaults.f_defaultFileNameDel);
 		            $(this).parent().find(fileName).animate({
 		                opacity: '1',
-		            },400)
+		            },400);
 
-		            $(this).remove();
+		            $(this).css({display: 'none'});
+
         		};
 
 			},
+			//end method file
 
 			text : function(){
 				console.log('ТЕКСТ')
 			}
 		};
-		//end methods
+		//end all methods
 
 
 		return this.each(function(){
