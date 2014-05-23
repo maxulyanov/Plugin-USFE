@@ -9,11 +9,15 @@
 <script src="js/jquery.usfe.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('input').usfe();
+		$('.test').usfe({
+			f_FileNameLength : 10,
+		});
 	});
 </script>
 </head>
 <body>
+	<input class="test" type="file">
+	<input class="test" type="file">
 	<input type="file">
 	<input id="te" type="text">
 </body>

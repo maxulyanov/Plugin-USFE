@@ -6,6 +6,7 @@
 			//settings type = file
 			f_defaultFileName : 'Файл не выбран',
 			f_defaultFileNameDel : 'Файл не выбран',
+			f_FileNameLength : 30,
 			f_defaultButtonName : 'Выбрать',
 			f_editButtonName : 'Изменить',
 			f_charDelete : '&#215;',
@@ -23,7 +24,7 @@
 				var fileWrap = $('<div class="file-wrap">'),
 					fileButton = $('<button type="button" class="file-button">'+ defaults.f_defaultButtonName + '</button>'),
 					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
-					fileDelete = $('<span class="delFile">'+ defaults.f_charDelete  +'</a>');
+					fileDelete = $('<span class="file-del">'+ defaults.f_charDelete  +'</a>');
 
 				$(fileWrap).append(elem, fileButton, fileName);
 				$('body').append(fileWrap);
@@ -58,6 +59,13 @@
 			            }
 
 			            // (3.1.7)
+			            if(fileNameText.length > defaults.f_FileNameLength){
+			            	var fileNameTitle = fileNameText;
+			            	$(elem).parent(fileWrap).attr('title', fileNameTitle);
+			            	fileNameText = fileNameText.substring(0, defaults.f_FileNameLength);
+			            	fileNameText = fileNameText + '...';
+			            }
+
 			            fileName.addClass('select-file').text(fileNameText);
 			            fileButton.text(defaults.f_editButtonName);
 	            
@@ -80,6 +88,8 @@
 		            // (3.1.9)
 		            var self = this;
 		            var thisBg = $(fileWrap).css('backgroundColor');
+
+		            $(elem).parent(fileWrap).removeAttr('title');
 
 		            // (3.1.10)
 		            $(this).parent().stop(true, true).animate({
