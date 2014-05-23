@@ -9,6 +9,7 @@
 			f_defaultButtonName : 'Выбрать',
 			f_editButtonName : 'Изменить',
 			f_charDelete : '&#215;',
+			f_bgDelete: '#f48475',
 		};
 
 		options = $.extend(defaults, options);
@@ -24,7 +25,7 @@
 					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
 					fileDelete = $('<span class="delFile">'+ defaults.f_charDelete  +'</a>');
 
-				$(fileWrap).append(elem, fileButton, fileName )
+				$(fileWrap).append(elem, fileButton, fileName);
 				$('body').append(fileWrap);
 
 				elem = $(elem);
@@ -59,7 +60,7 @@
 			            // (3.1.7)
 			            fileName.addClass('select-file').text(fileNameText);
 			            fileButton.text(defaults.f_editButtonName);
-			            
+	            
 			            if(document.addEventListener){
 			                $(elem).parent().append(fileDelete);
 			            }
@@ -78,12 +79,14 @@
 
 		            // (3.1.9)
 		            var self = this;
+		            var thisBg = $(fileWrap).css('backgroundColor');
 
 		            // (3.1.10)
 		            $(this).parent().stop(true, true).animate({
-		                backgroundColor: '#f48475',
-		            },400).stop(true,true).animate({
-		                backgroundColor: '#FFF',
+		                backgroundColor:  defaults.f_bgDelete,
+		            },400)
+		            .stop(true,true).animate({
+		                backgroundColor: thisBg,
 		            },400);
 
 		            $(this).parent().find(fileName).animate({
@@ -104,8 +107,8 @@
 		        // (3.1.11)
         		function funcDelete(){
 
-		            var thisFile = elem;
-		            $(thisFile).replaceWith(thisFile.val('').clone(true));
+		            var thisFile = $(this).parent().find('input[type="file"]');
+		            $(thisFile).prop('value', '');
 
 		            $(this).parent().find(fileName).removeClass('select-file').text(defaults.f_defaultFileNameDel);
 		            $(this).parent().find(fileName).animate({
