@@ -27,50 +27,62 @@ a{
 	   GENERAL
 ---------------------------*/
 body{
-	background: #f7f7f7;
+	font: 13px Arial, sans-serif;
+    background: #3498DB;
 }
-
-/*---------------------------
-	   Style Input FILE
----------------------------*/
-.file-wrap {
-	overflow: hidden;
-	width: 300px;
-	padding: 5px 5px 7px 5px;
-	margin: 10px 0;
-	background: #FFF;
+#wrapper{
+	margin: 0 auto;
+	width: 960px;
+}
+#wrapper h2{
+	text-align: center;
+	background: #5FAFE4;
+	padding: 10px;
+	color: #313131;
+	font-size: 18px;
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+}
+#custom-form{
+	margin: 20px auto;
+	width: 350px;
+	background: #5FAFE4;
+	padding: 20px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
+/*---------------------------
+	   Style Input FILE
+---------------------------*/
+.file-wrap{
+	overflow: hidden;
+	width: 350px;
+	height: 30px;
+	margin: 10px 0;
+	background: #FFF;
+	-moz-border-radius: 0px 5px 5px 0;
+	-webkit-border-radius: 0px 5px 5px 0;
+	border-radius: 0px 5px 5px 0;
+}
 .file-wrap .file-button{
-	padding: 4px 7px;
+	padding:7px;
 	float: left;
 	position: relative;
 	font-weight: bold;
 	color: #FFF;
 	background: #52626F;
-	box-shadow: 0 2px 0 #4A5863;
-	border-top: 1px solid #52626F;
 	cursor: pointer;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 }
 .file-wrap .file-button:hover{
 	background: #637481;
-	box-shadow: 0 2px 0 #55636F;
-	border-top: 1px solid #637481;
-}
-.file-wrap .file-button:active{
-	top: 1px;
-	box-shadow: 0 1px 0 #55636F;
 }
 .file-wrap > .file-name{
-	line-height: 25px;
+	line-height: 30px;
 	margin-left: 10px;
 	float: left;
-	font-size: 12px;
+	font-size: 13px;
 }
 .file-wrap > .select-file{
 	color:green;

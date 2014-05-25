@@ -21,13 +21,14 @@
 			file : function(elem){
 
 				// (3.1.1)
-				var fileWrap = $('<div class="file-wrap">'),
+				var parentElem = $(elem).parent();
+					fileWrap = $('<div class="file-wrap">'),
 					fileButton = $('<button type="button" class="file-button">'+ defaults.f_defaultButtonName + '</button>'),
 					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
 					fileDelete = $('<span class="file-del">'+ defaults.f_charDelete  +'</a>');
 
 				$(fileWrap).append(elem, fileButton, fileName);
-				$('body').append(fileWrap);
+				$(parentElem).append(fileWrap);
 
 				elem = $(elem);
 
