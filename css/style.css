@@ -100,3 +100,50 @@ body{
 	margin-right: 5px;
 	line-height: 0;
 }
+
+/*---------------------------
+	   Style Input NUMBER
+---------------------------*/
+.number-wrap{
+	margin-bottom: 10px;
+}
+.number-wrap > button[type="button"]{
+	padding: 4px 7px;
+	width: 30px;
+	position: relative;
+	font-weight: bold;
+	color: #FFF;
+	background: #52626F;
+	box-shadow: 0 2px 0 #4A5863;
+	border-top: 1px solid #52626F;
+	cursor: pointer;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.number-wrap > button[type="button"]:hover{
+	background: #637481;
+	box-shadow: 0 2px 0 #55636F;
+	border-top: 1px solid #637481;
+}
+.number-wrap > button[type="button"]:active{
+	top:1px;
+	box-shadow: 0 1px 0 #55636F;
+}
+input[data-element="number"]{
+	padding: 5px;
+	margin: 0 5px;
+	width: 50px;
+	height: 19px;
+	background: #FFF;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+input[data-element="number"]:focus{
+	box-shadow: 0px 0 2px #71B2E7;
+}
+.number-wrap > button[type="button"],
+input[data-element="number"]{
+	font-family: 'Open Sans', sans-serif
+}

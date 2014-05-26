@@ -143,7 +143,55 @@
 				$(elem).wrap(numWrap);
 				$(elem).before(numMinus).after(numPlus);
 
-					
+				// (3.1.2)
+				$('.number-plus').on('click', function(){
+
+					var thisInput = $(this).parent().find('input[data-element="number"]');
+					var thisVal = $(thisInput).val();
+					thisVal++;
+
+					$(thisInput).stop(true, true).animate({
+						backgroundColor: '#9bcb1e',
+					},400).stop(true,true).animate({
+						backgroundColor: '#FFF',
+					},400);
+
+					computation(this, thisVal);
+				});
+
+				// (3.1.3)
+				$('.number-minus').on('click', function(){
+					var thisInput = $(this).parent().find('input[data-element="number"]');
+					var thisVal = $(thisInput).val();
+					thisVal--; 
+
+					if(!thisVal) thisVal = 1;
+					$(thisInput).stop(true, true).animate({
+						backgroundColor: '#ea6856',
+					},400).stop(true,true).animate({
+						backgroundColor: '#FFF',
+					},400);
+
+					computation(this, thisVal);
+				});
+
+				// (3.1.4)
+				$('input[data-element="number"]').on('keypress input change', function(event){
+					if(event.charCode < 48 || event.charCode > 57) return false;
+					var thisVal = $(this).parent().find('input[data-element="number"]').val(); 
+
+					computation(this, thisVal);
+				})
+			 
+				// (3.1.5)
+				function computation(elem, val){
+					if(isNaN(val)){
+						val = 1;
+					}
+					$(elem).parent().find('input[data-element="number"]').val(val);
+					$(elem).parent().find('input[data-element="number"]').attr('value', val);
+				}
+	
 			},
 			//end method typeNumber
 
