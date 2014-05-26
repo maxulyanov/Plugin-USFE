@@ -18,17 +18,16 @@
 		var methods = {
 
 			// (3.1)
-			file : function(elem){
+			typeFile : function(elem){
 
 				// (3.1.1)
-				var parentElem = $(elem).parent();
-					fileWrap = $('<div class="file-wrap">'),
+				var fileWrap = $('<div class="file-wrap">'),
 					fileButton = $('<button type="button" class="file-button">'+ defaults.f_defaultButtonName + '</button>'),
 					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
 					fileDelete = $('<span class="file-del">'+ defaults.f_charDelete  +'</a>');
 
-				$(fileWrap).append(elem, fileButton, fileName);
-				$(parentElem).append(fileWrap);
+				$(elem).wrap(fileWrap);	
+				$(elem).after(fileButton, fileName);
 
 				elem = $(elem);
 
@@ -131,10 +130,25 @@
         		};
 
 			},
-			//end method file
+			//end method typeFile
 
-			text : function(){
-				console.log('ТЕКСТ')
+			// (3.2)
+			typeNumber : function(elem){
+
+				// (3.1.1)
+				var numWrap = $('<div class="number-wrap">'),
+					numPlus = $('<button type="button" value="-" class="number-plus">+</button>'),
+					numMinus = $('<button type="button" value="-" class="number-minus">-</button>');
+
+				$(elem).wrap(numWrap);
+				$(elem).before(numMinus).after(numPlus);
+
+					
+			},
+			//end method typeNumber
+
+			typeText : function(){
+				console.log('text')
 			}
 		};
 		//end all methods
@@ -143,12 +157,13 @@
 		return this.each(function(){
 
 			var type = $(this).attr('type');
+			var dataEl = $(this).attr('data-element');
 
 			if(type == 'file'){
-				methods.file(this);
+				methods.typeFile(this);
 			}
 			else if(type == 'text'){
-				methods.text();
+				(dataEl == 'number') ? methods.typeNumber(this) : methods.typeText(this);
 			}
 
 		});
