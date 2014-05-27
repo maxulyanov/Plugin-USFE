@@ -141,7 +141,7 @@
 			// (3.2)
 			typeNumber : function(elem){
 
-				// (3.1.1)
+				// (3.2.1)
 				var numWrap = $('<div class="number-wrap">'),
 					numPlus = $('<button type="button" value="-" class="number-plus">'+ defaults.n_iconPlus +'</button>'),
 					numMinus = $('<button type="button" value="-" class="number-minus">'+ defaults.n_iconMinus +'</button>');
@@ -149,14 +149,14 @@
 				$(elem).wrap(numWrap);
 				$(elem).before(numMinus).after(numPlus);
 
-				// (3.1.2)
+				// (3.2.2)
 				$('.number-plus').on('click', function(){
 
 					var thisInput = $(this).parent().find('input[data-element="number"]');
 					var thisVal = $(thisInput).val();
 					thisVal++;
 
-					// (3.1.3)
+					// (3.2.3)
 					if(defaults.n_editBg){
 						$(thisInput).stop(true, true).animate({
 							backgroundColor: '#9bcb1e',
@@ -168,17 +168,17 @@
 					computation(this, thisVal);
 				});
 
-				// (3.1.4)
+				// (3.2.4)
 				$('.number-minus').on('click', function(){
 
 					var thisInput = $(this).parent().find('input[data-element="number"]');
 					var thisVal = $(thisInput).val();
 					thisVal--; 
 
-					// (3.1.5)
+					// (3.2.5)
 					if(!thisVal) thisVal = 1;
 
-					// (3.1.6)
+					// (3.2.6)
 					if(defaults.n_editBg){
 						$(thisInput).stop(true, true).animate({
 							backgroundColor: '#ea6856',
@@ -190,7 +190,7 @@
 					computation(this, thisVal);
 				});
 
-				// (3.1.4)
+				// (3.2.7)
 				$('input[data-element="number"]').on('keypress input change', function(event){
 
 					if(event.charCode < 48 || event.charCode > 57) return false;
@@ -199,7 +199,7 @@
 					computation(this, thisVal);
 				})
 			 
-				// (3.1.5)
+				// (3.2.8)
 				function computation(elem, val){
 
 					if(isNaN(val)){
@@ -213,9 +213,18 @@
 			},
 			//end method typeNumber
 
-			typeText : function(){
-				console.log('text')
-			}
+			typeText : function(elem){;
+				$(elem).focus(function(){
+					$(this).animate({
+						width: '220px',
+					})
+				});
+				$(elem).focusout(function(){
+					$(this).animate({
+						width: '200px',
+					})
+				});
+			},
 		};
 		//end all methods
 

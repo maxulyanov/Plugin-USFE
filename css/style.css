@@ -133,7 +133,7 @@ body{
 input[data-element="number"]{
 	padding: 5px;
 	margin: 0 5px;
-	width: 50px;
+	width: 50px !important;
 	height: 19px;
 	background: #FFF;
 	-moz-border-radius: 3px;
@@ -146,4 +146,17 @@ input[data-element="number"]:focus{
 .number-wrap > button[type="button"],
 input[data-element="number"]{
 	font-family: 'Open Sans', sans-serif
+}
+
+/*---------------------------
+	   Style Input TEXT
+---------------------------*/
+input[type="text"]{
+	padding: 5px;
+	width: 200px;
+	height: 19px;
+	background: #FFF;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
