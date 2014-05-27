@@ -29,6 +29,7 @@ a{
 body{
 	font: 13px Arial, sans-serif;
     background: #3498DB;
+    color: #222;
 }
 #wrapper{
 	margin: 0 auto;
@@ -48,7 +49,7 @@ body{
 	margin: 20px auto;
 	width: 350px;
 	background: #5FAFE4;
-	padding: 20px;
+	padding: 20px 20px 20px 20px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -156,6 +157,7 @@ input[type="text"]{
 	width: 200px;
 	height: 19px;
 	background: #FFF;
+	color: #222;
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
