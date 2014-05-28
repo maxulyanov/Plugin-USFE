@@ -17,6 +17,14 @@
 			n_iconMinus: '-',
 			n_editBg: true,
 
+			//settings type = text
+			t_animateEffect: true,
+			t_animateSpeed: 400,
+			t_editW: 12,
+			t_editH: 3,
+			t_color: '#FFF',
+			t_backgroundcolor: '#52626F',
+
 		};
 
 		options = $.extend(defaults, options);
@@ -213,18 +221,54 @@
 			},
 			//end method typeNumber
 
-			typeText : function(elem){;
-				$(elem).focus(function(){
-					$(this).animate({
-						width: '220px',
+			// (3.3)
+			typeText : function(elem){
+
+				if(defaults.t_animateEffect){
+
+					// (3.3.1)
+					var textWrap = $('<div class="text-wrap">'),
+						textDefaultBg = $(elem).css('backgroundColor'),
+						textDefaultColor = $(elem).css('color'),
+						textDefaultH = $(elem).height(),
+						textDefaultW = $(elem).width(),
+						textRealH =  $(elem).innerHeight();
+
+					$(elem).wrap(textWrap);
+
+					// (3.3.2)
+					$('.text-wrap').css({
+						position: 'relative',
+						height: textRealH,
+					});
+
+					$(elem).css({
+						position: 'absolute',
 					})
-				});
-				$(elem).focusout(function(){
-					$(this).animate({
-						width: '200px',
-					})
-				});
+
+					// (3.3.3)
+					$(elem).focus(function(){
+						$(this).animate({
+							width: textDefaultW + defaults.t_editW,
+							height: textDefaultH + defaults.t_editH,
+							backgroundColor: defaults.t_backgroundcolor,
+							color: defaults.t_color,
+						}, defaults.t_animateSpeed);
+					});
+
+					// (3.3.4)
+					$(elem).focusout(function(){
+						$(this).animate({
+							width: textDefaultW,
+							height: textDefaultH, 
+							backgroundColor: textDefaultBg,
+							color: textDefaultColor,
+						}, defaults.t_animateSpeed);
+					});
+				}
 			},
+			//end method typeText
+
 		};
 		//end all methods
 
