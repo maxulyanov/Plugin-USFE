@@ -25,6 +25,12 @@
 			t_color: '#FFF',
 			t_backgroundcolor: '#52626F',
 
+			//settings type = textarea
+			te_animateEffect: true,
+			te_animateSpeed: 400,
+			te_color: '#FFF',
+			te_backgroundcolor: '#52626F',
+
 		};
 
 		options = $.extend(defaults, options);
@@ -270,7 +276,29 @@
 			//end method typeText
 
 			typeButton: function(elem){
+
 				$(elem).addClass('butsub-element');
+			},
+			//end method typeText
+
+			typeTextarea: function(elem){
+
+				textareaDefaultBg = $(elem).css('backgroundColor'),
+				textareaDefaultColor = $(elem).css('color'),
+
+				$(elem).focus(function(){
+					$(this).animate({
+						backgroundColor: defaults.te_backgroundcolor,
+						color: defaults.te_color,
+					}, defaults.te_animateSpeed);
+				});
+
+				$(elem).focusout(function(){
+					$(this).animate({
+						backgroundColor: textareaDefaultBg,
+						color: textareaDefaultColor,
+					}, defaults.te_animateSpeed);
+				});
 			},
 
 		};
@@ -309,7 +337,9 @@
 					case 'button':
 					case 'reset':
 						methods.typeButton(el);
-						break;	
+						break;
+					case 'textarea':
+						methods.typeTextarea(el);	
 				}
 			}
 

@@ -58,7 +58,9 @@ body{
 	margin-bottom: 5px;
 	display: inline-block;
 }
-
+#custom-form textarea{
+	margin-bottom: 10px;
+}
 /*---------------------------
 	   Style Input FILE
 ---------------------------*/
@@ -193,4 +195,17 @@ input[type="password"]{
 .butsub-element:active{
 	top:1px;
 	box-shadow: 0 1px 0 #55636F;
+}
+
+/*---------------------------
+	   Style TEXTAREA
+---------------------------*/
+textarea{
+	padding: 5px;
+	outline: none;
+	border: none;
+	font: 13px Arial, sans-serif;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
