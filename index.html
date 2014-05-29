@@ -9,9 +9,7 @@
 <script src="js/jquery.usfe.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#custom-form input').usfe({
-			f_FileNameLength : 10,
-		});
+		$('#custom-form').usfe();
 	});
 </script>
 </head>
@@ -19,9 +17,12 @@
 	<div id="wrapper">
 		<h2>Демонстрация плагина USFE</h2>
 		<form id="custom-form">
-			<input type="file">
-			<input type="text" data-element="number" value="1">
-			<input type="text">
+			<p style="margin-bottom:10px;"><span>Ваше имя:</span><input type="text"></p>
+			<p style="margin-bottom:10px;"><span>Введите пароль:</span><input type="password"></p>
+			<p><span>Количество товара:</span><input type="text" data-element="number" value="1"></p>
+			<p><span>Добавить файл:</span><input type="file"></p>
+			<p><span>Комментарий:</span><textarea rows="10" cols="45"></textarea></p>
+			<p><span>Кнопки:</span><input style="margin:0 10px;" type="submit" value="input"><button type="button">Button</button></p>
 		</form>
 		<a id="link-git" href="https://github.com/M-Ulyanov/Plugin-USFE" target="_blank">Пример</a>
 	</div>

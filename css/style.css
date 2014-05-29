@@ -24,7 +24,7 @@ a{
 
 
 /*---------------------------
-	   GENERAL
+	   GENERAL - Demo Style
 ---------------------------*/
 body{
 	font: 13px Arial, sans-serif;
@@ -54,6 +54,11 @@ body{
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
+#custom-form > p > span{
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
 /*---------------------------
 	   Style Input FILE
 ---------------------------*/
@@ -61,7 +66,7 @@ body{
 	overflow: hidden;
 	width: 350px;
 	height: 30px;
-	margin: 10px 0;
+	margin-bottom: 10px;
 	background: #FFF;
 	-moz-border-radius: 0px 5px 5px 0;
 	-webkit-border-radius: 0px 5px 5px 0;
@@ -150,9 +155,10 @@ input[data-element="number"]{
 }
 
 /*---------------------------
-	   Style Input TEXT
+	   Style Input TEXT, PASSWORD
 ---------------------------*/
-input[type="text"]{
+input[type="text"],
+input[type="password"]{
 	padding: 5px;
 	width: 200px;
 	height: 19px;
@@ -161,4 +167,30 @@ input[type="text"]{
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
+}
+
+/*---------------------------
+	   Style BUTTON, SUBMIT
+---------------------------*/
+.butsub-element{
+	padding: 6px 10px;
+	position: relative;
+	font-weight: bold;
+	color: #FFF;
+	background: #52626F;
+	box-shadow: 0 2px 0 #4A5863;
+	border-top: 1px solid #52626F;
+	cursor: pointer;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.butsub-element:hover{
+	background: #637481;
+	box-shadow: 0 2px 0 #55636F;
+	border-top: 1px solid #637481;
+}
+.butsub-element:active{
+	top:1px;
+	box-shadow: 0 1px 0 #55636F;
 }

@@ -269,6 +269,10 @@
 			},
 			//end method typeText
 
+			typeButton: function(elem){
+				$(elem).addClass('butsub-element');
+			},
+
 		};
 		//end all methods
 
@@ -276,7 +280,11 @@
 		return this.each(function(){
 
 			if(this.nodeName.toLowerCase() == 'form'){
-				$(this).children().each(function(){
+				$(this).find('input, button, textarea').each(function(){
+
+					if(this.nodeName.toLowerCase() == 'textarea')
+							$(this).attr('type', 'textarea');
+
 					definition(this);
 				});
 			}
@@ -289,11 +297,19 @@
 				var type = $(el).attr('type');
 				var dataEl = $(el).attr('data-element');
 
-				if(type == 'file'){
-					methods.typeFile(el);
-				}
-				else if(type == 'text'){
-					(dataEl == 'number') ? methods.typeNumber(el) : methods.typeText(el);
+				switch(type){
+					case 'file':
+						methods.typeFile(el);
+						break;
+					case 'text':
+					case 'password':
+						(dataEl == 'number') ? methods.typeNumber(el) : methods.typeText(el);
+						break;
+					case 'submit':
+					case 'button':
+					case 'reset':
+						methods.typeButton(el);
+						break;	
 				}
 			}
 
