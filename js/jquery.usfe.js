@@ -284,7 +284,6 @@
 
 			// (3.5)
 			typeTextarea: function(elem){
-				console.log('111')
 
 				// (3.5.1)
 				textareaDefaultBg = $(elem).css('backgroundColor'),
@@ -307,6 +306,46 @@
 				});
 			},
 			//end method typeTextarea
+
+			// (3.6)
+			typeRadio: function(elem){
+
+				var customRadio = $('<span class="custom-radio">'),
+					thisRadioId = $(elem).attr('id');
+
+				$(elem).before(customRadio);
+
+				var nn = $(elem).attr('name');
+
+				$(elem).addClass('hidden-radio');
+				$(customRadio).attr({
+					'data-radio': thisRadioId,
+					'data-radiogroup' : nn,
+				});
+
+
+				var a = $("label[for='"+thisRadioId+"']").text();
+				$("input[id='"+thisRadioId+"']").val(a);
+
+				$(customRadio).on('click', function(){
+
+					var drg = $(this).attr('data-radiogroup');
+					$("span[data-radiogroup= '"+drg+"']").removeClass('active-radio');
+
+					$(this).addClass('active-radio');
+
+					var thisElem = $(this).attr('data-radio');
+					var radioClick = $("input[id='"+thisElem+"']").click();
+					var gr = $("input[id='"+thisElem+"']").attr('name');
+
+					$("input[name='"+gr+"']").removeClass('check');
+
+					$("input[id='"+thisElem+"']").addClass('check');
+
+				});
+
+			},
+			//end method typeRadio
 
 		};
 		//end all methods
@@ -348,7 +387,11 @@
 						methods.typeButton(el);
 						break;
 					case 'textarea':
-						methods.typeTextarea(el);	
+						methods.typeTextarea(el);
+						break;
+					case 'radio' :
+						methods.typeRadio(el);	
+						break;	
 				}
 			}
 

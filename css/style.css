@@ -209,3 +209,22 @@ textarea{
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
+
+/*---------------------------
+	   Style RADIO
+---------------------------*/
+
+.hidden-radio{
+	display: none;
+}
+
+.custom-radio{
+	height: 17px;
+	width: 17px;
+	background: url(../img/r.png) 0 -22px no-repeat;
+	display: inline-block;
+	cursor: pointer;
+}
+.custom-radio.active-radio{
+	background-position: 0 0;
+}
