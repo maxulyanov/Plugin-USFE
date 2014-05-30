@@ -275,17 +275,22 @@
 			},
 			//end method typeText
 
+			// (3.4)
 			typeButton: function(elem){
 
 				$(elem).addClass('butsub-element');
 			},
-			//end method typeText
+			//end method typeButton
 
+			// (3.5)
 			typeTextarea: function(elem){
+				console.log('111')
 
+				// (3.5.1)
 				textareaDefaultBg = $(elem).css('backgroundColor'),
 				textareaDefaultColor = $(elem).css('color'),
 
+				// (3.5.2)
 				$(elem).focus(function(){
 					$(this).animate({
 						backgroundColor: defaults.te_backgroundcolor,
@@ -293,6 +298,7 @@
 					}, defaults.te_animateSpeed);
 				});
 
+				// (3.5.3)
 				$(elem).focusout(function(){
 					$(this).animate({
 						backgroundColor: textareaDefaultBg,
@@ -300,6 +306,7 @@
 					}, defaults.te_animateSpeed);
 				});
 			},
+			//end method typeTextarea
 
 		};
 		//end all methods
@@ -311,14 +318,16 @@
 				$(this).find('input, button, textarea').each(function(){
 
 					if(this.nodeName.toLowerCase() == 'textarea')
-							$(this).attr('type', 'textarea');
+						$(this).attr('type', 'textarea');
 
 					definition(this);
 				});
 			}
-			else{
-				definition(this);
+			else if(this.nodeName.toLowerCase() == 'textarea'){
+				$(this).attr('type', 'textarea');
 			}
+
+			definition(this);
 
 			function definition(el){
 				
