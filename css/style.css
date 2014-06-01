@@ -228,3 +228,6 @@ textarea{
 .custom-radio.active-radio{
 	background-position: 0 0;
 }
+label{
+	cursor: pointer;
+}

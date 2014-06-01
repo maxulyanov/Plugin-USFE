@@ -313,8 +313,9 @@
 				// (3.6.1)
 				var customRadio = $('<span class="custom-radio">'),
 					thisRadioId = $(elem).attr('id'),
-					thisRadioName = $(elem).attr('name');
-
+					thisRadioName = $(elem).attr('name'),
+					nextElem = $(elem).next('label');
+					
 				// (3.6.2)	
 				$(elem).before(customRadio);
 				$(elem).addClass('hidden-radio');
@@ -326,8 +327,10 @@
 				});
 
 				// (3.6.4)
-				var labelText = $("label[for='"+thisRadioId+"']").text();
-				$(elem).val(labelText);
+				if(nextElem.length > 0){
+					var labelText = $("label[for='"+thisRadioId+"']").text();
+					$(elem).val(labelText);
+				}
 
 				// (3.6.5)
 				$(customRadio).on('click', function(){
@@ -346,6 +349,11 @@
 					$("input[name='" + thisName + "']").removeClass('check-radio');
 					$("input[id='" + thisElem + "']").addClass('check-radio');
 
+				});
+
+				// (3.6.7)
+				$(nextElem).on('click', function(){
+					customRadio.click();
 				});
 
 			},
