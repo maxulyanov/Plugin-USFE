@@ -315,7 +315,7 @@
 					thisRadioId = $(elem).attr('id'),
 					thisRadioName = $(elem).attr('name'),
 					nextElem = $(elem).next('label');
-					
+
 				// (3.6.2)	
 				$(elem).before(customRadio);
 				$(elem).addClass('hidden-radio');
@@ -329,7 +329,10 @@
 				// (3.6.4)
 				if(nextElem.length > 0){
 					var labelText = $("label[for='"+thisRadioId+"']").text();
-					$(elem).val(labelText);
+					var timeValue = $(elem).attr('value');
+					if(!timeValue){
+						$(elem).val(labelText);
+					}
 				}
 
 				// (3.6.5)
