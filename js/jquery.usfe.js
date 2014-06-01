@@ -310,37 +310,41 @@
 			// (3.6)
 			typeRadio: function(elem){
 
+				// (3.6.1)
 				var customRadio = $('<span class="custom-radio">'),
-					thisRadioId = $(elem).attr('id');
+					thisRadioId = $(elem).attr('id'),
+					thisRadioName = $(elem).attr('name');
 
+				// (3.6.2)	
 				$(elem).before(customRadio);
-
-				var nn = $(elem).attr('name');
-
 				$(elem).addClass('hidden-radio');
+
+				// (3.6.3)	
 				$(customRadio).attr({
 					'data-radio': thisRadioId,
-					'data-radiogroup' : nn,
+					'data-radiogroup' : thisRadioName ,
 				});
 
+				// (3.6.4)
+				var labelText = $("label[for='"+thisRadioId+"']").text();
+				$(elem).val(labelText);
 
-				var a = $("label[for='"+thisRadioId+"']").text();
-				$("input[id='"+thisRadioId+"']").val(a);
-
+				// (3.6.5)
 				$(customRadio).on('click', function(){
 
-					var drg = $(this).attr('data-radiogroup');
-					$("span[data-radiogroup= '"+drg+"']").removeClass('active-radio');
-
+					// (3.6.6)
+					var thisGroup = $(this).attr('data-radiogroup');
+					$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio');
 					$(this).addClass('active-radio');
 
+					// (3.6.7)
 					var thisElem = $(this).attr('data-radio');
-					var radioClick = $("input[id='"+thisElem+"']").click();
-					var gr = $("input[id='"+thisElem+"']").attr('name');
+					$("input[id='" + thisElem + "']").click();
+					var thisName = $("input[id='"+thisElem+"']").attr('name');
 
-					$("input[name='"+gr+"']").removeClass('check');
-
-					$("input[id='"+thisElem+"']").addClass('check');
+					// (3.6.8)
+					$("input[name='" + thisName + "']").removeClass('check-radio');
+					$("input[id='" + thisElem + "']").addClass('check-radio');
 
 				});
 
