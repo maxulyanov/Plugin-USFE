@@ -221,6 +221,8 @@ textarea{
 .custom-radio{
 	height: 17px;
 	width: 17px;
+	position: relative;
+	top: 9px;
 	background: url(../img/r.png) 0 -22px no-repeat;
 	display: inline-block;
 	cursor: pointer;
@@ -230,4 +232,5 @@ textarea{
 }
 label{
 	cursor: pointer;
+	margin-left: 7px;
 }

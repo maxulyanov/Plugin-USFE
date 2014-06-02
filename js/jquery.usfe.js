@@ -346,15 +346,15 @@
 					// (3.6.7)
 					var thisElem = $(this).attr('data-radio');
 					$("input[id='" + thisElem + "']").click();
-					var thisName = $("input[id='"+thisElem+"']").attr('name');
 
 					// (3.6.8)
+					var thisName = $("input[id='" + thisElem + "']").attr('name');
 					$("input[name='" + thisName + "']").removeClass('check-radio');
 					$("input[id='" + thisElem + "']").addClass('check-radio');
 
 				});
 
-				// (3.6.7)
+				// (3.6.9)
 				$(nextElem).on('click', function(){
 					customRadio.click();
 				});
