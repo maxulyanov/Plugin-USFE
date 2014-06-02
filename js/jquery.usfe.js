@@ -285,25 +285,28 @@
 			// (3.5)
 			typeTextarea: function(elem){
 
-				// (3.5.1)
-				textareaDefaultBg = $(elem).css('backgroundColor'),
-				textareaDefaultColor = $(elem).css('color'),
+				if(defaults.te_animateEffect){
 
-				// (3.5.2)
-				$(elem).focus(function(){
-					$(this).animate({
-						backgroundColor: defaults.te_backgroundcolor,
-						color: defaults.te_color,
-					}, defaults.te_animateSpeed);
-				});
+					// (3.5.1)
+					textareaDefaultBg = $(elem).css('backgroundColor'),
+					textareaDefaultColor = $(elem).css('color'),
 
-				// (3.5.3)
-				$(elem).focusout(function(){
-					$(this).animate({
-						backgroundColor: textareaDefaultBg,
-						color: textareaDefaultColor,
-					}, defaults.te_animateSpeed);
-				});
+					// (3.5.2)
+					$(elem).focus(function(){
+						$(this).animate({
+							backgroundColor: defaults.te_backgroundcolor,
+							color: defaults.te_color,
+						}, defaults.te_animateSpeed);
+					});
+
+					// (3.5.3)
+					$(elem).focusout(function(){
+						$(this).animate({
+							backgroundColor: textareaDefaultBg,
+							color: textareaDefaultColor,
+						}, defaults.te_animateSpeed);
+					});
+				}	
 			},
 			//end method typeTextarea
 

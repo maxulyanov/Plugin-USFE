@@ -61,6 +61,14 @@ body{
 #custom-form textarea{
 	margin-bottom: 10px;
 }
+#link-git{
+	height: 26px;
+	width: 100px;
+	text-indent: -9999px;
+	display: block;
+	margin: 0 auto;
+	background: url(../img/github.png)  no-repeat;
+}
 /*---------------------------
 	   Style Input FILE
 ---------------------------*/
@@ -202,6 +210,9 @@ input[type="password"]{
 ---------------------------*/
 textarea{
 	padding: 5px;
+	width: 335px;
+	height: 100px;
+	max-width: 335px;
 	outline: none;
 	border: none;
 	font: 13px Arial, sans-serif;
