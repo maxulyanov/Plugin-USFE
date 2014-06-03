@@ -1,3 +1,14 @@
+/*
+
+ USFE (User Style Form Elements) — jQuery plugin
+ Version: 1.5.6
+ Author: M.Ulyanov (web.ulyanov@gmail.com)
+ Site: http://web-ulyanov.ru
+ Source && Doc: https://github.com/M-Ulyanov/Plugin-USFE/blob/master/js/jquery.usfe.js
+ Example: http://example.web-ulyanov.ru/frontend/usfe
+
+ */
+
 (function($){
 
 	$.fn.usfe = function(options){
@@ -371,20 +382,23 @@
 
 		return this.each(function(){
 
+			var nowThis;
+
 			if(this.nodeName.toLowerCase() == 'form'){
 				$(this).find('input, button, textarea').each(function(){
 
 					if(this.nodeName.toLowerCase() == 'textarea')
 						$(this).attr('type', 'textarea');
 
-					definition(this);
+					nowThis = this;
+					definition(nowThis);
 				});
 			}
 			else if(this.nodeName.toLowerCase() == 'textarea'){
 				$(this).attr('type', 'textarea');
 			}
 
-			definition(this);
+			definition(nowThis);
 
 			function definition(el){
 				
@@ -407,9 +421,12 @@
 					case 'textarea':
 						methods.typeTextarea(el);
 						break;
-					case 'radio' :
+					case 'radio' :;
 						methods.typeRadio(el);	
-						break;	
+						break;
+					default:
+						console.log('Ошибка! Элемент не может быть обработан:');
+						console.log(el);	
 				}
 			}
 
