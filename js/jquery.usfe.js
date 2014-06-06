@@ -376,6 +376,67 @@
 			},
 			//end method typeRadio
 
+			// (3.7)
+			typeCheckbox: function(elem){
+
+				// (3.7.1)
+				var customCheckbox = $('<span class="custom-checkbox">'),
+					thisCheckboxId = $(elem).attr('id'),
+					thisCheckboxName = $(elem).attr('name'),
+					nextElem = $(elem).next('label');
+
+				// (3.7.2)
+				$(elem).before(customCheckbox);
+				$(elem).addClass('hidden-checkbox');
+
+				// (3.7.3)	
+				$(customCheckbox).attr({
+					'data-radio': thisCheckboxId,
+					'data-radiogroup' : thisCheckboxName ,
+				});
+
+				// (3.7.4)
+				if(nextElem.length > 0){
+					var labelText = $("label[for='" + thisCheckboxId + "']").text();
+					var timeValue = $(elem).attr('value');
+					if(!timeValue){
+						$(elem).val(labelText);
+					}
+				}
+
+				// (3.7.5)
+				$(customCheckbox).on('click', function(){
+
+					// (3.7.7)
+					var thisElem = $(this).attr('data-radio');
+					$("input[id='" + thisElem + "']").click();
+
+					if($(this).hasClass('active-radio')){
+						$(this).removeClass('active-radio');
+					}
+					else{
+						$(this).addClass('active-radio');
+					}
+
+					// (3.7.8)
+					var thisName = $("input[id='" + thisElem + "']").attr('name');
+					$("input[name='" + thisName + "']").removeClass('check-radio');
+					$("input[id='" + thisElem + "']").addClass('check-radio');
+
+					console.log($('input[type="checkbox"]:checked').length);
+
+				});
+
+				// (3.7.9)
+				$(nextElem).on('click', function(){
+					customCheckbox.click();
+				});
+
+
+
+			},
+			//end method typeCheckbox
+
 		};
 		//end all methods
 
@@ -421,8 +482,11 @@
 					case 'textarea':
 						methods.typeTextarea(el);
 						break;
-					case 'radio' :;
+					case 'radio' :
 						methods.typeRadio(el);	
+						break;
+					case 'checkbox' :
+						methods.typeCheckbox(el);	
 						break;
 					default:
 						console.log('Ошибка! Элемент не может быть обработан:');
