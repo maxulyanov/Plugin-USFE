@@ -42,6 +42,7 @@
 			te_color: '#FFF',
 			te_backgroundcolor: '#52626F',
 
+
 		};
 
 		options = $.extend(defaults, options);
@@ -381,58 +382,39 @@
 
 				// (3.7.1)
 				var customCheckbox = $('<span class="custom-checkbox">'),
-					thisCheckboxId = $(elem).attr('id'),
-					thisCheckboxName = $(elem).attr('name'),
+					checkboxWrap = $('<div class="checkbox-wrap">'),
 					nextElem = $(elem).next('label');
 
 				// (3.7.2)
-				$(elem).before(customCheckbox);
+				$(elem).wrap(checkboxWrap);
+				$(elem).before(customCheckbox).after(nextElem);
 				$(elem).addClass('hidden-checkbox');
 
-				// (3.7.3)	
-				$(customCheckbox).attr({
-					'data-radio': thisCheckboxId,
-					'data-radiogroup' : thisCheckboxName ,
-				});
-
-				// (3.7.4)
+				// (3.7.3)
 				if(nextElem.length > 0){
-					var labelText = $("label[for='" + thisCheckboxId + "']").text();
+					var labelText = $(elem).parent('div').find('label').text();
 					var timeValue = $(elem).attr('value');
 					if(!timeValue){
 						$(elem).val(labelText);
 					}
 				}
 
+				// (3.7.4)
+				$(customCheckbox).on('click', function(){						
+					$(this).next('input').click();
+				});
+
 				// (3.7.5)
-				$(customCheckbox).on('click', function(){
-
-					// (3.7.7)
-					var thisElem = $(this).attr('data-radio');
-					$("input[id='" + thisElem + "']").click();
-
-					if($(this).hasClass('active-radio')){
-						$(this).removeClass('active-radio');
+				$(elem).on('click', function(){
+					
+					var parent = $(this).parent('div');
+					if($(parent).find('input').is(':checked')){
+						$(parent).find(customCheckbox).addClass('active-checkbox');
 					}
 					else{
-						$(this).addClass('active-radio');
+						$(parent).find(customCheckbox).removeClass('active-checkbox');
 					}
-
-					// (3.7.8)
-					var thisName = $("input[id='" + thisElem + "']").attr('name');
-					$("input[name='" + thisName + "']").removeClass('check-radio');
-					$("input[id='" + thisElem + "']").addClass('check-radio');
-
-					console.log($('input[type="checkbox"]:checked').length);
-
-				});
-
-				// (3.7.9)
-				$(nextElem).on('click', function(){
-					customCheckbox.click();
-				});
-
-
+				})
 
 			},
 			//end method typeCheckbox

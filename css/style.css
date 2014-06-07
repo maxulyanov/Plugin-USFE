@@ -228,6 +228,7 @@ textarea{
 .hidden-radio{
 	display: none;
 }
+
 .custom-radio{
 	height: 17px;
 	width: 17px;
@@ -251,16 +252,19 @@ textarea{
 .hidden-checkbox{
 	display: none;
 }
+.checkbox-wrap{
+	margin-bottom: 5px;
+}
 .custom-checkbox{
 	height: 20px;
 	width: 20px;
 	position: relative;
-	top: 9px;
+	top: 6px;
 	background: url(../img/checkbox-icon.png) 0 -6px no-repeat;
 	display: inline-block;
 	cursor: pointer;
 }
-.custom-checkbox.active-radio{
+.custom-checkbox.active-checkbox{
 	background-position: 0 -37px;
 }
 .custom-checkbox + input + label{
