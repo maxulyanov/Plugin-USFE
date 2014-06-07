@@ -42,6 +42,9 @@
 			te_color: '#FFF',
 			te_backgroundcolor: '#52626F',
 
+			//settings type = checkbox
+			c_styleCheckbox: 'style-1',
+
 
 		};
 
@@ -364,8 +367,8 @@
 
 					// (3.6.8)
 					var thisName = $("input[id='" + thisElem + "']").attr('name');
-					$("input[name='" + thisName + "']").removeClass('check-radio');
-					$("input[id='" + thisElem + "']").addClass('check-radio');
+					$("input[name='" + thisName + "']").removeAttr('checked');
+					$("input[id='" + thisElem + "']").attr('checked', true);
 
 				});
 
@@ -380,8 +383,13 @@
 			// (3.7)
 			typeCheckbox: function(elem){
 
+				if(defaults.c_styleCheckbox == 'style-1')
+					var classCheckbox = 'custom-checkbox';
+				else if(defaults.c_styleCheckbox == 'style-2')
+					var classCheckbox = 'custom-checkbox-2';
+
 				// (3.7.1)
-				var customCheckbox = $('<span class="custom-checkbox">'),
+				var customCheckbox = $('<span class="' + classCheckbox + '">'),
 					checkboxWrap = $('<div class="checkbox-wrap">'),
 					nextElem = $(elem).next('label');
 
@@ -397,7 +405,7 @@
 					if(!timeValue){
 						$(elem).val(labelText);
 					}
-				}
+				};
 
 				// (3.7.4)
 				$(customCheckbox).on('click', function(){						
@@ -406,15 +414,17 @@
 
 				// (3.7.5)
 				$(elem).on('click', function(){
-					
+
 					var parent = $(this).parent('div');
 					if($(parent).find('input').is(':checked')){
 						$(parent).find(customCheckbox).addClass('active-checkbox');
+						$(this).attr('checked', true);
 					}
 					else{
 						$(parent).find(customCheckbox).removeClass('active-checkbox');
+						$(this).removeAttr('checked');
 					}
-				})
+				});
 
 			},
 			//end method typeCheckbox
