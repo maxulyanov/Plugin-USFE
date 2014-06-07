@@ -6,38 +6,43 @@
 
 1.1.Использование
 
+
 1.2.Типы параметров
 Параметры делятся по группам и каждая из них имеет свой префикс для удобства:
 f_ - input file
 n_ - input number (изменный input text)
 t_ - input text
+te_ - textarea
+c_ - input checkbox
 
 1.3.Параметры по умолчанию
 Для удобства перечислим параметры применяемые для всех типов элементов в плагине по умолчанию:
 
-f_defaultFileName : 'Файл не выбран',
-f_defaultFileNameDel : 'Файл не выбран',
-f_FileNameLength : 30,
-f_defaultButtonName : 'Выбрать',
-f_editButtonName : 'Изменить',
-f_charDelete : '&#215;',
-f_bgDelete: '#f48475',
+f_defaultFileName : 'Файл не выбран'
+f_defaultFileNameDel : 'Файл не выбран'
+f_FileNameLength : 30
+f_defaultButtonName : 'Выбрать'
+f_editButtonName : 'Изменить'
+f_charDelete : '&#215;'
+f_bgDelete: '#f48475'
 ---
-n_iconPlus: '+',
-n_iconMinus: '-',
-n_editBg: true,
+n_iconPlus: '+'
+n_iconMinus: '-'
+n_editBg: true
 ---
-t_animateEffect: true,
-t_animateSpeed: 400,
-t_editW: 12,
-t_editH: 3,
-t_color: '#FFF',
-t_backgroundcolor: '#52626F',
+t_animateEffect: true
+t_animateSpeed: 400
+t_editW: 12
+t_editH: 3
+t_color: '#FFF'
+t_backgroundcolor: '#52626F'
 ---
-te_animateEffect: true,
-te_animateSpeed: 400,
-te_color: '#FFF',
-te_backgroundcolor: '#52626F',
+te_animateEffect: true
+te_animateSpeed: 400
+te_color: '#FFF'
+te_backgroundcolor: '#52626F'
+---
+c_styleCheckbox: 'style-1'
 
 ==================================================
 
@@ -69,6 +74,9 @@ te_backgroundcolor: '#52626F',
 2.4.2.te_animateSpeed - скорость анимации поля textarea
 2.4.3.te_color - цвет текста поля при получении фокуса
 2.4.4.te_backgroundcolor - фоновый цвет поля при получении фокуса
+
+2.5.Параметры input checkbox
+2.5.1. - c_styleCheckbox - параметр изменяющий внешний вид 
 
 ==================================================
 
@@ -123,6 +131,14 @@ te_backgroundcolor: '#52626F',
 3.6.7.Имитация клика по элементу input radio с помощью доп. атрибута data-radio
 3.6.8.Удаление и добавление доп. класса для дальнейшей работы check-radio
 3.6.9.Запустим функцию так же по клику на label
+
+3.7.Метод typeCheckbox
+3.7.1.Присвоим значение для переменной classCheckbox в зависимости от параметра
+3.7.2.Инициализация переменных
+3.7.3.Вставка новых элементых и добавление класса
+3.7.4.Добавление value для элементов input checkbox с помощью конструкции if
+3.7.5.При клике на customCheckbox Имитируем клик по input checkbox
+3.7.6.Функция по клику на input checkbox
 
 ==================================================
 

@@ -383,22 +383,26 @@
 			// (3.7)
 			typeCheckbox: function(elem){
 
-				if(defaults.c_styleCheckbox == 'style-1')
-					var classCheckbox = 'custom-checkbox';
-				else if(defaults.c_styleCheckbox == 'style-2')
-					var classCheckbox = 'custom-checkbox-2';
-
 				// (3.7.1)
-				var customCheckbox = $('<span class="' + classCheckbox + '">'),
-					checkboxWrap = $('<div class="checkbox-wrap">'),
-					nextElem = $(elem).next('label');
+				if(defaults.c_styleCheckbox == 'style-1')
+					classCheckbox = 'custom-checkbox';
+				else if(defaults.c_styleCheckbox == 'style-2')
+					classCheckbox = 'custom-checkbox-2';
+				else
+					classCheckbox = 'custom-checkbox';
 
 				// (3.7.2)
-				$(elem).wrap(checkboxWrap);
-				$(elem).before(customCheckbox).after(nextElem);
-				$(elem).addClass('hidden-checkbox');
+				var customCheckbox = $('<span class="' + classCheckbox + '">'),
+					checkboxWrap = $('<div class="checkbox-wrap">'),
+					nextElem = $(elem).next('label'),
+					classCheckbox;
 
 				// (3.7.3)
+				$(elem).wrap(checkboxWrap);
+				$(elem).before(customCheckbox).after(nextElem);
+				$(elem).addClass('hidden-checkbox');				
+
+				// (3.7.4)
 				if(nextElem.length > 0){
 					var labelText = $(elem).parent('div').find('label').text();
 					var timeValue = $(elem).attr('value');
@@ -407,12 +411,12 @@
 					}
 				};
 
-				// (3.7.4)
+				// (3.7.5)
 				$(customCheckbox).on('click', function(){						
 					$(this).next('input').click();
 				});
 
-				// (3.7.5)
+				// (3.7.6)
 				$(elem).on('click', function(){
 
 					var parent = $(this).parent('div');
