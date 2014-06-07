@@ -9,7 +9,9 @@
 <script src="js/jquery.usfe.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#custom-form').usfe();
+		$('#custom-form').usfe({
+			c_styleCheckbox: 'style-2',
+		});
 	});
 </script>
 </head>
@@ -26,10 +28,10 @@
 				<input name="group1" id="radio2" type="radio" value="two"><label for="radio2">Второй вариант</label><br>
 				<input name="group1" id="radio3" type="radio"><label for="radio3">Третий вариант</label>
 			</p>
-			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Отметьте чекбоксы:</span><br>
-				<input id="check1" type="checkbox"><label for="check1">Да</label>
-				<input id="check2" type="checkbox" value="no"><label for="check2">Нет</label>
-				<input id="check3" type="checkbox"><label for="check3">Незнаю</label>
+			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
+				<input id="check1" type="checkbox"><label for="check1">HTML, CSS</label>
+				<input id="check2" type="checkbox" value="no"><label for="check2">Javascript</label>
+				<input id="check3" type="checkbox"><label for="check3">PHP, MySQL</label>
 			</p>
 			<p style="margin-top: 10px;"><span>Комментарий:</span><textarea></textarea></p>
 			<p><span>Кнопки:</span><input style="margin:0 10px;" type="submit" value="input"><button type="button">Button</button></p>
