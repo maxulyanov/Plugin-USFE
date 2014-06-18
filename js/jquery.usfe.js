@@ -433,6 +433,71 @@
 			},
 			//end method typeCheckbox
 
+			// (3.8)
+			typeSelect: function(elem){
+
+				// (3.8.1)
+				var selectWrap = $('<div class="select-wrap">'),
+					selectThis = $('<div class="select-this">'),
+					selectThisText = $('<div class="select-this-text">'),
+					selectThisTrigger = $('<div class="select-this-trigger">'),
+					selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">'),
+					selectDropdown = $('<div class="select-dropdown">'),
+					selectUl = $('<ul>');
+
+				// (3.8.2)
+				$(elem).before(selectWrap);
+				$(selectThis).append(selectThisText,$(selectThisTrigger).append(selectThisTriggerArrow));
+				$(selectWrap).append(selectThis, selectDropdown, elem);
+				
+				// (3.8.3)
+				$(elem).find('option').each(function(){
+
+					var optionText = $(this).text();
+					$(selectUl).append('<li>' + optionText + '</li>');
+
+				});
+				$(selectDropdown).append(selectUl);
+
+				// (3.8.4)
+				var firstOption = $(elem).find('option').eq(0).text();
+				$(selectThisText).text(firstOption);
+
+				// (3.8.5)
+				$(selectThis).on('click', function(event){
+
+					event.stopPropagation();
+
+					var thisDrop = $(this).parent().find('.select-dropdown');
+					if($(thisDrop).is(':hidden')){
+						$(thisDrop).show();
+					}
+					else{
+						$(thisDrop).hide();
+					}
+
+				});
+
+				// (3.8.6)
+				$(selectUl).find('li').on('click', function(event){
+
+					event.stopPropagation();
+
+					$(this).parent().find('li').removeAttr('class');
+					$(this).addClass('selected');
+					$(selectThisText).text($(this).text());
+					$(this).parents('.select-dropdown').hide();
+
+				});
+
+				// (3.8.7)
+				$('html').on('click', function(){
+					$('.select-dropdown').hide();
+				});
+
+			},
+			//end method typeSelect
+
 		};
 		//end all methods
 
@@ -442,10 +507,13 @@
 			var nowThis;
 
 			if(this.nodeName.toLowerCase() == 'form'){
-				$(this).find('input, button, textarea').each(function(){
+				$(this).find('input, button, textarea, select').each(function(){
 
 					if(this.nodeName.toLowerCase() == 'textarea')
 						$(this).attr('type', 'textarea');
+
+					if(this.nodeName.toLowerCase() == 'select')
+						$(this).attr('type', 'select');
 
 					nowThis = this;
 					definition(nowThis);
@@ -453,6 +521,9 @@
 			}
 			else if(this.nodeName.toLowerCase() == 'textarea'){
 				$(this).attr('type', 'textarea');
+			}
+			else if(this.nodeName.toLowerCase() == 'select'){
+				$(this).attr('type', 'select');
 			}
 
 			definition(nowThis);
@@ -483,6 +554,9 @@
 						break;
 					case 'checkbox' :
 						methods.typeCheckbox(el);	
+						break;
+					case 'select' :
+						methods.typeSelect(el);	
 						break;
 					default:
 						console.log('Ошибка! Элемент не может быть обработан:');
