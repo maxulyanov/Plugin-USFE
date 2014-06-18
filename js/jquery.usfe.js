@@ -441,7 +441,7 @@
 					selectThis = $('<div class="select-this">'),
 					selectThisText = $('<div class="select-this-text">'),
 					selectThisTrigger = $('<div class="select-this-trigger">'),
-					selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">'),
+					selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">&#9660;</div>'),
 					selectDropdown = $('<div class="select-dropdown">'),
 					selectUl = $('<ul>');
 
