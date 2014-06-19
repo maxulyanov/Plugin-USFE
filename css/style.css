@@ -309,8 +309,10 @@ textarea{
 .select-wrap .select-this-text{
 	float: left;
 }
-.select-wrap .select-this-trigger-arrow{
+.select-wrap .select-this-trigger{
 	float: right;
+	border-left: 1px solid #4A5863;
+	padding: 0 3px 0 10px;
 }
 .select-wrap .select-dropdown{
 	display: none;
@@ -334,6 +336,11 @@ textarea{
 	color: #FFF;
 	padding: 7px;
 }
-.select-wrap .select-dropdown ul li:hover{
+.select-wrap .select-dropdown ul li:hover,
+.select-wrap .select-dropdown ul li.selected,
+.select-wrap .select-dropdown ul.hover-list li.selected:hover{
 	background: #4A5863;
+}
+.select-wrap .select-dropdown ul.hover-list li.selected{
+	background: #52626F;
 }
