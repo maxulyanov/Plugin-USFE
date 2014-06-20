@@ -441,7 +441,7 @@
 					selectThis = $('<div class="select-this">'),
 					selectThisText = $('<div class="select-this-text">'),
 					selectThisTrigger = $('<div class="select-this-trigger">'),
-					selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">&#9660;</div>'),
+					selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">'+'&#9660;'+'</div>'),
 					selectDropdown = $('<div class="select-dropdown">'),
 					selectUl = $('<ul>');
 
@@ -499,9 +499,11 @@
 					if($(thisDrop).is(':hidden')){
 						$('.select-dropdown').hide();
 						$(thisDrop).show();
+						changeArrow(true);
 					}
 					else{
 						$(thisDrop).hide();
+						changeArrow(false);
 					}
 
 				});
@@ -518,6 +520,8 @@
 					$(selectThisText).text($(this).text());
 					$(this).parents('.select-dropdown').hide();
 
+					changeArrow(false);
+
 				});
 
 				// (3.8.7)
@@ -532,7 +536,21 @@
 				// (3.8.8)
 				$('html').on('click', function(){
 					$('.select-dropdown').hide();
+					changeArrow(false);
 				});
+
+				// (3.8.9)
+				function changeArrow(param){
+					var arrow = '';
+					if(param){
+						arrow = '&#9650';
+					}
+					else{
+						arrow = '&#9660';
+					}
+					$(selectThisTrigger).find('div').remove();
+					$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
+				}
 
 			},
 			//end method typeSelect
