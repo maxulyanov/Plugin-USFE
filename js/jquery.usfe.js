@@ -495,6 +495,15 @@
 
 					if($(this).hasClass('select-disabled')) return false;
 
+					var thisElem = $(this);
+
+					$('.select-this').each(function(){
+						if($(this) !== thisElem){
+							$(this).find('.select-this-trigger-arrow').remove();
+							$(this).find('.select-this-trigger').append('<div class="select-this-trigger-arrow">' + '&#9660' + '</div>');
+						}
+					});
+
 					var thisDrop = $(this).parent().find('.select-dropdown');
 					if($(thisDrop).is(':hidden')){
 						$('.select-dropdown').hide();
@@ -547,6 +556,7 @@
 					}
 					else{
 						arrow = '&#9660';
+
 					}
 					$(selectThisTrigger).find('div').remove();
 					$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
