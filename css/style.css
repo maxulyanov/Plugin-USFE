@@ -291,9 +291,11 @@ textarea{
 	position: relative;
 	width: 220px;
 }
+/*
 .select-wrap select{
 	display: none;
 }
+*/
 .select-wrap .select-this{
 	padding: 5px 7px;
 	overflow: hidden;
@@ -342,5 +344,12 @@ textarea{
 	background: #4A5863;
 }
 .select-wrap .select-dropdown ul.hover-list li.selected{
+	background: #52626F;
+}
+.select-wrap .select-dropdown ul li.disabled,
+.select-wrap .select-dropdown ul li.disabled:hover,
+.select-wrap .select-this.select-disabled{
+	color: #C2C2C2;
+	cursor: default;
 	background: #52626F;
 }

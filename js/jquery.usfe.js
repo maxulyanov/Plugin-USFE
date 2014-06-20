@@ -449,33 +449,43 @@
 				$(elem).before(selectWrap);
 				$(selectThis).append(selectThisText,$(selectThisTrigger).append(selectThisTriggerArrow));
 				$(selectWrap).append(selectThis, selectDropdown, elem);
-				
+
+				if($(elem).attr('disabled'))
+					$(selectThis).addClass('select-disabled');
+								
 				// (3.8.3)
+				var initDefaultOption = false;
 				$(elem).find('option').each(function(){
 
 					var optionText = $(this).text();
 					$(selectUl).append('<li>' + optionText + '</li>');
 
-				});
-				$(selectDropdown).append(selectUl);
-
-				// (3.8.4)
-				var initDefaultOption = false;
-				$(elem).find('option').each(function(){
+					var disabled = $(this).attr('disabled');
+					if(disabled){
+						var indexDisabled = $(this).index();
+						$(selectUl).find('li').eq(indexDisabled).addClass('disabled');
+					}
 
 					var selected = $(this).attr('selected');
 					if(selected){
 						$(selectThisText).text($(this).text());
-						$(selectUl).find('li:contains(' + $(this).text() + ')').addClass('selected');
+						var indexSelected = $(this).index();
+						$(selectUl).find('li').eq(indexSelected).addClass('selected');
 						initDefaultOption = true;
 					}
 
 				});
+				$(selectDropdown).append(selectUl);
 
+				// (3.8.4)
 				if(!initDefaultOption){
-					var firstOption = $(elem).find('option').eq(0);
+					var eqPos = 0;
+					while($(selectUl).find('li').eq(eqPos).hasClass('disabled')){
+						eqPos++;					
+					}
+					var firstOption = $(elem).find('option').eq(eqPos);
 					$(selectThisText).text($(firstOption).text());
-					$(selectUl).find('li').eq(0).addClass('selected');
+					$(selectUl).find('li').eq(eqPos).addClass('selected');
 				}
 
 				// (3.8.5)
@@ -483,8 +493,11 @@
 
 					event.stopPropagation();
 
+					if($(this).hasClass('select-disabled')) return false;
+
 					var thisDrop = $(this).parent().find('.select-dropdown');
 					if($(thisDrop).is(':hidden')){
+						$('.select-dropdown').hide();
 						$(thisDrop).show();
 					}
 					else{
@@ -498,7 +511,9 @@
 
 					event.stopPropagation();
 
-					$(this).parent().find('li').removeAttr('class');
+					if($(this).hasClass('disabled')) return false;
+
+					$(this).parent().find('li').removeClass('selected');
 					$(this).addClass('selected');
 					$(selectThisText).text($(this).text());
 					$(this).parents('.select-dropdown').hide();
