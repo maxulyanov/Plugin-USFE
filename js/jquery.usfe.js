@@ -455,22 +455,36 @@
 								
 				// (3.8.3)
 				var initDefaultOption = false;
-				$(elem).find('option').each(function(){
+				$(elem).children('option, optgroup').each(function(){
 
-					var optionText = $(this).text();
-					$(selectUl).append('<li>' + optionText + '</li>');
+					if(this.nodeName.toLowerCase() == 'optgroup'){
+						var thisClass = $(this).attr('class');
+						var optgroupClass = 'optgroup';
+						var optionClass = 'option';
+						$(selectUl).append('<li class="' + optgroupClass +' '+ thisClass + '">' + $(this)
+							.attr('label') + '</li>');
+
+						$(this).find('option').each(function(){
+							var optionText = $(this).text();
+							$(selectUl).append('<li class="' + optionClass +' '+ thisClass + '">' + optionText + '</li>');
+						});	
+					}
+					else{
+						var optionText = $(this).text();
+						$(selectUl).append('<li>' + optionText + '</li>');
+					}
 
 					var disabled = $(this).attr('disabled');
 					if(disabled){
 						var indexDisabled = $(this).index();
-						$(selectUl).find('li').eq(indexDisabled).addClass('disabled');
+						$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
 					}
 
 					var selected = $(this).attr('selected');
 					if(selected){
 						$(selectThisText).text($(this).text());
 						var indexSelected = $(this).index();
-						$(selectUl).find('li').eq(indexSelected).addClass('selected');
+						$(selectUl).children('li').eq(indexSelected).addClass('selected');
 						initDefaultOption = true;
 					}
 
@@ -493,7 +507,7 @@
 
 					event.stopPropagation();
 
-					if($(this).hasClass('select-disabled')) return false;
+					if($(this).hasClass('select-disabled, optgroup')) return false;
 
 					var thisElem = $(this);
 
@@ -523,6 +537,7 @@
 					event.stopPropagation();
 
 					if($(this).hasClass('disabled')) return false;
+					if($(this).hasClass('optgroup')) return false;
 
 					$(this).parent().find('li').removeClass('selected');
 					$(this).addClass('selected');
@@ -535,10 +550,10 @@
 
 				// (3.8.7)
 				$(selectUl).find('li').hover(function(){
-					$(this).parent().addClass('hover-list');
+					$(this).parents('ul').addClass('hover-list');
 				},
 				function(){
-					$(this).parent().removeClass('hover-list');
+					$(this).parent('ul').removeClass('hover-list');
 				});
 
 
@@ -561,6 +576,8 @@
 					$(selectThisTrigger).find('div').remove();
 					$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
 				}
+
+				
 
 			},
 			//end method typeSelect
