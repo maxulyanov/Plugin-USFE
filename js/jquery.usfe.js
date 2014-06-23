@@ -455,8 +455,10 @@
 								
 				// (3.8.3)
 				var initDefaultOption = false;
+				var countData = 0;
 				$(elem).children('option, optgroup').each(function(){
 
+					// (3.8.3.1)
 					if(this.nodeName.toLowerCase() == 'optgroup'){
 						var thisClass = $(this).attr('class');
 						var optgroupClass = 'optgroup';
@@ -465,27 +467,38 @@
 							.attr('label') + '</li>');
 
 						$(this).find('option').each(function(){
+							var valueData = 'element-' + countData++;
+							$(this).attr('data-opt', valueData);
 							var optionText = $(this).text();
-							$(selectUl).append('<li class="' + optionClass +' '+ thisClass + '">' + optionText + '</li>');
-						});	
+							$(selectUl).append('<li data-li="' + valueData + '" class="' + optionClass +' '+ thisClass + '">' + optionText + '</li>');
+
+							var disabled = $(this).attr('disabled');
+							if(disabled){
+								var AttrDisabled = $(this).attr('data-opt');
+								$(selectUl).find('li[data-li="'+AttrDisabled+'"]').addClass('disabled');
+							}
+						});
+
 					}
-					else{
+					// (3.8.3.2)
+					else if(this.nodeName.toLowerCase() == 'option'){
+
 						var optionText = $(this).text();
 						$(selectUl).append('<li>' + optionText + '</li>');
-					}
 
-					var disabled = $(this).attr('disabled');
-					if(disabled){
-						var indexDisabled = $(this).index();
-						$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
-					}
+						var disabled = $(this).attr('disabled');
+						if(disabled){
+							var indexDisabled = $(this).index();
+							$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
+						}
 
-					var selected = $(this).attr('selected');
-					if(selected){
-						$(selectThisText).text($(this).text());
-						var indexSelected = $(this).index();
-						$(selectUl).children('li').eq(indexSelected).addClass('selected');
-						initDefaultOption = true;
+						var selected = $(this).attr('selected');
+						if(selected){
+							$(selectThisText).text($(this).text());
+							var indexSelected = $(this).index();
+							$(selectUl).children('li').eq(indexSelected).addClass('selected');
+							initDefaultOption = true;
+						}
 					}
 
 				});
