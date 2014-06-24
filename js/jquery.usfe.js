@@ -475,7 +475,17 @@
 							var disabled = $(this).attr('disabled');
 							if(disabled){
 								var AttrDisabled = $(this).attr('data-opt');
-								$(selectUl).find('li[data-li="'+AttrDisabled+'"]').addClass('disabled');
+								$(selectUl).find('li[data-li="' + AttrDisabled + '"]')
+								.addClass('disabled');
+							}
+
+							var selected = $(this).attr('selected');
+							if(selected){
+								$(selectThisText).text($(this).text());
+								var AttrSelected = $(this).attr('data-opt');
+								$(selectUl).find('li[data-li="' + AttrSelected + '"]')
+								.addClass('selected');
+								initDefaultOption = true;
 							}
 						});
 
