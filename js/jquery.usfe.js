@@ -479,8 +479,9 @@
 								.addClass('disabled');
 							}
 
+							var selectrLen = $(selectUl).find('li.selected').length;
 							var selected = $(this).attr('selected');
-							if(selected){
+							if(selected && selectrLen < 1){
 								$(selectThisText).text($(this).text());
 								var AttrSelected = $(this).attr('data-opt');
 								$(selectUl).find('li[data-li="' + AttrSelected + '"]')
@@ -488,8 +489,8 @@
 								initDefaultOption = true;
 							}
 						});
-
 					}
+
 					// (3.8.3.2)
 					else if(this.nodeName.toLowerCase() == 'option'){
 
@@ -502,15 +503,15 @@
 							$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
 						}
 
+						var selectrLen = $(selectUl).find('li.selected').length;
 						var selected = $(this).attr('selected');
-						if(selected){
+						if(selected && selectrLen < 1){
 							$(selectThisText).text($(this).text());
 							var indexSelected = $(this).index();
 							$(selectUl).children('li').eq(indexSelected).addClass('selected');
 							initDefaultOption = true;
 						}
 					}
-
 				});
 				$(selectDropdown).append(selectUl);
 
