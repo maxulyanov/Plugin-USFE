@@ -69,6 +69,12 @@ body{
 	margin: 0 auto;
 	background: url(../img/github.png)  no-repeat;
 }
+.select-wrap .select-dropdown ul li.one{
+	background: rgb(114, 168, 33);
+}
+.select-wrap .select-dropdown ul li.two{
+	background: rgb(66, 164, 195);
+}
 /*---------------------------
 	   Style Input FILE
 ---------------------------*/
@@ -364,4 +370,18 @@ textarea{
 	color: #A0A0A0;
 	cursor: default;
 	background: #52626F;
+}
+.select-wrap .select-dropdown ul li.optgroup{
+	cursor: default;
+	font-weight: bold;
+	list-style-type: disc;
+	list-style-position: inside;
+}
+.select-wrap .select-dropdown ul li.optgroup:hover{
+	background: #52626F;
+}
+.select-wrap .select-dropdown ul li.option{
+	padding-left: 22px;
+	list-style-type: circle;
+	list-style-position: inside;
 }
