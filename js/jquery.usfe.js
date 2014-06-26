@@ -460,18 +460,24 @@
 
 					// (3.8.3.1)
 					if(this.nodeName.toLowerCase() == 'optgroup'){
+
+						// a
 						var thisClass = $(this).attr('class');
 						var optgroupClass = 'optgroup';
 						var optionClass = 'option';
 						$(selectUl).append('<li class="' + optgroupClass +' '+ thisClass + '">' + $(this)
 							.attr('label') + '</li>');
 
+						// b
 						$(this).find('option').each(function(){
+
+							// c
 							var valueData = 'element-' + countData++;
 							$(this).attr('data-opt', valueData);
 							var optionText = $(this).text();
 							$(selectUl).append('<li data-li="' + valueData + '" class="' + optionClass +' '+ thisClass + '">' + optionText + '</li>');
 
+							// d
 							var disabled = $(this).attr('disabled');
 							if(disabled){
 								var AttrDisabled = $(this).attr('data-opt');
@@ -479,6 +485,7 @@
 								.addClass('disabled');
 							}
 
+							// f
 							var selectrLen = $(selectUl).find('li.selected').length;
 							var selected = $(this).attr('selected');
 							if(selected && selectrLen < 1){
@@ -488,21 +495,25 @@
 								.addClass('selected');
 								initDefaultOption = true;
 							}
+
 						});
 					}
 
 					// (3.8.3.2)
 					else if(this.nodeName.toLowerCase() == 'option'){
 
+						// a
 						var optionText = $(this).text();
 						$(selectUl).append('<li>' + optionText + '</li>');
 
+						// b
 						var disabled = $(this).attr('disabled');
 						if(disabled){
 							var indexDisabled = $(this).index();
 							$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
 						}
 
+						// c
 						var selectrLen = $(selectUl).find('li.selected').length;
 						var selected = $(this).attr('selected');
 						if(selected && selectrLen < 1){
@@ -512,6 +523,7 @@
 							initDefaultOption = true;
 						}
 					}
+
 				});
 				$(selectDropdown).append(selectUl);
 
@@ -600,8 +612,6 @@
 					$(selectThisTrigger).find('div').remove();
 					$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
 				}
-
-				
 
 			},
 			//end method typeSelect
