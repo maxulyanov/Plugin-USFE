@@ -45,6 +45,9 @@
 			//settings type = checkbox
 			c_styleCheckbox: 'style-1',
 
+			//settings type = select
+			s_height: false,
+
 
 		};
 
@@ -611,14 +614,21 @@
 					}
 					$(selectThisTrigger).find('div').remove();
 					$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
-				}
+				};
+
+				// (3.8.10)
+				if(defaults.s_height){
+					$(selectUl).css({
+						'height' : defaults.s_height + 'px',
+						'overflowY' : 'scroll',
+					});
+				};
 
 			},
 			//end method typeSelect
 
 		};
 		//end all methods
-
 
 		return this.each(function(){
 
@@ -637,17 +647,18 @@
 					definition(nowThis);
 				});
 			}
-			else if(this.nodeName.toLowerCase() == 'textarea'){
-				$(this).attr('type', 'textarea');
+			else{
+				if(this.nodeName.toLowerCase() == 'textarea'){
+					$(this).attr('type', 'textarea');
+				}
+				if(this.nodeName.toLowerCase() == 'select'){
+					$(this).attr('type', 'select');
+				}
+				definition(this);
 			}
-			else if(this.nodeName.toLowerCase() == 'select'){
-				$(this).attr('type', 'select');
-			}
-
-			definition(nowThis);
 
 			function definition(el){
-				
+
 				var type = $(el).attr('type');
 				var dataEl = $(el).attr('data-element');
 
