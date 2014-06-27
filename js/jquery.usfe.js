@@ -173,74 +173,77 @@
 			// (3.2)
 			typeNumber : function(elem){
 
-				// (3.2.1)
-				var numWrap = $('<div class="number-wrap">'),
-					numPlus = $('<button type="button" value="-" class="number-plus">'+ defaults.n_iconPlus +'</button>'),
-					numMinus = $('<button type="button" value="-" class="number-minus">'+ defaults.n_iconMinus +'</button>');
+				if($(elem).parents('.number-wrap').length < 1){
 
-				$(elem).wrap(numWrap);
-				$(elem).before(numMinus).after(numPlus);
+					// (3.2.1)
+					var numWrap = $('<div class="number-wrap">'),
+						numPlus = $('<button type="button" value="-" class="number-plus">'+ defaults.n_iconPlus +'</button>'),
+						numMinus = $('<button type="button" value="-" class="number-minus">'+ defaults.n_iconMinus +'</button>');
 
-				// (3.2.2)
-				$('.number-plus').on('click', function(){
+					$(elem).wrap(numWrap);
+					$(elem).before(numMinus).after(numPlus);
 
-					var thisInput = $(this).parent().find('input[data-element="number"]');
-					var thisVal = $(thisInput).val();
-					thisVal++;
+					// (3.2.2)
+					$('.number-plus').on('click', function(){
 
-					// (3.2.3)
-					if(defaults.n_editBg){
-						$(thisInput).stop(true, true).animate({
-							backgroundColor: '#9bcb1e',
-						},400).stop(true,true).animate({
-							backgroundColor: '#FFF',
-						},400);
-					}
+						var thisInput = $(this).parent().find('input[data-element="number"]');
+						var thisVal = $(thisInput).val();
+						thisVal++;
 
-					computation(this, thisVal);
-				});
+						// (3.2.3)
+						if(defaults.n_editBg){
+							$(thisInput).stop(true, true).animate({
+								backgroundColor: '#9bcb1e',
+							},400).stop(true,true).animate({
+								backgroundColor: '#FFF',
+							},400);
+						}
 
-				// (3.2.4)
-				$('.number-minus').on('click', function(){
+						computation(this, thisVal);
+					});
 
-					var thisInput = $(this).parent().find('input[data-element="number"]');
-					var thisVal = $(thisInput).val();
-					thisVal--; 
+					// (3.2.4)
+					$('.number-minus').on('click', function(){
 
-					// (3.2.5)
-					if(!thisVal) thisVal = 1;
+						var thisInput = $(this).parent().find('input[data-element="number"]');
+						var thisVal = $(thisInput).val();
+						thisVal--; 
 
-					// (3.2.6)
-					if(defaults.n_editBg){
-						$(thisInput).stop(true, true).animate({
-							backgroundColor: '#ea6856',
-						},400).stop(true,true).animate({
-							backgroundColor: '#FFF',
-						},400);
-					}
+						// (3.2.5)
+						if(!thisVal) thisVal = 1;
 
-					computation(this, thisVal);
-				});
+						// (3.2.6)
+						if(defaults.n_editBg){
+							$(thisInput).stop(true, true).animate({
+								backgroundColor: '#ea6856',
+							},400).stop(true,true).animate({
+								backgroundColor: '#FFF',
+							},400);
+						}
 
-				// (3.2.7)
-				$('input[data-element="number"]').on('keypress input change', function(event){
+						computation(this, thisVal);
+					});
 
-					if(event.charCode < 48 || event.charCode > 57) return false;
-					var thisVal = $(this).parent().find('input[data-element="number"]').val(); 
+					// (3.2.7)
+					$('input[data-element="number"]').on('keypress input change', function(event){
 
-					computation(this, thisVal);
-				})
-			 
-				// (3.2.8)
-				function computation(elem, val){
+						if(event.charCode < 48 || event.charCode > 57) return false;
+						var thisVal = $(this).parent().find('input[data-element="number"]').val(); 
 
-					if(isNaN(val)){
-						val = 1;
-					}
+						computation(this, thisVal);
+					});
+				 
+					// (3.2.8)
+					function computation(elem, val){
 
-					$(elem).parent().find('input[data-element="number"]').val(val);
-					$(elem).parent().find('input[data-element="number"]').attr('value', val);
-				}
+						if(isNaN(val)){
+							val = 1;
+						}
+
+						$(elem).parent().find('input[data-element="number"]').val(val);
+						$(elem).parent().find('input[data-element="number"]').attr('value', val);
+					};
+				};	
 	
 			},
 			//end method typeNumber
@@ -331,294 +334,303 @@
 			// (3.6)
 			typeRadio: function(elem){
 
-				// (3.6.1)
-				var customRadio = $('<span class="custom-radio">'),
-					thisRadioId = $(elem).attr('id'),
-					thisRadioName = $(elem).attr('name'),
-					nextElem = $(elem).next('label');
+				if($(elem).parents('.radio-wrap').length < 1){
 
-				// (3.6.2)	
-				$(elem).before(customRadio);
-				$(elem).addClass('hidden-radio');
+					// (3.6.1)
+					var radioWrap = $('<div class="radio-wrap">'),
+						customRadio = $('<span class="custom-radio">'),
+						thisRadioId = $(elem).attr('id'),
+						thisRadioName = $(elem).attr('name'),
+						nextElem = $(elem).next('label');
 
-				// (3.6.3)	
-				$(customRadio).attr({
-					'data-radio': thisRadioId,
-					'data-radiogroup' : thisRadioName ,
-				});
+					// (3.6.2)
+					$(elem).wrap(radioWrap);	
+					$(elem).before(customRadio, nextElem);
+					$(elem).addClass('hidden-radio');
 
-				// (3.6.4)
-				if(nextElem.length > 0){
-					var labelText = $("label[for='"+thisRadioId+"']").text();
-					var timeValue = $(elem).attr('value');
-					if(!timeValue){
-						$(elem).val(labelText);
+					// (3.6.3)	
+					$(customRadio).attr({
+						'data-radio': thisRadioId,
+						'data-radiogroup' : thisRadioName ,
+					});
+
+					// (3.6.4)
+					if(nextElem.length > 0){
+						var labelText = $("label[for='"+thisRadioId+"']").text();
+						var timeValue = $(elem).attr('value');
+						if(!timeValue){
+							$(elem).val(labelText);
+						}
 					}
+
+					// (3.6.5)
+					$(customRadio).on('click', function(){
+
+						// (3.6.6)
+						var thisGroup = $(this).attr('data-radiogroup');
+						$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio');
+						$(this).addClass('active-radio');
+
+						// (3.6.7)
+						var thisElem = $(this).attr('data-radio');
+						$("input[id='" + thisElem + "']").click();
+
+						// (3.6.8)
+						var thisName = $("input[id='" + thisElem + "']").attr('name');
+						$("input[name='" + thisName + "']").removeAttr('checked');
+						$("input[id='" + thisElem + "']").attr('checked', true);
+
+					});
+
+					// (3.6.9)
+					$(nextElem).on('click', function(){
+						customRadio.click();
+					});
 				}
-
-				// (3.6.5)
-				$(customRadio).on('click', function(){
-
-					// (3.6.6)
-					var thisGroup = $(this).attr('data-radiogroup');
-					$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio');
-					$(this).addClass('active-radio');
-
-					// (3.6.7)
-					var thisElem = $(this).attr('data-radio');
-					$("input[id='" + thisElem + "']").click();
-
-					// (3.6.8)
-					var thisName = $("input[id='" + thisElem + "']").attr('name');
-					$("input[name='" + thisName + "']").removeAttr('checked');
-					$("input[id='" + thisElem + "']").attr('checked', true);
-
-				});
-
-				// (3.6.9)
-				$(nextElem).on('click', function(){
-					customRadio.click();
-				});
-
 			},
 			//end method typeRadio
 
 			// (3.7)
 			typeCheckbox: function(elem){
 
-				// (3.7.1)
-				if(defaults.c_styleCheckbox == 'style-1')
-					classCheckbox = 'custom-checkbox';
-				else if(defaults.c_styleCheckbox == 'style-2')
-					classCheckbox = 'custom-checkbox-2';
-				else
-					classCheckbox = 'custom-checkbox';
+				if($(elem).parents('.checkbox-wrap').length < 1){
 
-				// (3.7.2)
-				var customCheckbox = $('<span class="' + classCheckbox + '">'),
-					checkboxWrap = $('<div class="checkbox-wrap">'),
-					nextElem = $(elem).next('label'),
-					classCheckbox;
+					// (3.7.1)
+					if(defaults.c_styleCheckbox == 'style-1')
+						classCheckbox = 'custom-checkbox';
+					else if(defaults.c_styleCheckbox == 'style-2')
+						classCheckbox = 'custom-checkbox-2';
+					else
+						classCheckbox = 'custom-checkbox';
 
-				// (3.7.3)
-				$(elem).wrap(checkboxWrap);
-				$(elem).before(customCheckbox).after(nextElem);
-				$(elem).addClass('hidden-checkbox');				
+					// (3.7.2)
+					var customCheckbox = $('<span class="' + classCheckbox + '">'),
+						checkboxWrap = $('<div class="checkbox-wrap">'),
+						nextElem = $(elem).next('label'),
+						classCheckbox;
 
-				// (3.7.4)
-				if(nextElem.length > 0){
-					var labelText = $(elem).parent('div').find('label').text();
-					var timeValue = $(elem).attr('value');
-					if(!timeValue){
-						$(elem).val(labelText);
-					}
-				};
+					// (3.7.3)
+					$(elem).wrap(checkboxWrap);
+					$(elem).before(customCheckbox).after(nextElem);
+					$(elem).addClass('hidden-checkbox');				
 
-				// (3.7.5)
-				$(customCheckbox).on('click', function(){						
-					$(this).next('input').click();
-				});
+					// (3.7.4)
+					if(nextElem.length > 0){
+						var labelText = $(elem).parent('div').find('label').text();
+						var timeValue = $(elem).attr('value');
+						if(!timeValue){
+							$(elem).val(labelText);
+						}
+					};
 
-				// (3.7.6)
-				$(elem).on('click', function(){
+					// (3.7.5)
+					$(customCheckbox).on('click', function(){						
+						$(this).next('input').click();
+					});
 
-					var parent = $(this).parent('div');
-					if($(parent).find('input').is(':checked')){
-						$(parent).find(customCheckbox).addClass('active-checkbox');
-						$(this).attr('checked', true);
-					}
-					else{
-						$(parent).find(customCheckbox).removeClass('active-checkbox');
-						$(this).removeAttr('checked');
-					}
-				});
+					// (3.7.6)
+					$(elem).on('click', function(){
 
+						var parent = $(this).parent('div');
+						if($(parent).find('input').is(':checked')){
+							$(parent).find(customCheckbox).addClass('active-checkbox');
+							$(this).attr('checked', true);
+						}
+						else{
+							$(parent).find(customCheckbox).removeClass('active-checkbox');
+							$(this).removeAttr('checked');
+						}
+					});
+				};	
 			},
 			//end method typeCheckbox
 
 			// (3.8)
 			typeSelect: function(elem){
 
-				// (3.8.1)
-				var selectWrap = $('<div class="select-wrap">'),
-					selectThis = $('<div class="select-this">'),
-					selectThisText = $('<div class="select-this-text">'),
-					selectThisTrigger = $('<div class="select-this-trigger">'),
-					selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">'+'&#9660;'+'</div>'),
-					selectDropdown = $('<div class="select-dropdown">'),
-					selectUl = $('<ul>');
+				if($(elem).parents('.select-wrap').length < 1){
 
-				// (3.8.2)
-				$(elem).before(selectWrap);
-				$(selectThis).append(selectThisText,$(selectThisTrigger).append(selectThisTriggerArrow));
-				$(selectWrap).append(selectThis, selectDropdown, elem);
+					// (3.8.1)
+					var selectWrap = $('<div class="select-wrap">'),
+						selectThis = $('<div class="select-this">'),
+						selectThisText = $('<div class="select-this-text">'),
+						selectThisTrigger = $('<div class="select-this-trigger">'),
+						selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">'+'&#9660;'+'</div>'),
+						selectDropdown = $('<div class="select-dropdown">'),
+						selectUl = $('<ul>');
 
-				if($(elem).attr('disabled'))
-					$(selectThis).addClass('select-disabled');
-								
-				// (3.8.3)
-				var initDefaultOption = false;
-				var countData = 0;
-				$(elem).children('option, optgroup').each(function(){
+					// (3.8.2)
+					$(elem).before(selectWrap);
+					$(selectThis).append(selectThisText,$(selectThisTrigger).append(selectThisTriggerArrow));
+					$(selectWrap).append(selectThis, selectDropdown, elem);
 
-					// (3.8.3.1)
-					if(this.nodeName.toLowerCase() == 'optgroup'){
+					if($(elem).attr('disabled'))
+						$(selectThis).addClass('select-disabled');
+									
+					// (3.8.3)
+					var initDefaultOption = false;
+					var countData = 0;
+					$(elem).children('option, optgroup').each(function(){
 
-						// a
-						var thisClass = $(this).attr('class');
-						var optgroupClass = 'optgroup';
-						var optionClass = 'option';
-						$(selectUl).append('<li class="' + optgroupClass +' '+ thisClass + '">' + $(this)
-							.attr('label') + '</li>');
+						// (3.8.3.1)
+						if(this.nodeName.toLowerCase() == 'optgroup'){
 
-						// b
-						$(this).find('option').each(function(){
+							// a
+							var thisClass = $(this).attr('class');
+							var optgroupClass = 'optgroup';
+							var optionClass = 'option';
+							$(selectUl).append('<li class="' + optgroupClass +' '+ thisClass + '">' + $(this)
+								.attr('label') + '</li>');
 
-							// c
-							var valueData = 'element-' + countData++;
-							$(this).attr('data-opt', valueData);
+							// b
+							$(this).find('option').each(function(){
+
+								// c
+								var valueData = 'element-' + countData++;
+								$(this).attr('data-opt', valueData);
+								var optionText = $(this).text();
+								$(selectUl).append('<li data-li="' + valueData + '" class="' + optionClass +' '+ thisClass + '">' + optionText + '</li>');
+
+								// d
+								var disabled = $(this).attr('disabled');
+								if(disabled){
+									var AttrDisabled = $(this).attr('data-opt');
+									$(selectUl).find('li[data-li="' + AttrDisabled + '"]')
+									.addClass('disabled');
+								}
+
+								// f
+								var selectrLen = $(selectUl).find('li.selected').length;
+								var selected = $(this).attr('selected');
+								if(selected && selectrLen < 1){
+									$(selectThisText).text($(this).text());
+									var AttrSelected = $(this).attr('data-opt');
+									$(selectUl).find('li[data-li="' + AttrSelected + '"]')
+									.addClass('selected');
+									initDefaultOption = true;
+								}
+
+							});
+						}
+
+						// (3.8.3.2)
+						else if(this.nodeName.toLowerCase() == 'option'){
+
+							// a
 							var optionText = $(this).text();
-							$(selectUl).append('<li data-li="' + valueData + '" class="' + optionClass +' '+ thisClass + '">' + optionText + '</li>');
+							$(selectUl).append('<li>' + optionText + '</li>');
 
-							// d
+							// b
 							var disabled = $(this).attr('disabled');
 							if(disabled){
-								var AttrDisabled = $(this).attr('data-opt');
-								$(selectUl).find('li[data-li="' + AttrDisabled + '"]')
-								.addClass('disabled');
+								var indexDisabled = $(this).index();
+								$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
 							}
 
-							// f
+							// c
 							var selectrLen = $(selectUl).find('li.selected').length;
 							var selected = $(this).attr('selected');
 							if(selected && selectrLen < 1){
 								$(selectThisText).text($(this).text());
-								var AttrSelected = $(this).attr('data-opt');
-								$(selectUl).find('li[data-li="' + AttrSelected + '"]')
-								.addClass('selected');
+								var indexSelected = $(this).index();
+								$(selectUl).children('li').eq(indexSelected).addClass('selected');
 								initDefaultOption = true;
 							}
+						}
 
+					});
+					$(selectDropdown).append(selectUl);
+
+					// (3.8.4)
+					if(!initDefaultOption){
+						var eqPos = 0;
+						while($(selectUl).find('li').eq(eqPos).hasClass('disabled')){
+							eqPos++;					
+						}
+						var firstOption = $(elem).find('option').eq(eqPos);
+						$(selectThisText).text($(firstOption).text());
+						$(selectUl).find('li').eq(eqPos).addClass('selected');
+					}
+
+					// (3.8.5)
+					$(selectThis).on('click', function(event){
+
+						event.stopPropagation();
+
+						if($(this).hasClass('select-disabled, optgroup')) return false;
+
+						var thisElem = $(this);
+
+						$('.select-this').each(function(){
+							if($(this) !== thisElem){
+								$(this).find('.select-this-trigger-arrow').remove();
+								$(this).find('.select-this-trigger').append('<div class="select-this-trigger-arrow">' + '&#9660' + '</div>');
+							}
 						});
-					}
 
-					// (3.8.3.2)
-					else if(this.nodeName.toLowerCase() == 'option'){
-
-						// a
-						var optionText = $(this).text();
-						$(selectUl).append('<li>' + optionText + '</li>');
-
-						// b
-						var disabled = $(this).attr('disabled');
-						if(disabled){
-							var indexDisabled = $(this).index();
-							$(selectUl).children('li').eq(indexDisabled).addClass('disabled');
+						var thisDrop = $(this).parent().find('.select-dropdown');
+						if($(thisDrop).is(':hidden')){
+							$('.select-dropdown').hide();
+							$(thisDrop).show();
+							changeArrow(true);
+						}
+						else{
+							$(thisDrop).hide();
+							changeArrow(false);
 						}
 
-						// c
-						var selectrLen = $(selectUl).find('li.selected').length;
-						var selected = $(this).attr('selected');
-						if(selected && selectrLen < 1){
-							$(selectThisText).text($(this).text());
-							var indexSelected = $(this).index();
-							$(selectUl).children('li').eq(indexSelected).addClass('selected');
-							initDefaultOption = true;
-						}
-					}
-
-				});
-				$(selectDropdown).append(selectUl);
-
-				// (3.8.4)
-				if(!initDefaultOption){
-					var eqPos = 0;
-					while($(selectUl).find('li').eq(eqPos).hasClass('disabled')){
-						eqPos++;					
-					}
-					var firstOption = $(elem).find('option').eq(eqPos);
-					$(selectThisText).text($(firstOption).text());
-					$(selectUl).find('li').eq(eqPos).addClass('selected');
-				}
-
-				// (3.8.5)
-				$(selectThis).on('click', function(event){
-
-					event.stopPropagation();
-
-					if($(this).hasClass('select-disabled, optgroup')) return false;
-
-					var thisElem = $(this);
-
-					$('.select-this').each(function(){
-						if($(this) !== thisElem){
-							$(this).find('.select-this-trigger-arrow').remove();
-							$(this).find('.select-this-trigger').append('<div class="select-this-trigger-arrow">' + '&#9660' + '</div>');
-						}
 					});
 
-					var thisDrop = $(this).parent().find('.select-dropdown');
-					if($(thisDrop).is(':hidden')){
-						$('.select-dropdown').hide();
-						$(thisDrop).show();
-						changeArrow(true);
-					}
-					else{
-						$(thisDrop).hide();
+					// (3.8.6)
+					$(selectUl).find('li').on('click', function(event){
+
+						event.stopPropagation();
+
+						if($(this).hasClass('disabled')) return false;
+						if($(this).hasClass('optgroup')) return false;
+
+						$(this).parent().find('li').removeClass('selected');
+						$(this).addClass('selected');
+						$(selectThisText).text($(this).text());
+						$(this).parents('.select-dropdown').hide();
+
 						changeArrow(false);
-					}
 
-				});
+					});
 
-				// (3.8.6)
-				$(selectUl).find('li').on('click', function(event){
-
-					event.stopPropagation();
-
-					if($(this).hasClass('disabled')) return false;
-					if($(this).hasClass('optgroup')) return false;
-
-					$(this).parent().find('li').removeClass('selected');
-					$(this).addClass('selected');
-					$(selectThisText).text($(this).text());
-					$(this).parents('.select-dropdown').hide();
-
-					changeArrow(false);
-
-				});
-
-				// (3.8.7)
-				$(selectUl).find('li').hover(function(){
-					$(this).parents('ul').addClass('hover-list');
-				},
-				function(){
-					$(this).parent('ul').removeClass('hover-list');
-				});
+					// (3.8.7)
+					$(selectUl).find('li').hover(function(){
+						$(this).parents('ul').addClass('hover-list');
+					},
+					function(){
+						$(this).parent('ul').removeClass('hover-list');
+					});
 
 
-				// (3.8.8)
-				$('html').on('click', function(){
-					$('.select-dropdown').hide();
-					changeArrow(false);
-				});
+					// (3.8.8)
+					$('html').on('click', function(){
+						$('.select-dropdown').hide();
+						changeArrow(false);
+					});
 
-				// (3.8.9)
-				function changeArrow(param){
-					var arrow = '';
-					if(param){
-						arrow = '&#9650';
-					}
-					else{
-						arrow = '&#9660';
+					// (3.8.9)
+					function changeArrow(param){
+						var arrow = '';
+						if(param){
+							arrow = '&#9650';
+						}
+						else{
+							arrow = '&#9660';
 
-					}
-					$(selectThisTrigger).find('div').remove();
-					$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
-				};
+						}
+						$(selectThisTrigger).find('div').remove();
+						$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
+					};
+				}
 
 				// (3.8.10)
 				if(defaults.s_height){
-					$(selectUl).css({
+					$(elem).parents('.select-wrap').find('ul').css({
 						'height' : defaults.s_height + 'px',
 						'overflowY' : 'scroll',
 					});
