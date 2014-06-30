@@ -517,8 +517,11 @@
 						else if(this.nodeName.toLowerCase() == 'option'){
 
 							// a
+							var thisClass = $(this).attr('class');
+							if(!thisClass)
+								thisClass = '';
 							var optionText = $(this).text();
-							$(selectUl).append('<li>' + optionText + '</li>');
+							$(selectUl).append('<li class="'+ thisClass + '">' + optionText + '</li>');
 
 							// b
 							var disabled = $(this).attr('disabled');
