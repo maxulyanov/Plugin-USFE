@@ -385,3 +385,40 @@ textarea{
 	list-style-type: circle;
 	list-style-position: inside;
 }
+
+/*---------------------------
+	   Style CALENDAR
+---------------------------*/
+.calendar-wrap{
+	position: relative;
+}
+.calendar-wrap input{
+	padding: 5px;
+	width: 120px;
+	float: left;
+	height: 19px;
+	background: #FFF;
+	color: #222;
+	-moz-border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px;
+}
+.calendar{
+	display: none;
+	background: #52626F;
+	position: absolute;
+	z-index: 111;
+}
+.calendar tr td{
+	cursor: pointer;
+}
+.calendar-button{
+	display: inline-block;
+	background: #52626F url(../img/calendar-icon.png) center no-repeat;
+	height: 29px;
+	width: 35px;
+}
+.calendar-button:hover{
+	background-color: #637481;
+	cursor: pointer;
+}

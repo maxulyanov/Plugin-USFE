@@ -650,17 +650,39 @@
 		      	numDay = new Date(calendar.getFullYear(), calendar.getMonth() + 1, 0).getDate(),
 		      	firstDay = new Date(calendar.getFullYear(), calendar.getMonth(), 1).getDay(),
 		      	lastDay = new Date(calendar.getFullYear(), calendar.getMonth(), numDay).getDay(),
-		      	calendarTable = $('<table class="cal">'),
+		      	calendarWrap = $('<div class="calendar-wrap">'),
+		      	calendarTable = $('<table class="calendar">'),
+		      	calendarbutton = $('<span class="calendar-button">'),
 		      	calendarTr = '<tr>';
 
-		      	// (3.9.2)
-				var month = ['Январь','Февраль','Март','Апрель','Май','Июнь',
+				var arrMonth = ['Январь','Февраль','Март','Апрель','Май','Июнь',
 				              'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-				var day = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+				var arrDay = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+				// (3.9.2)
+				function setValue(day, month){
+					if(!day)
+						day = calendar.getDate();
+					if(!month)
+						month = calendar.getMonth() + 1;
+
+					var year = calendar.getFullYear();
+
+					if(day <= 9) day = '0' + day;
+					if(month <= 9) month = '0' + month;
+					$(elem).val(day + '.' + month + '.' + year);
+				}
+
+				setValue();
+				$(elem).attr('disabled', true);
 
 				// (3.9.3)
+				var month = calendar.getMonth();
+				calendarTr += '<td class="month" colspan="7">' + arrMonth[month]; + '</td>'
+				calendarTr += '</tr>';
+
 				for(var i = 0; i < 7; i++){
-				    calendarTr += '<td>' + day[i]; + '</td>'
+				    calendarTr += '<td>' + arrDay[i]; + '</td>'
 				}
 				calendarTr += '</tr>';
 				     
@@ -693,12 +715,32 @@
 			  	}
 
 			  	// (3.9.7)
+			  	$(elem).wrap(calendarWrap);
 			  	$(calendarTable).append(calendarTr);
-			  	$('body').append(calendarTable);
+			  	$(elem).after(calendarbutton, calendarTable);
 
 			  	$(calendarTable).find('tr').each(function(){
 			   	 $(this).find('td:eq(5), td:eq(6)').addClass('weekend');
-			  	}); 
+			  	});
+
+			  	$('.calendar-button').on('click', function(){
+			  		$(this).parent('.calendar-wrap').find('.calendar').slideToggle();
+			  	});
+
+			  	$('.calendar').find('td').on('click', function(){
+
+			  		$(this).parents('.calendar').find('td').removeClass('select-day');
+			  		$(this).addClass('select-day');
+
+			  		var a = $(this).parents('.calendar').find('.month').text();
+			  		var test;
+			  		for(var i = 0; i < arrMonth.length; i++){
+			  			if(arrMonth[i] == a){
+			  				test = i+1;
+			  			}
+			  		}
+			  		setValue($(this).text(), test);
+			  	})
 			},
 			//end method typeCalendar
 
