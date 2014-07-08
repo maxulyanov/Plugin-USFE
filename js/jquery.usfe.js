@@ -642,6 +642,66 @@
 			},
 			//end method typeSelect
 
+			// (3.9)
+			typeCalendar: function(elem){
+
+				// (3.9.1)
+			  	var calendar = new Date();
+		      	numDay = new Date(calendar.getFullYear(), calendar.getMonth() + 1, 0).getDate(),
+		      	firstDay = new Date(calendar.getFullYear(), calendar.getMonth(), 1).getDay(),
+		      	lastDay = new Date(calendar.getFullYear(), calendar.getMonth(), numDay).getDay(),
+		      	calendarTable = $('<table class="cal">'),
+		      	calendarTr = '<tr>';
+
+		      	// (3.9.2)
+				var month = ['Январь','Февраль','Март','Апрель','Май','Июнь',
+				              'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+				var day = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+				// (3.9.3)
+				for(var i = 0; i < 7; i++){
+				    calendarTr += '<td>' + day[i]; + '</td>'
+				}
+				calendarTr += '</tr>';
+				     
+				// (3.9.4)          
+			  	if(firstDay == 0){
+			    	for(var i = 0; i < 6; i++){
+			      		calendarTr += '<td class="empty"></td>';
+			    	}
+			  	}
+			  	else{
+			    	for(var i = 1; i < firstDay; i++){
+			     		calendarTr += '<td class="empty"></td>';
+			    	}
+			  	}
+
+			  	// (3.9.5)
+			  	for(var i = 1; i <= numDay; i++){
+			    	var dayWeek = new Date(calendar.getFullYear(),calendar.getMonth(),i).getDay();
+			    	(i == calendar.getDate()) ? 
+			      	calendarTr += '<td class="today">' + i + '</td>' : calendarTr += '<td>' + i + '</td>';
+			    	if(dayWeek == 0){
+			      		calendarTr += '</tr>';
+			    	}
+			  	}
+
+				// (3.9.6)
+			  	if(lastDay != 0) {
+			    	for(var i = lastDay; i < 7; i++)
+			      		calendarTr += '<td class="empty"></td>';
+			  	}
+
+			  	// (3.9.7)
+			  	$(calendarTable).append(calendarTr);
+			  	$('body').append(calendarTable);
+
+			  	$(calendarTable).find('tr').each(function(){
+			   	 $(this).find('td:eq(5), td:eq(6)').addClass('weekend');
+			  	}); 
+			},
+			//end method typeCalendar
+
 		};
 		//end all methods
 
@@ -701,6 +761,9 @@
 						break;
 					case 'select' :
 						methods.typeSelect(el);	
+						break;
+					case 'usfe-calendar' :
+						methods.typeCalendar(el);
 						break;
 					default:
 						console.log('Ошибка! Элемент не может быть обработан:');
