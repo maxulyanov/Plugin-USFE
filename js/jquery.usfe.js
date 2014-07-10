@@ -646,14 +646,12 @@
 			typeCalendar: function(elem){
 
 				// (3.9.1)
-			  	var calendar = new Date();
-		      	numDay = new Date(calendar.getFullYear(), calendar.getMonth() + 1, 0).getDate(),
-		      	firstDay = new Date(calendar.getFullYear(), calendar.getMonth(), 1).getDay(),
-		      	lastDay = new Date(calendar.getFullYear(), calendar.getMonth(), numDay).getDay(),
-		      	calendarWrap = $('<div class="calendar-wrap">'),
-		      	calendarTable = $('<table class="calendar">'),
-		      	calendarbutton = $('<span class="calendar-button">'),
-		      	calendarTr = '<tr>';
+			  	var calendar = new Date(),
+			  		month = calendar.getMonth(),
+			  		year = calendar.getFullYear(),
+			      	calendarWrap = $('<div class="calendar-wrap">'),
+			      	calendarTable = $('<table class="calendar">'),
+			      	calendarbutton = $('<span class="calendar-button">');
 
 				var arrMonth = ['Январь','Февраль','Март','Апрель','Май','Июнь',
 				              'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
@@ -666,57 +664,90 @@
 					if(!month)
 						month = calendar.getMonth() + 1;
 
-					var year = calendar.getFullYear();
-
 					if(day <= 9) day = '0' + day;
 					if(month <= 9) month = '0' + month;
 					$(elem).val(day + '.' + month + '.' + year);
-				}
+				};
+
 
 				setValue();
 				$(elem).attr('disabled', true);
 
-				// (3.9.3)
-				var month = calendar.getMonth();
-				calendarTr += '<td class="month" colspan="7">' + arrMonth[month]; + '</td>'
-				calendarTr += '</tr>';
+				function calendarGenerator(year, month){
+				
+					$("table.calendar").empty();				
+					var calendarTr = '<tr>';
 
-				for(var i = 0; i < 7; i++){
-				    calendarTr += '<td>' + arrDay[i]; + '</td>'
-				}
-				calendarTr += '</tr>';
-				     
-				// (3.9.4)          
-			  	if(firstDay == 0){
-			    	for(var i = 0; i < 6; i++){
-			      		calendarTr += '<td class="empty"></td>';
-			    	}
-			  	}
-			  	else{
-			    	for(var i = 1; i < firstDay; i++){
-			     		calendarTr += '<td class="empty"></td>';
-			    	}
-			  	}
+					var cal = new Date(year, month);			  		
+					var numDay = new Date(cal.getFullYear(), cal.getMonth()+1, 0).getDate();
+			      	var firstDay = new Date(cal.getFullYear(), cal.getMonth(), 1).getDay();
+			      	var lastDay = new Date(cal.getFullYear(), cal.getMonth(), numDay).getDay();
+					
+					calendarTr += '<td class="prev-month">' + '<' + '</td>';
+					calendarTr += '<td class="month" colspan="2">' + arrMonth[cal.getMonth()] + '</td>';
+					calendarTr += '<td class="year" colspan="2">' + year; + '</td>';
+					calendarTr += '<td class="next-month">' + '>' + '</td>';
+					calendarTr += '</tr>';
 
-			  	// (3.9.5)
-			  	for(var i = 1; i <= numDay; i++){
-			    	var dayWeek = new Date(calendar.getFullYear(),calendar.getMonth(),i).getDay();
-			    	(i == calendar.getDate()) ? 
-			      	calendarTr += '<td class="today">' + i + '</td>' : calendarTr += '<td>' + i + '</td>';
-			    	if(dayWeek == 0){
-			      		calendarTr += '</tr>';
-			    	}
-			  	}
+					for(var i = 0; i < 7; i++){
+				    	calendarTr += '<td>' + arrDay[i]; + '</td>'
+					};
+					calendarTr += '</tr>';
 
-				// (3.9.6)
-			  	if(lastDay != 0) {
-			    	for(var i = lastDay; i < 7; i++)
-			      		calendarTr += '<td class="empty"></td>';
-			  	}
+					// (3.9.4)       
+				  	if(firstDay == 0){
+				    	for(var i = 0; i < 6; i++){
+				      		calendarTr += '<td class="empty"></td>';
+				    	}
+				  	}
+				  	else{
+				    	for(var i = 1; i < firstDay; i++){
+				     		calendarTr += '<td class="empty"></td>';
+				    	}
+				  	}
+
+				  	// (3.9.5)
+				  	for(var i = 1; i <= numDay; i++){
+				    	var dayWeek = new Date(year,month,i).getDay();
+				    	(i == calendar.getDate()) ? 
+				      	calendarTr += '<td class="today day">' + i + '</td>' : calendarTr += '<td class="day">' + i + '</td>';
+				    	if(dayWeek == 0){
+				      		calendarTr += '</tr>';
+				    	}
+				  	}
+
+					// (3.9.6)
+				  	if(lastDay != 0) {
+				    	for(var i = lastDay; i < 7; i++)
+				      		calendarTr += '<td class="empty"></td>';
+				  	}
+				  	$(calendarTable).append(calendarTr);
+			  	};
+
+			  	calendarGenerator(year, month);
+
+			  	//
+			  	$(document).on('click', '.next-month', function(){
+			  		month++;
+			  		if(month >=12){
+			  			month = 0;
+			  			year++;
+			  		}
+			  		
+			  		calendarGenerator(year, month);
+			  	});
+
+			  	$(document).on('click', '.prev-month', function(){
+			  		month--;
+			  		if(month <=0){
+			  			month = 11;
+			  			year--;
+			  		}
+			  		calendarGenerator(year, month);
+			  	});
 
 			  	// (3.9.7)
 			  	$(elem).wrap(calendarWrap);
-			  	$(calendarTable).append(calendarTr);
 			  	$(elem).after(calendarbutton, calendarTable);
 
 			  	$(calendarTable).find('tr').each(function(){
@@ -727,8 +758,7 @@
 			  		$(this).parent('.calendar-wrap').find('.calendar').slideToggle();
 			  	});
 
-			  	$('.calendar').find('td').on('click', function(){
-
+			  	$('.calendar').on('click','.day', function(){
 			  		$(this).parents('.calendar').find('td').removeClass('select-day');
 			  		$(this).addClass('select-day');
 
