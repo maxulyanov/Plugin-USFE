@@ -407,10 +407,25 @@ textarea{
 	display: none;
 	background: #52626F;
 	position: absolute;
+	width: 200px;
+	height: 180px;
 	z-index: 111;
 }
 .calendar tr td{
 	cursor: pointer;
+	text-align: center;
+}
+.calendar tr td.today{
+	outline: 1px solid rgb(114, 168, 33);
+	color: rgb(114, 168, 33);
+}
+.calendar tr td.day.weekend {
+	color: rgb(114, 168, 33);
+}
+.calendar tr td.day:hover,
+.calendar tr td.select-day
+{
+	background: #3F4F5C;
 }
 .calendar-button{
 	display: inline-block;
