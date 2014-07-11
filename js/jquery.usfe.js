@@ -672,15 +672,15 @@
 			      	var lastDay = new Date(cal.getFullYear(), cal.getMonth(), numDay).getDay();
 					
 					// (3.9.4)
-					calendarTr += '<td class="prev-month">' + '<' + '</td>';
+					calendarTr += '<td class="prev-month">' + '<span>' + '</td>';
 					calendarTr += '<td class="month" colspan="3">' + arrMonth[cal.getMonth()] + '</td>';
 					calendarTr += '<td class="year" colspan="2">' + year; + '</td>';
-					calendarTr += '<td class="next-month">' + '>' + '</td>';
+					calendarTr += '<td class="next-month">' + '<span>' + '</td>';
 					calendarTr += '</tr>';
 
 					// (3.9.5)
 					for(var i = 0; i < 7; i++){
-				    	calendarTr += '<td>' + arrDay[i]; + '</td>'
+				    	calendarTr += '<td class="tr-week">' + arrDay[i]; + '</td>'
 					};
 					calendarTr += '</tr>';
 
@@ -741,7 +741,6 @@
 			  			month = 0;
 			  			year++;
 			  		}
-			  		
 			  		calendarGenerator(year, month);
 			  	});
 
@@ -761,7 +760,7 @@
 
 			  	// (3.9.14)
 			  	$('.calendar-button').on('click', function(){
-			  		$(this).parent('.calendar-wrap').find('.calendar').show(400);
+			  		$(this).parent('.calendar-wrap').find('.calendar').toggle(400);
 			  	});
 
 			  	// (3.9.15)
@@ -779,6 +778,7 @@
 			  		};
 			  		setValue($(this).text(), numMonth);
 			  	});
+
 			},
 			//end method typeCalendar
 

@@ -406,14 +406,29 @@ textarea{
 .calendar{
 	display: none;
 	background: #52626F;
+	color: #FFF;
+	border-collapse:collapse;
 	position: absolute;
 	width: 200px;
 	height: 180px;
 	z-index: 111;
+	moz-box-shadow: 0 2px 0 #4A5863;
+    -webkit-box-shadow: 0 2px 0 #4A5863;
+    box-shadow: 0 2px 0 #4A5863;
+    -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.calendar tr{
+	height: 27px;
 }
 .calendar tr td{
-	cursor: pointer;
 	text-align: center;
+}
+.calendar tr td.day,
+.calendar tr td.prev-month,
+.calendar tr td.next-month{
+	cursor: pointer;
 }
 .calendar tr td.today{
 	outline: 1px solid rgb(114, 168, 33);
@@ -422,10 +437,39 @@ textarea{
 .calendar tr td.day.weekend {
 	color: rgb(114, 168, 33);
 }
+.calendar tr td.tr-week{
+	background: rgb(114, 168, 33);
+	font-weight: bold;
+}
+.calendar tr td.month,
+.calendar tr td.year{
+	font-weight: bold;
+}
+.calendar tr td.year{
+	text-align: left;
+} 
 .calendar tr td.day:hover,
 .calendar tr td.select-day
 {
-	background: #3F4F5C;
+	background: #637481;
+}
+.calendar tr td.prev-month span,
+.calendar tr td.next-month span{
+	background:url(../img/calendar-arrow.png) no-repeat;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+	top: 2px;
+}
+.calendar tr td.next-month span{
+	background-position: -20px 0;
+}
+.calendar tr td.prev-month span:hover{
+	background-position: 0 -15px;
+}
+.calendar tr td.next-month span:hover{
+	background-position: -20px -15px;
 }
 .calendar-button{
 	display: inline-block;
