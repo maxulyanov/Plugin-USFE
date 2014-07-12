@@ -11,6 +11,9 @@
 	$(function(){
 		$('#custom-form').usfe({
 			c_styleCheckbox: 'style-2',
+			c_animateSpeed: 300,
+			c_animateSwitch: true,
+			c_animateSwitchSpeed: 100,
 		});
 		$('#fix-height').usfe({
 			s_height: 120,
@@ -24,7 +27,7 @@
 		<form id="custom-form">
 			<p style="margin-bottom:10px;"><span>Ваше имя:</span><input type="text"></p>
 			<p style="margin-bottom:10px;"><span>Введите пароль:</span><input type="password"></p>
-			<p><span>Количество товара:</span><input type="text" data-element="number" value="1"></p>
+			<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
 			<p><span>Добавить файл:</span><input type="file"></p>
 			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
 			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
@@ -74,12 +77,12 @@
    			</select></p>
    			<p><select>
 			    <option>Выберите страну</option>
-				    <option class="icon-rus">Россия</option>
-				    <option>Германия</option>
-				    <option>Испания</option>
-				    <option>Франция</option>
-				    <option>Греция</option>
-				    <option>Италия</option>
+				    <option class="flag-rus">Россия</option>
+				    <option class="flag-deu">Германия</option>
+				    <option class="flag-esp">Испания</option>
+				    <option class="flag-fra">Франция</option>
+				    <option class="flag-grc">Греция</option>
+				    <option class="flag-ita">Италия</option>
    			</select></p>
 			<p style="margin-top: 10px;"><span>Комментарий:</span><textarea></textarea></p>
 			<p><span>Кнопки:</span><input style="margin:0 10px;" type="submit" value="input"><button type="button">Button</button></p>

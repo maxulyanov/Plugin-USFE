@@ -48,6 +48,11 @@
 			//settings type = select
 			s_height: false,
 
+			//settings type = calendar
+			c_animateSpeed: 200,
+			c_animateSwitch: false,
+			c_animateSwitchSpeed: 300,
+
 
 		};
 
@@ -186,7 +191,7 @@
 					// (3.2.2)
 					$('.number-plus').on('click', function(){
 
-						var thisInput = $(this).parent().find('input[data-element="number"]');
+						var thisInput = $(this).parent().find('input[type="usfe-number"]');
 						var thisVal = $(thisInput).val();
 						thisVal++;
 
@@ -205,7 +210,7 @@
 					// (3.2.4)
 					$('.number-minus').on('click', function(){
 
-						var thisInput = $(this).parent().find('input[data-element="number"]');
+						var thisInput = $(this).parent().find('input[type="usfe-number"]');
 						var thisVal = $(thisInput).val();
 						thisVal--; 
 
@@ -225,10 +230,10 @@
 					});
 
 					// (3.2.7)
-					$('input[data-element="number"]').on('keypress input change', function(event){
+					$('input[type="usfe-number"]').on('keypress input change', function(event){
 
 						if(event.charCode < 48 || event.charCode > 57) return false;
-						var thisVal = $(this).parent().find('input[data-element="number"]').val(); 
+						var thisVal = $(this).parent().find('input[type="usfe-number"]').val(); 
 
 						computation(this, thisVal);
 					});
@@ -240,8 +245,8 @@
 							val = 1;
 						}
 
-						$(elem).parent().find('input[data-element="number"]').val(val);
-						$(elem).parent().find('input[data-element="number"]').attr('value', val);
+						$(elem).parent().find('input[type="usfe-number"]').val(val);
+						$(elem).parent().find('input[type="usfe-number"]').attr('value', val);
 					};
 				};	
 	
@@ -699,7 +704,7 @@
 				  	// (3.9.7)
 				  	for(var i = 1; i <= numDay; i++){
 				    	var dayWeek = new Date(year,month,i).getDay();
-				    	(i == calendar.getDate() && month == calendar.getMonth()) ? 
+				    	(i == calendar.getDate() && month == calendar.getMonth() && year == calendar.getFullYear()) ? 
 					      	calendarTr += '<td class="today day">' + i + '</td>':
 					      	calendarTr += '<td class="day">' + i + '</td>';
 				    	if(dayWeek == 0){
@@ -735,23 +740,64 @@
 				setValue();
 
 			  	// (3.9.11)
-			  	$(document).on('click', '.next-month', function(){
+			  	$(document).on('click', '.next-month', function(event){
+			  		event.stopPropagation();
+
 			  		month++;
 			  		if(month >=12){
 			  			month = 0;
 			  			year++;
 			  		}
-			  		calendarGenerator(year, month);
+			  		
+			  		if(defaults.c_animateSwitch){
+				  		$(calendarTable).animate({
+				  			left: '100px',
+				  			opacity : 0,
+				  		},defaults.c_animateSwitchSpeed, function(){
+				  			calendarGenerator(year, month);
+				  		})
+				  		.animate({
+				  			'left': '-100px',
+				  		}, 0)
+				  		.animate({
+				  			left : '0',
+				  			opacity: 1,
+				  		},defaults.c_animateSwitchSpeed);
+			  		}
+			  		else{
+			  			calendarGenerator(year, month);
+			  		}
+
 			  	});
 
 			  	// (3.9.12)
-			  	$(document).on('click', '.prev-month', function(){
+			  	$(document).on('click', '.prev-month', function(event){
+			  		event.stopPropagation();
+
 			  		month--;
 			  		if(month <=0){
 			  			month = 11;
 			  			year--;
 			  		}
-			  		calendarGenerator(year, month);
+			  		
+			  		if(defaults.c_animateSwitch){
+				  		$(calendarTable).animate({
+				  			left: '-100px',
+				  			opacity : 0,
+				  		},defaults.c_animateSwitchSpeed, function(){
+				  			calendarGenerator(year, month);
+				  		})
+				  		.animate({
+				  			'left': '100px',
+				  		}, 0)
+				  		.animate({
+				  			left : '0',
+				  			opacity: 1,
+				  		},defaults.c_animateSwitchSpeed);
+			  		}
+			  		else{
+			  			calendarGenerator(year, month);
+			  		}
 			  	});
 
 			  	// (3.9.13)
@@ -759,8 +805,10 @@
 			  	$(elem).after(calendarbutton, calendarTable);
 
 			  	// (3.9.14)
-			  	$('.calendar-button').on('click', function(){
-			  		$(this).parent('.calendar-wrap').find('.calendar').toggle(400);
+			  	$('.calendar-button').on('click', function(event){
+
+			  		event.stopPropagation();
+			  		$(this).parent('.calendar-wrap').find('.calendar').fadeToggle(defaults.c_animateSpeed);
 			  	});
 
 			  	// (3.9.15)
@@ -778,6 +826,12 @@
 			  		};
 			  		setValue($(this).text(), numMonth);
 			  	});
+
+				$(document).on('click', function(event){
+					if($(event.target).closest('.calendar').length) return;
+					$(calendarTable).fadeOut(defaults.c_animateSpeed);
+					event.stopPropagation();
+				});
 
 			},
 			//end method typeCalendar
@@ -823,8 +877,11 @@
 						break;
 					case 'text':
 					case 'password':
-						(dataEl == 'number') ? methods.typeNumber(el) : methods.typeText(el);
+						methods.typeText(el);
 						break;
+					case 'usfe-number':
+						methods.typeNumber(el)
+						break;	
 					case 'submit':
 					case 'button':
 					case 'reset':
