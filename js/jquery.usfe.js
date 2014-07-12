@@ -666,8 +666,8 @@
 
 				// (3.9.2)
 				function calendarGenerator(year, month){
-				
-					$("table.calendar").empty();				
+
+					$(calendarTable).empty();				
 					var calendarTr = '<tr>';
 
 					// (3.9.3)
@@ -678,8 +678,8 @@
 					
 					// (3.9.4)
 					calendarTr += '<td class="prev-month">' + '<span>' + '</td>';
-					calendarTr += '<td class="month" colspan="3">' + arrMonth[cal.getMonth()] + '</td>';
-					calendarTr += '<td class="year" colspan="2">' + year; + '</td>';
+					calendarTr += '<td class="month" data-month="' + month + '" colspan="3">' + arrMonth[cal.getMonth()] + '</td>';
+					calendarTr += '<td class="year" data-year="' + year + '" colspan="2">' + year; + '</td>';
 					calendarTr += '<td class="next-month">' + '<span>' + '</td>';
 					calendarTr += '</tr>';
 
@@ -717,7 +717,8 @@
 				    	for(var i = lastDay; i < 7; i++)
 				      		calendarTr += '<td class="empty"></td>';
 				  	}
-				  	$(calendarTable).append(calendarTr);
+
+				 	$(calendarTable).append(calendarTr);
 
 					// (3.9.9)
 				  	$(calendarTable).find('tr').each(function(){
@@ -743,6 +744,8 @@
 			  	$(document).on('click', '.next-month', function(event){
 			  		event.stopPropagation();
 
+			  		var month = parseFloat($(this).parent().find('.month').attr('data-month'));
+			  		var year = 	parseFloat($(this).parent().find('.year').attr('data-year'));
 			  		month++;
 			  		if(month >=12){
 			  			month = 0;
@@ -750,7 +753,7 @@
 			  		}
 			  		
 			  		if(defaults.c_animateSwitch){
-				  		$(calendarTable).animate({
+				  		$(this).closest(calendarTable).animate({
 				  			left: '100px',
 				  			opacity : 0,
 				  		},defaults.c_animateSwitchSpeed, function(){
@@ -774,6 +777,8 @@
 			  	$(document).on('click', '.prev-month', function(event){
 			  		event.stopPropagation();
 
+			  		var month = parseFloat($(this).parent().find('.month').attr('data-month'));
+			  		var year = 	parseFloat($(this).parent().find('.year').attr('data-year'));
 			  		month--;
 			  		if(month <=0){
 			  			month = 11;
@@ -781,7 +786,7 @@
 			  		}
 			  		
 			  		if(defaults.c_animateSwitch){
-				  		$(calendarTable).animate({
+				  		$(this).closest(calendarTable).animate({
 				  			left: '-100px',
 				  			opacity : 0,
 				  		},defaults.c_animateSwitchSpeed, function(){
@@ -805,19 +810,19 @@
 			  	$(elem).after(calendarbutton, calendarTable);
 
 			  	// (3.9.14)
-			  	$('.calendar-button').on('click', function(event){
-
+			  	$(calendarbutton).on('click', function(event){
 			  		event.stopPropagation();
-			  		$(this).parent('.calendar-wrap').find('.calendar').fadeToggle(defaults.c_animateSpeed);
+
+			  		$(this).next('.calendar').fadeToggle(defaults.c_animateSpeed);
 			  	});
 
 			  	// (3.9.15)
-			  	$('.calendar').on('click','.day', function(){
+			  	$(calendarTable).on('click','.day', function(){
 
-			  		$(this).parents('.calendar').find('td').removeClass('select-day');
+			  		$(this).closest('.calendar').find('td').removeClass('select-day');
 			  		$(this).addClass('select-day');
 
-			  		var thisMonth = $(this).parents('.calendar').find('.month').text();
+			  		var thisMonth = $(this).closest('.calendar').find('.month').text();
 			  		var numMonth;
 			  		for(var i = 0; i < arrMonth.length; i++){
 			  			if(arrMonth[i] == thisMonth){
@@ -828,6 +833,7 @@
 			  	});
 
 				$(document).on('click', function(event){
+					
 					if($(event.target).closest('.calendar').length) return;
 					$(calendarTable).fadeOut(defaults.c_animateSpeed);
 					event.stopPropagation();
