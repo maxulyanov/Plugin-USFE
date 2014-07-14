@@ -842,7 +842,7 @@
 			  	});
 
 			  	// (3.9.13)
-			  	if (!data){
+			  	if(!data){
             	 	$(elem).wrap(calendarWrap);
 			  		$(elem).after(calendarbutton, calendarTable);
             	}
@@ -871,6 +871,7 @@
 			  		setValue($(this).text(), numMonth, thisYear);
 			  	});
 
+			  	// (3.9.16)
 				$(document).on('click', function(event){
 
 					if($(event.target).closest('.calendar').length) return;
