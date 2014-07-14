@@ -75,6 +75,48 @@ body{
 .select-wrap .select-dropdown ul li.two{
 	background: rgb(66, 164, 195);
 }
+.select-wrap .select-dropdown ul li[class^="flag"]{
+	background: #52626F url(../img/flag-rus.png) 0 7px no-repeat;
+	padding-left: 30px;
+}
+.select-wrap .select-dropdown ul li[class^="flag"]:hover{
+	background: #4A5863 url(../img/flag-rus.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-deu{
+	background: #52626F url(../img/flag-deu.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-deu:hover,
+.select-wrap .select-dropdown ul li.flag-deu.selected{
+	background: #4A5863 url(../img/flag-deu.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-esp{
+	background: #52626F url(../img/flag-esp.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-esp:hover,
+.select-wrap .select-dropdown ul li.flag-esp.selected{
+	background: #4A5863 url(../img/flag-esp.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-fra{
+	background: #52626F url(../img/flag-fra.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-fra:hover,
+.select-wrap .select-dropdown ul li.flag-fra.selected{
+	background: #4A5863 url(../img/flag-fra.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-grc{
+	background: #52626F url(../img/flag-grc.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-grc:hover,
+.select-wrap .select-dropdown ul li.flag-grc.selected{
+	background: #4A5863 url(../img/flag-grc.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-ita{
+	background: #52626F url(../img/flag-ita.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-ita:hover,
+.select-wrap .select-dropdown ul li.flag-ita.selected{
+	background: #4A5863 url(../img/flag-ita.png) 0 7px no-repeat !important;;
+}
 /*---------------------------
 	   Style Input FILE
 ---------------------------*/
