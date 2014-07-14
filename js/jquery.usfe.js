@@ -53,12 +53,18 @@
 			c_animateSwitch: false,
 			c_animateSwitchSpeed: 300,
 
-
 		};
 
 		options = $.extend(defaults, options);
 
+		var data;
 		var methods = {
+
+			// (3.0)
+			init: function(){
+				data = $(this).data('tooltip');
+	            $(this).data('tooltip', {target : $(this),});
+			},
 
 			// (3.1)
 			typeFile : function(elem){
@@ -266,17 +272,15 @@
 						textDefaultW = $(elem).width(),
 						textRealH =  $(elem).innerHeight();
 
-					$(elem).wrap(textWrap);
+					if($(elem).parents('.text-wrap').length < 1){
+						$(elem).wrap(textWrap);
+					}
 
 					// (3.3.2)
 					$('.text-wrap').css({
 						position: 'relative',
 						height: textRealH,
 					});
-
-					$(elem).css({
-						position: 'absolute',
-					})
 
 					// (3.3.3)
 					$(elem).focus(function(){
@@ -349,9 +353,11 @@
 						nextElem = $(elem).next('label');
 
 					// (3.6.2)
-					$(elem).wrap(radioWrap);	
-					$(elem).before(customRadio, nextElem);
-					$(elem).addClass('hidden-radio');
+					if(!data){
+						$(elem).wrap(radioWrap);	
+						$(elem).before(customRadio, nextElem);
+						$(elem).addClass('hidden-radio');
+					};
 
 					// (3.6.3)	
 					$(customRadio).attr({
@@ -366,6 +372,12 @@
 						if(!timeValue){
 							$(elem).val(labelText);
 						}
+					}
+
+					var checked = $(elem).attr('checked');
+					if(checked){
+						$(elem).parent('div').find('span').addClass('active-radio');
+						$(elem).attr('checked', true);
 					}
 
 					// (3.6.5)
@@ -398,55 +410,66 @@
 			// (3.7)
 			typeCheckbox: function(elem){
 
-				if($(elem).parents('.checkbox-wrap').length < 1){
+				// (3.7.1)
+				if(defaults.c_styleCheckbox == 'style-1'){
+					classCheckbox = 'custom-checkbox';
+				}
+				else if(defaults.c_styleCheckbox == 'style-2'){
+					classCheckbox = 'custom-checkbox-2';
+				}
+				else
+					classCheckbox = 'custom-checkbox';
 
-					// (3.7.1)
-					if(defaults.c_styleCheckbox == 'style-1')
-						classCheckbox = 'custom-checkbox';
-					else if(defaults.c_styleCheckbox == 'style-2')
-						classCheckbox = 'custom-checkbox-2';
-					else
-						classCheckbox = 'custom-checkbox';
+				// (3.7.2)
+				var customCheckbox = $('<span class="' + classCheckbox + '">'),					
+				checkboxWrap = $('<div class="checkbox-wrap">'),
+					nextElem = $(elem).next('label'),
+					classCheckbox;
 
-					// (3.7.2)
-					var customCheckbox = $('<span class="' + classCheckbox + '">'),
-						checkboxWrap = $('<div class="checkbox-wrap">'),
-						nextElem = $(elem).next('label'),
-						classCheckbox;
-
-					// (3.7.3)
+				// (3.7.3)
+				if($(elem).parents('.checkbox-wrap').length < 1){	
 					$(elem).wrap(checkboxWrap);
 					$(elem).before(customCheckbox).after(nextElem);
-					$(elem).addClass('hidden-checkbox');				
+					$(elem).addClass('hidden-checkbox');
+				}
+				else{
+					$(elem).prev('span').remove();
+					$(elem).before(customCheckbox);
+				}		
 
-					// (3.7.4)
-					if(nextElem.length > 0){
-						var labelText = $(elem).parent('div').find('label').text();
-						var timeValue = $(elem).attr('value');
-						if(!timeValue){
-							$(elem).val(labelText);
-						}
-					};
+				// (3.7.4)
+				if(nextElem.length > 0){
+					var labelText = $(elem).parent('div').find('label').text();
+					var timeValue = $(elem).attr('value');
+					if(!timeValue){
+						$(elem).val(labelText);
+					}
+				};
 
-					// (3.7.5)
-					$(customCheckbox).on('click', function(){						
-						$(this).next('input').click();
-					});
+				var checked = $(elem).attr('checked');
+				if(checked){
+					$(elem).prev('span').addClass('active-checkbox');
+				}
 
-					// (3.7.6)
-					$(elem).on('click', function(){
+				// (3.7.5)
+				$(customCheckbox).on('click', function(){						
+					$(this).next('input').click();
+				});
 
-						var parent = $(this).parent('div');
-						if($(parent).find('input').is(':checked')){
-							$(parent).find(customCheckbox).addClass('active-checkbox');
-							$(this).attr('checked', true);
-						}
-						else{
-							$(parent).find(customCheckbox).removeClass('active-checkbox');
-							$(this).removeAttr('checked');
-						}
-					});
-				};	
+				// (3.7.6)
+				$(elem).on('click', function(){
+
+					var parent = $(this).parent('div');
+					if($(parent).find('input').is(':checked')){
+						$(parent).find(customCheckbox).addClass('active-checkbox');
+						$(this).attr('checked', true);
+					}
+					else{
+						$(parent).find(customCheckbox).removeClass('active-checkbox');
+						$(this).removeAttr('checked');
+					}
+				});
+					
 			},
 			//end method typeCheckbox
 
@@ -650,6 +673,8 @@
 			// (3.9)
 			typeCalendar: function(elem){
 
+	            methods.init();
+
 				// (3.9.1)
 			  	var calendar = new Date(),
 			  		month = calendar.getMonth(),
@@ -675,7 +700,7 @@
 					var numDay = new Date(cal.getFullYear(), cal.getMonth()+1, 0).getDate();
 			      	var firstDay = new Date(cal.getFullYear(), cal.getMonth(), 1).getDay();
 			      	var lastDay = new Date(cal.getFullYear(), cal.getMonth(), numDay).getDay();
-					
+
 					// (3.9.4)
 					calendarTr += '<td class="prev-month">' + '<span>' + '</td>';
 					calendarTr += '<td class="month" data-month="' + month + '" colspan="3">' + arrMonth[cal.getMonth()] + '</td>';
@@ -728,11 +753,14 @@
 			  	calendarGenerator(year, month);
 
 			  	// (3.9.10)
-			  	function setValue(day, month){
+			  	function setValue(day, month, year){
 					if(!day)
 						day = calendar.getDate();
 					if(!month)
 						month = calendar.getMonth() + 1;
+
+					if(!year)
+						year = calendar.getFullYear();
 
 					if(day <= 9) day = '0' + day;
 					if(month <= 9) month = '0' + month;
@@ -751,7 +779,7 @@
 			  			month = 0;
 			  			year++;
 			  		}
-			  		
+
 			  		if(defaults.c_animateSwitch){
 				  		$(this).closest(calendarTable).animate({
 				  			left: '100px',
@@ -768,7 +796,11 @@
 				  		},defaults.c_animateSwitchSpeed);
 			  		}
 			  		else{
-			  			calendarGenerator(year, month);
+			  			$(this).closest(calendarTable).animate({
+			  				left: 0,
+			  			}, 0, function(){
+			  				calendarGenerator(year, month);
+			  			});
 			  		}
 
 			  	});
@@ -784,7 +816,7 @@
 			  			month = 11;
 			  			year--;
 			  		}
-			  		
+
 			  		if(defaults.c_animateSwitch){
 				  		$(this).closest(calendarTable).animate({
 				  			left: '-100px',
@@ -801,14 +833,20 @@
 				  		},defaults.c_animateSwitchSpeed);
 			  		}
 			  		else{
-			  			calendarGenerator(year, month);
+			  			$(this).closest(calendarTable).animate({
+			  				left: 0,
+			  			}, 0, function(){
+			  				calendarGenerator(year, month);
+			  			});
 			  		}
 			  	});
 
 			  	// (3.9.13)
-			  	$(elem).wrap(calendarWrap);
-			  	$(elem).after(calendarbutton, calendarTable);
-
+			  	if (!data){
+            	 	$(elem).wrap(calendarWrap);
+			  		$(elem).after(calendarbutton, calendarTable);
+            	}
+			  		
 			  	// (3.9.14)
 			  	$(calendarbutton).on('click', function(event){
 			  		event.stopPropagation();
@@ -823,17 +861,18 @@
 			  		$(this).addClass('select-day');
 
 			  		var thisMonth = $(this).closest('.calendar').find('.month').text();
+			  		var thisYear = $(this).closest('.calendar').find('.year').text();
 			  		var numMonth;
 			  		for(var i = 0; i < arrMonth.length; i++){
 			  			if(arrMonth[i] == thisMonth){
 			  				numMonth = i + 1;
 			  			}
 			  		};
-			  		setValue($(this).text(), numMonth);
+			  		setValue($(this).text(), numMonth, thisYear);
 			  	});
 
 				$(document).on('click', function(event){
-					
+
 					if($(event.target).closest('.calendar').length) return;
 					$(calendarTable).fadeOut(defaults.c_animateSpeed);
 					event.stopPropagation();
@@ -875,7 +914,6 @@
 			function definition(el){
 
 				var type = $(el).attr('type');
-				var dataEl = $(el).attr('data-element');
 
 				switch(type){
 					case 'file':
@@ -883,6 +921,7 @@
 						break;
 					case 'text':
 					case 'password':
+					case 'email':
 						methods.typeText(el);
 						break;
 					case 'usfe-number':

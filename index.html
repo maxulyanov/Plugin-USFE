@@ -10,14 +10,31 @@
 <script type="text/javascript">
 	$(function(){
 		$('#custom-form').usfe({
-			c_styleCheckbox: 'style-2',
-			c_animateSpeed: 300,
-			c_animateSwitch: true,
+			c_styleCheckbox: 'style-1',
 			c_animateSwitchSpeed: 100,
+			c_animateSpeed: 300,
 		});
+
 		$('#fix-height').usfe({
 			s_height: 120,
 		});
+
+		$('#example-calendar-two').usfe({
+			c_animateSwitch: true,
+			c_animateSwitchSpeed: 1000,
+			c_animateSpeed: 1000,
+		});
+
+		$('#check4, #check5, #check6').usfe({
+			c_styleCheckbox: 'style-2',
+		});
+
+		$('#test').usfe({
+			f_defaultButtonName: 'Прикрепить',
+			f_defaultFileName: 'Выберите файл',
+			f_bgDelete: 'rgb(114, 168, 33)',
+		});
+
 	});	
 </script>
 </head>
@@ -27,20 +44,32 @@
 		<form id="custom-form">
 			<p style="margin-bottom:10px;"><span>Ваше имя:</span><input type="text"></p>
 			<p style="margin-bottom:10px;"><span>Введите пароль:</span><input type="password"></p>
+			<p style="margin-bottom:10px;"><span>Введите email:</span><input type="email"></p>
 			<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
 			<p><span>Добавить файл:</span><input type="file"></p>
+			<p><span>Добавить файл:</span><input id="test" type="file"></p>
 			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
 			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
 				<input name="group1" id="radio1" type="radio"><label for="radio1">Первый вариант</label><br>
 				<input name="group1" id="radio2" type="radio" value="two"><label for="radio2">Второй вариант</label><br>
 				<input name="group1" id="radio3" type="radio"><label for="radio3">Третий вариант</label>
 			</p>
+			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
+				<input name="group1" id="radio4" type="radio" checked><label for="radio4">Первый вариант</label><br>
+				<input name="group1" id="radio5" type="radio" value="two"><label for="radio5">Второй вариант</label><br>
+				<input name="group1" id="radio6" type="radio"><label for="radio6">Третий вариант</label>
+			</p>
 			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
-				<input id="check1" type="checkbox"><label for="check1">HTML, CSS</label>
+				<input id="check1" type="checkbox" checked><label for="check1">HTML, CSS</label>
 				<input id="check2" type="checkbox" value="no"><label for="check2">Javascript</label>
 				<input id="check3" type="checkbox"><label for="check3">PHP, MySQL</label>
 			</p>
-			   			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
+			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
+				<input id="check4" type="checkbox"><label for="check4">HTML, CSS</label>
+				<input id="check5" type="checkbox" value="no"><label for="check5">Javascript</label>
+				<input id="check6" type="checkbox"><label for="check6">PHP, MySQL</label>
+			</p>
+			<p><span>Дата поездки:</span><input id="example-calendar-two" type="usfe-calendar"></p>
 			<p style="margin-bottom:150px;">
 				<select id="fix-height">
 				    <option>Выберите пункт</option>
