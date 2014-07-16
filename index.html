@@ -37,8 +37,61 @@
 
 	});	
 </script>
+<style type="text/css">
+	.result-list{
+		position: absolute;
+		top: 0;
+		left: 350px;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+
+		var arr = [];
+		var countChar = 0;
+		var resultList = ('<ul class="result-list">');
+		$('body').append(resultList);
+
+		$('#city').find('li').each(function(){
+			arr.push($(this).text().toLowerCase());
+			$('<li>' + $(this).text() + '</li>').appendTo('.result-list');
+		});
+
+		$('input[type="usfe-search"]').keyup(function(){
+
+			countChar = $(this).val().length;
+			$('.result-list').empty();
+
+			var strValue = $(this).val();
+			for(var i = 0;i < arr.length; i++){
+				arr[i] = arr[i].toLowerCase();
+				var sm = arr[i].substr(0, countChar);
+				var mm = strValue.substr(0, countChar);
+				if(sm == mm){
+					$('<li>' + arr[i] + '</li>').appendTo('.result-list');
+				};
+			};
+
+			if($('.result-list').find('li').length == 0){
+				$('<li>' + 'Совпадений не найдено.' + '</li>').appendTo('.result-list')
+			};
+	});
+	});
+</script>
 </head>
 <body>
+	<input type="usfe-search" data-list="city">
+	<ul id="city">
+		<li>Москва</li>
+		<li>Санкт-Петербург</li>
+		<li>Самара</li>
+		<li>Владивосток</li>
+		<li>Новосибирск</li>
+		<li>Екатеринбург</li>
+		<li>Тольятти</li>
+		<li>Тюмень</li>
+		<li>Симферополь</li>
+	</ul>
 	<div id="wrapper">
 		<h2>Демонстрация плагина USFE</h2>
 		<form id="custom-form">
