@@ -882,6 +882,46 @@
 			},
 			//end method typeCalendar
 
+			// (3.10)
+			typeSearch: function(elem){
+				var arr = [];
+				var countChar = 0;
+				var resultList = ('<ul class="result-list">');
+				var searchWrap = $('<div class="seach-wrap">');
+				var dataList = '#' + $(elem).attr('data-list');
+
+				$(elem).wrap(searchWrap);
+			  	$(elem).after(resultList);
+
+				$(dataList).css('display', 'none');
+
+				$(dataList).find('li').each(function(){
+					arr.push($(this).text().toLowerCase());
+					$('<li>' + $(this).text() + '</li>').appendTo('.result-list');
+				});
+
+				$('input[type="usfe-search"]').keyup(function(){
+
+					countChar = $(this).val().length;
+					$('.result-list').empty();
+
+					var strValue = $(this).val();
+					for(var i = 0;i < arr.length; i++){
+						arr[i] = arr[i].toLowerCase();
+						var sm = arr[i].substr(0, countChar);
+						var mm = strValue.substr(0, countChar);
+						if(sm == mm){
+							$('<li>' + arr[i] + '</li>').appendTo('.result-list');
+						};
+					};
+
+					if($('.result-list').find('li').length == 0){
+						$('<li>' + 'Совпадений не найдено.' + '</li>').appendTo('.result-list')
+					};
+				});
+
+			},//end method typeSearch
+
 		};
 		//end all methods
 
@@ -947,6 +987,9 @@
 						break;
 					case 'usfe-calendar' :
 						methods.typeCalendar(el);
+						break;
+					case 'usfe-search' :
+						methods.typeSearch(el);
 						break;
 					default:
 						console.log('Ошибка! Элемент не может быть обработан:');

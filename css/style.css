@@ -535,3 +535,15 @@ textarea{
 	background-color: #637481;
 	cursor: pointer;
 }
+
+/*---------------------------
+	   Style SEARCH
+---------------------------*/
+.seach-wrap{
+	position: relative;
+}
+.result-list{
+	position: absolute;
+	top: 0;
+	left: 350px;
+}
