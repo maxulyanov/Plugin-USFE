@@ -933,22 +933,23 @@
 						};
 					}
 					else{
+						var elemSelected = $(resultList).find('li.selected');
 						if(event.which == 40){
-							if(!$(resultList).find('li').hasClass('selected')){
+							if(elemSelected.length == 0){
 								$(resultList).find('li').eq(0).addClass('selected');
 							}
 							else{
-								$(resultList).find('li.selected').next().addClass('selected');
-								$(resultList).find('li.selected').prev().removeClass('selected');
+								$(elemSelected).next().addClass('selected');
+								$(elemSelected).removeClass('selected')
 							};
 
 							$(resultList).scrollTop($('.result-list').scrollTop() + $('.result-list')
 							.find('li').filter('.selected').position().top);
 						}
 						else if(event.which == 38){
-
-							$(resultList).find('li.selected').prev().addClass('selected')
-							$(resultList).find('li.selected').next().removeClass('selected');
+							$(elemSelected).prev().addClass('selected');
+							$(elemSelected).removeClass('selected')
+							
 							$(resultList).scrollTop($('.result-list').scrollTop() + $('.result-list')
 							.find('li').filter('.selected').position().top - $('.result-list').innerHeight() + liHeight);
 						};
