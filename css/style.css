@@ -217,7 +217,8 @@ input[type="usfe-number"]{
 ---------------------------*/
 input[type="text"],
 input[type="password"],
-input[type="email"]{
+input[type="email"],
+input[type="usfe-search"]{
 	padding: 5px;
 	width: 200px;
 	height: 19px;
@@ -544,6 +545,16 @@ textarea{
 }
 .result-list{
 	position: absolute;
-	top: 0;
-	left: 350px;
+	top: 30px;
+	width: 210px;
+	background: #FFF;
+	z-index: 112;
+}
+.result-list li{
+	padding: 5px;
+}
+.result-list li:hover,
+.result-list li.selected{
+	cursor: pointer;
+	background: #f7f7f7;
 }
