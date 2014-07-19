@@ -546,6 +546,7 @@ textarea{
 .result-list{
 	position: absolute;
 	top: 30px;
+	display: none;
 	width: 210px;
 	background: #FFF;
 	z-index: 112;

@@ -884,73 +884,88 @@
 
 			// (3.10)
 			typeSearch: function(elem){
-				var arr = [];
-				var countChar = 0;
-				var resultList = ('<ul class="result-list">');
-				var searchWrap = $('<div class="seach-wrap">');
-				var dataList = '#' + $(elem).attr('data-list');
+
+				var arr = [],
+					countChar = 0,
+					resultList = ('<ul class="result-list">'),
+					searchWrap = $('<div class="seach-wrap">'),
+					dataList = '#' + $(elem).attr('data-list');
 
 				$(elem).wrap(searchWrap);
-			  	$(elem).after(resultList);
-
+			  	$(elem).after(resultList, $(dataList));
 
 			  	$('.result-list').css({
-			  		height: 200,
-			  		'overflow-y': 'scroll',
+			  		'max-height': 200,
 			  	});
 				$(dataList).css('display', 'none');
 
+				var resultList = $(elem).next('.result-list');
+
 				$(dataList).find('li').each(function(){
 					arr.push($(this).text());
-					$('<li>' + $(this).text() + '</li>').appendTo('.result-list');
+					$(resultList).append('<li>' + $(this).text() + '</li>');
 				});
 
-				$('input[type="usfe-search"]').keyup(function(event){
+				$(elem).keyup(function(event){
 
 					countChar = $(this).val().length;
-					var liHeight = $('.result-list').find('li').data('li-height');
+					var liHeight = $(resultList).find('li').data('li-height');
 
 					if(event.which !== 38 && event.which !== 40){
+						var strValue = $(this).val().toLowerCase();
 
-					var strValue = $(this).val().toLowerCase();
-					for(var i = 0;i < arr.length; i++){
-						var sm = arr[i].toLowerCase().substr(0, countChar);
-						var mm = strValue.substr(0, countChar);
-						if(sm == mm){
-							if($('li:contains("' + arr[i] + '")').length == 0){
-								$('<li>' + arr[i] + '</li>').appendTo('.result-list');
+						for(var i = 0 ;i < arr.length; i++){
+							var subArr = arr[i].toLowerCase().substr(0, countChar);
+							var subVal = strValue.substr(0, countChar);
+							if(subArr == subVal){
+								if($('li:contains("' + arr[i] + '")').length == 0){
+									$('<li>' + arr[i] + '</li>').appendTo(resultList);
+								}
 							}
-						}
-						else{
-							$('li:contains("' + arr[i] + '")').remove();
-						}
-					};
-					$('.no-result').remove();
-					if($('.result-list').find('li').length == 0){
-						$('<li class="no-result">' + 'Совпадений не найдено.' + '</li>').appendTo('.result-list')
-					};
-					}
-					else{
-					if(event.which == 40){
-					if(!$('.result-list').find('li').hasClass('selected')){
-						$('.result-list').find('li').eq(0).addClass('selected');
-					}
-					else{
-						$('.result-list').find('li.selected').next().addClass('selected');
-						$('.result-list').find('li.selected').prev().removeClass('selected');
-					}									
-						$('.result-list').scrollTop($('.result-list').scrollTop() + $('.result-list').find('li').filter('.selected').position().top);
-					}
-					else if(event.which == 38){
+							else{
+								$('li:contains("' + arr[i] + '")').remove();
+							}
+						};
 
-						$('.result-list').find('li.selected').prev().addClass('selected')
-						$('.result-list').find('li.selected').next().removeClass('selected');
-						$('.result-list').scrollTop($('.result-list').scrollTop() + $('.result-list').find('li').filter('.selected').position().top - $('.result-list').innerHeight() + liHeight);
+						$('.no-result').remove();
+						if($(resultList).find('li').length == 0){
+							$('<li class="no-result">' + 'Совпадений не найдено.' + '</li>').appendTo(resultList)
+						};
 					}
-						var resultTxt = $('.result-list').find('li.selected').text();
-						$('input[type="usfe-search"]').val(resultTxt);
+					else{
+						if(event.which == 40){
+							if(!$(resultList).find('li').hasClass('selected')){
+								$(resultList).find('li').eq(0).addClass('selected');
+							}
+							else{
+								$(resultList).find('li.selected').next().addClass('selected');
+								$(resultList).find('li.selected').prev().removeClass('selected');
+							};
+
+							$(resultList).scrollTop($('.result-list').scrollTop() + $('.result-list')
+							.find('li').filter('.selected').position().top);
+						}
+						else if(event.which == 38){
+
+							$(resultList).find('li.selected').prev().addClass('selected')
+							$(resultList).find('li.selected').next().removeClass('selected');
+							$(resultList).scrollTop($('.result-list').scrollTop() + $('.result-list')
+							.find('li').filter('.selected').position().top - $('.result-list').innerHeight() + liHeight);
+						};
+
+						var resultTxt = $(resultList).find('li.selected').text();
+						$(elem).val(resultTxt);
 						
-					}
+					};
+
+					var h = $(resultList).height();
+					(h >= 200)
+						? 
+						$(resultList).css({'overflowY' : 'scroll'})	
+						:
+						$(resultList).css({'overflowY' : 'auto'});	
+
+					(countChar) ? $(resultList).fadeIn(200) : $(resultList).fadeOut(0);
 
 				});
 
