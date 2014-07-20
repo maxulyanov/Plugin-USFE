@@ -49,9 +49,9 @@
 			s_height: false,
 
 			//settings type = calendar
-			c_animateSpeed: 200,
-			c_animateSwitch: false,
-			c_animateSwitchSpeed: 300,
+			cal_animateSpeed: 200,
+			cal_animateSwitch: false,
+			cal_animateSwitchSpeed: 300,
 
 		};
 
@@ -780,11 +780,11 @@
 			  			year++;
 			  		}
 
-			  		if(defaults.c_animateSwitch){
+			  		if(defaults.cal_animateSwitch){
 				  		$(this).closest(calendarTable).animate({
 				  			left: '100px',
 				  			opacity : 0,
-				  		},defaults.c_animateSwitchSpeed, function(){
+				  		},defaults.cal_animateSwitchSpeed, function(){
 				  			calendarGenerator(year, month);
 				  		})
 				  		.animate({
@@ -793,7 +793,7 @@
 				  		.animate({
 				  			left : '0',
 				  			opacity: 1,
-				  		},defaults.c_animateSwitchSpeed);
+				  		},defaults.cal_animateSwitchSpeed);
 			  		}
 			  		else{
 			  			$(this).closest(calendarTable).animate({
@@ -817,11 +817,11 @@
 			  			year--;
 			  		}
 
-			  		if(defaults.c_animateSwitch){
+			  		if(defaults.cal_animateSwitch){
 				  		$(this).closest(calendarTable).animate({
 				  			left: '-100px',
 				  			opacity : 0,
-				  		},defaults.c_animateSwitchSpeed, function(){
+				  		},defaults.cal_animateSwitchSpeed, function(){
 				  			calendarGenerator(year, month);
 				  		})
 				  		.animate({
@@ -830,7 +830,7 @@
 				  		.animate({
 				  			left : '0',
 				  			opacity: 1,
-				  		},defaults.c_animateSwitchSpeed);
+				  		},defaults.cal_animateSwitchSpeed);
 			  		}
 			  		else{
 			  			$(this).closest(calendarTable).animate({
@@ -851,7 +851,7 @@
 			  	$(calendarbutton).on('click', function(event){
 			  		event.stopPropagation();
 
-			  		$(this).next('.calendar').fadeToggle(defaults.c_animateSpeed);
+			  		$(this).next('.calendar').fadeToggle(defaults.cal_animateSpeed);
 			  	});
 
 			  	// (3.9.15)
@@ -875,7 +875,7 @@
 				$(document).on('click', function(event){
 
 					if($(event.target).closest('.calendar').length) return;
-					$(calendarTable).fadeOut(defaults.c_animateSpeed);
+					$(calendarTable).fadeOut(defaults.cal_animateSpeed);
 					event.stopPropagation();
 				});
 
@@ -895,7 +895,7 @@
 			  	$(elem).after(resultList, $(dataList));
 
 			  	$('.result-list').css({
-			  		'max-height': 200,
+			  		'max-height': 208,
 			  	});
 				$(dataList).css('display', 'none');
 
@@ -932,15 +932,22 @@
 							$('<li class="no-result">' + 'Совпадений не найдено.' + '</li>').appendTo(resultList)
 						};
 					}
-					else{
+					else if($(resultList).is(':visible')){
 						var elemSelected = $(resultList).find('li.selected');
+						var lenElems = $(resultList).find('li').length;
+
 						if(event.which == 40){
 							if(elemSelected.length == 0){
 								$(resultList).find('li').eq(0).addClass('selected');
 							}
 							else{
 								$(elemSelected).next().addClass('selected');
-								$(elemSelected).removeClass('selected')
+								$(elemSelected).removeClass('selected');
+
+								if(!$(elemSelected).next().length){
+									$(resultList).find('li').eq(0).addClass('selected');
+								}
+								
 							};
 
 							$(resultList).scrollTop($('.result-list').scrollTop() + $('.result-list')
@@ -948,10 +955,14 @@
 						}
 						else if(event.which == 38){
 							$(elemSelected).prev().addClass('selected');
-							$(elemSelected).removeClass('selected')
-							
+							$(elemSelected).removeClass('selected');
+
+							if(!$(elemSelected).prev().length){
+								$(resultList).find('li').eq(lenElems-1).addClass('selected');
+							}
+
 							$(resultList).scrollTop($('.result-list').scrollTop() + $('.result-list')
-							.find('li').filter('.selected').position().top - $('.result-list').innerHeight() + liHeight);
+							.find('li').filter('.selected').position().top);
 						};
 
 						var resultTxt = $(resultList).find('li.selected').text();

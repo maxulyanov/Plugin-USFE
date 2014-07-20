@@ -66,9 +66,9 @@ c_styleCheckbox: 'style-1'
 ---
 s_height: false
 ---
-c_animateSpeed: 200
-c_animateSwitch: false
-c_animateSwitchSpeed: 300
+cal_animateSpeed: 200
+cal_animateSwitch: false
+cal_animateSwitchSpeed: 300
 
 ==================================================
 
@@ -101,11 +101,16 @@ c_animateSwitchSpeed: 300
 2.4.3.te_color - цвет текста поля при получении фокуса
 2.4.4.te_backgroundcolor - фоновый цвет поля при получении фокуса
 
-2.5.Параметры input checkbox
+2.5.Параметры input type="checkbox"
 2.5.1. - c_styleCheckbox - параметр изменяющий внешний вид элемента input
 
 2.6.Параметры select option
-2.6.1. - s_height - Устанавливает высоту выпадающего меню, если контент превышает данное значение - появится полоса прокрутки
+2.6.1. - s_height - устанавливает высоту выпадающего меню, если контент превышает данное значение - появится полоса прокрутки
+
+2.7.Параметры input type="usfe-calendar"
+2.7.1. - cal_animateSpeed - устанавливает скорость появления/скрытия блока с календарем
+2.7.2. - cal_animateSwitch - анимированное переключение месяцев календаря, передать true
+2.7.3. - cal_animateSwitchSpeed - скорость анимированного переключения месяцев календаря
 
 ==================================================
  

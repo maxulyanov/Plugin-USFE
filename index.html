@@ -11,8 +11,8 @@
 	$(function(){
 		$('#custom-form').usfe({
 			c_styleCheckbox: 'style-1',
-			c_animateSwitchSpeed: 100,
-			c_animateSpeed: 300,
+			cal_animateSwitchSpeed: 100,
+			cal_animateSpeed: 300,
 		});
 
 		$('#fix-height').usfe({
@@ -20,9 +20,9 @@
 		});
 
 		$('#example-calendar-two').usfe({
-			c_animateSwitch: true,
-			c_animateSwitchSpeed: 1000,
-			c_animateSpeed: 1000,
+			cal_animateSwitch: true,
+			cal_animateSwitchSpeed: 1000,
+			cal_animateSpeed: 1000,
 		});
 
 		$('#check4, #check5, #check6').usfe({
@@ -48,27 +48,36 @@
 			<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
 			<p><span>Добавить файл:</span><input type="file"></p>
 			<p><span>Добавить файл:</span><input id="test" type="file"></p>
+			<p><span>Введите город:</span>
 			<input type="usfe-search" data-list="city">
+			<span style="font-style: italic;">Например: Москва или Смоленск</span>
 				<ul id="city">
 					<li>Москва</li>
+					<li>Можайск</li>
+					<li>Муром</li>
+					<li>Мытищи</li>
+					<li>Мурманск</li>
+					<li>Москва 2</li>
+					<li>Можайск 2</li>
+					<li>Муром 2</li>
+					<li>Мытищи 2</li>
+					<li>Мурманск 2</li>
 					<li>Санкт-Петербург</li>
-					<li>Самара</li>
-					<li>Владивосток</li>
-					<li>Новосибирск</li>
-					<li>Екатеринбург</li>
-					<li>Тольятти</li>
-					<li>Тюмень</li>
 					<li>Симферополь</li>
-					<li>Симферополь2</li>
-					<li>Симферопол3</li>
-					<li>Симферополь4</li>
-					<li>Симферопол5</li>
-					<li>Симферопол6</li>
-					<li>Симферопол7</li>
-					<li>Симферопол8</li>
-					<li>Симферопол9</li>
-					<li>Симферопол10</li>
+					<li>Смоленск</li>
+					<li>Самара</li>
+					<li>Саранск</li>
+					<li>Сочи</li>
+					<li>Суздаль</li>
+					<li>Санкт-Петербург</li>
+					<li>Симферополь</li>
+					<li>Смоленск</li>
+					<li>Самара</li>
+					<li>Саранск</li>
+					<li>Сочи</li>
+					<li>Суздаль</li>
 				</ul>
+			</p>	
 			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
 			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
 				<input name="group1" id="radio1" type="radio"><label for="radio1">Первый вариант</label><br>
