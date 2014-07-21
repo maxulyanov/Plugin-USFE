@@ -550,6 +550,13 @@ textarea{
 	width: 210px;
 	background: #FFF;
 	z-index: 112;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+input[type="usfe-search"]:focus{
+	background: #52626F;
+	color: #FFF;
 }
 .result-list li{
 	padding: 5px;
@@ -557,5 +564,12 @@ textarea{
 .result-list li:hover,
 .result-list li.selected{
 	cursor: pointer;
-	background: #f7f7f7;
+	background: #52626F;
+	color: #FFF;
+}
+.result-list li.no-result,
+.result-list li.no-result:hover{
+	cursor: default;
+	background: #FFF;
+	color: #222;
 }

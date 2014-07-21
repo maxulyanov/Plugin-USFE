@@ -885,6 +885,7 @@
 			// (3.10)
 			typeSearch: function(elem){
 
+				// (3.10.1)
 				var arr = [],
 					countChar = 0,
 					resultList = ('<ul class="result-list">'),
@@ -894,6 +895,7 @@
 				$(elem).wrap(searchWrap);
 			  	$(elem).after(resultList, $(dataList));
 
+			  	// (3.10.2)
 			  	$('.result-list').css({
 			  		'max-height': 208,
 			  	});
@@ -901,16 +903,20 @@
 
 				var resultList = $(elem).next('.result-list');
 
+				// (3.10.3)
 				$(dataList).find('li').each(function(){
 					arr.push($(this).text());
 					$(resultList).append('<li>' + $(this).text() + '</li>');
 				});
 
+				// (3.10.4)
 				$(elem).keyup(function(event){
 
+					// (3.10.5)
 					countChar = $(this).val().length;
 					var liHeight = $(resultList).find('li').data('li-height');
 
+					// (3.10.6)
 					if(event.which !== 38 && event.which !== 40){
 						var strValue = $(this).val().toLowerCase();
 
@@ -932,11 +938,18 @@
 							$('<li class="no-result">' + 'Совпадений не найдено.' + '</li>').appendTo(resultList)
 						};
 					}
+
+					// (3.10.7)
 					else if($(resultList).is(':visible')){
+
+						if($(resultList).find('li.no-result').length !== 0)
+							return false;
+
 						var elemSelected = $(resultList).find('li.selected');
 						var lenElems = $(resultList).find('li').length;
 
 						if(event.which == 40){
+							
 							if(elemSelected.length == 0){
 								$(resultList).find('li').eq(0).addClass('selected');
 							}
@@ -970,6 +983,7 @@
 						
 					};
 
+					// (3.10.8)
 					var h = $(resultList).height();
 					(h >= 200)
 						? 
@@ -977,15 +991,24 @@
 						:
 						$(resultList).css({'overflowY' : 'auto'});	
 
-					(countChar) ? $(resultList).fadeIn(200) : $(resultList).fadeOut(0);
+					(countChar) ? $(resultList).fadeIn(200) : $(resultList).fadeOut(200);
 
 				});
 
+				// (3.10.9)
 				$(document).on('click','.result-list li', function(){
-					var resultTxt = $(this).text();
-					$(this).parents('.seach-wrap').find('li').removeClass('selected');
-					$(this).addClass('selected');
-					$(this).parents('.seach-wrap').find('input[type="usfe-search"]').val(resultTxt);
+					if($(this).hasClass('no-result'))
+						return false
+
+						var resultTxt = $(this).text();
+						$(this).parents('.seach-wrap').find('li').removeClass('selected');
+						$(this).addClass('selected');
+						$(this).parents('.seach-wrap').find('input[type="usfe-search"]').val(resultTxt);
+				});
+
+				// (3.10.10)
+				$('body').on('click', function(){
+					$(resultList).fadeOut(0);
 				});
 
 			},//end method typeSearch
