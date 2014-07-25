@@ -251,16 +251,16 @@ textarea{
 }
 
 .custom-radio{
-	height: 17px;
-	width: 17px;
+	height: 21px;
+	width: 21px;
 	position: relative;
 	top: 9px;
-	background: url(../img/radio-icon.png) 0 -22px no-repeat;
+	background: url(../img/radio-icon.png) 0 -0px no-repeat;
 	display: inline-block;
 	cursor: pointer;
 }
 .custom-radio.active-radio{
-	background-position: 0 0;
+	background-position: 0 -22px;
 }
 .custom-radio + input +label{
 	cursor: pointer;
@@ -281,24 +281,24 @@ textarea{
 	width: 20px;
 	position: relative;
 	top: 6px;
-	background: url(../img/checkbox-icon.png) 0 -6px no-repeat;
+	background: url(../img/checkbox-icon.png) 0 0px no-repeat;
 	display: inline-block;
 	cursor: pointer;
 }
 .custom-checkbox.active-checkbox{
-	background-position: 0 -37px;
+	background-position: 0 -22px;
 }
 .custom-checkbox-2{
-	height: 20px;
-	width: 20px;
+	height: 21px;
+	width: 22px;
 	position: relative;
 	top: 6px;
-	background: url(../img/checkbox-icon-2.png) 0 -7px no-repeat;
+	background: url(../img/checkbox-icon-2.png) 0 1px no-repeat;
 	display: inline-block;
 	cursor: pointer;
 }
 .custom-checkbox-2.active-checkbox{
-	background-position: 0 -37px;
+	background-position: 0 -21px;
 }
 .checkbox-wrap > label{
 	cursor: pointer;
