@@ -34,13 +34,13 @@
 			t_editW: 12,
 			t_editH: 3,
 			t_color: '#FFF',
-			t_backgroundcolor: '#52626F',
+			t_backgroundcolor: '#475160',
 
 			//settings type = textarea
 			te_animateEffect: true,
 			te_animateSpeed: 400,
 			te_color: '#FFF',
-			te_backgroundcolor: '#52626F',
+			te_backgroundcolor: '#475160',
 
 			//settings type = checkbox
 			c_styleCheckbox: 'style-1',
@@ -681,7 +681,8 @@
 			  		year = calendar.getFullYear(),
 			      	calendarWrap = $('<div class="calendar-wrap">'),
 			      	calendarTable = $('<table class="calendar">'),
-			      	calendarbutton = $('<span class="calendar-button">');
+			      	calendarButton = $('<span class="calendar-button">'),
+			      	calendarIcon = $('<span class="calendar-icon">');
 
 				var arrMonth = ['Январь','Февраль','Март','Апрель','Май','Июнь',
 				              'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
@@ -844,11 +845,12 @@
 			  	// (3.9.13)
 			  	if(!data){
             	 	$(elem).wrap(calendarWrap);
-			  		$(elem).after(calendarbutton, calendarTable);
-            	}
+			  		$(elem).after(calendarButton, calendarTable);
+			  		$(calendarButton).append(calendarIcon);            	
+			  	}
 			  		
 			  	// (3.9.14)
-			  	$(calendarbutton).on('click', function(event){
+			  	$(calendarButton).on('click', function(event){
 			  		event.stopPropagation();
 
 			  		$(this).next('.calendar').fadeToggle(defaults.cal_animateSpeed);
