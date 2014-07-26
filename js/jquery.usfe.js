@@ -892,10 +892,14 @@
 					countChar = 0,
 					resultList = ('<ul class="result-list">'),
 					searchWrap = $('<div class="seach-wrap">'),
+					searchBg = $('<div class="seach-bg">'),
+					searchIcon = $('<input type="submit" class="seach-icon">'),
 					dataList = '#' + $(elem).attr('data-list');
 
 				$(elem).wrap(searchWrap);
 			  	$(elem).after(resultList, $(dataList));
+			  	$(elem).wrap(searchBg);
+			  	$(elem).after(searchIcon);
 
 			  	// (3.10.2)
 			  	$('.result-list').css({
@@ -903,7 +907,7 @@
 			  	});
 				$(dataList).css('display', 'none');
 
-				var resultList = $(elem).next('.result-list');
+				var resultList = $(elem).closest('.seach-wrap').find('.result-list');
 
 				// (3.10.3)
 				$(dataList).find('li').each(function(){
@@ -921,6 +925,9 @@
 					// (3.10.6)
 					if(event.which !== 38 && event.which !== 40){
 						var strValue = $(this).val().toLowerCase();
+						if(!strValue){
+							$(resultList).stop().fadeIn(200);
+						}
 
 						for(var i = 0 ;i < arr.length; i++){
 							var subArr = arr[i].toLowerCase().substr(0, countChar);
@@ -1011,6 +1018,38 @@
 				// (3.10.10)
 				$('body').on('click', function(){
 					$(resultList).fadeOut(0);
+				});
+
+				// (3.10.11)
+				$(elem).focus(function(){
+					$(this).parent('.seach-bg').animate({
+						backgroundColor: defaults.te_backgroundcolor,
+						color: defaults.te_color,
+					}, defaults.te_animateSpeed);
+
+					$(this).animate({
+						color: defaults.te_color,
+					}, defaults.te_animateSpeed);
+
+					$(this).next('.seach-icon').css({
+						'backgroundPosition': '0 -23px',
+					});
+				});
+
+				// (3.10.12)
+				$(elem).focusout(function(){
+					$(this).parent('.seach-bg').animate({
+						backgroundColor: textareaDefaultBg,
+						color: textareaDefaultColor,
+					}, defaults.te_animateSpeed);
+
+					$(this).animate({
+						color: textareaDefaultColor,
+					}, defaults.te_animateSpeed);
+
+					$(this).next('.seach-icon').css({
+						'backgroundPosition': '0 0',
+					});
 				});
 
 			},//end method typeSearch

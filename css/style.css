@@ -21,8 +21,9 @@ input,select,option,button{
 a{
     text-decoration: none;
 }
-
-
+label{
+	cursor: pointer;
+}
 /*---------------------------
 	   GENERAL - Demo Style
 ---------------------------*/
@@ -499,6 +500,32 @@ textarea{
 .seach-wrap{
 	position: relative;
 }
+.seach-bg{
+	width: 210px;
+	background: #FFF;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+input[type="usfe-search"]{
+	background: transparent;
+	width: 180px;
+	padding-right:0;
+}
+/*
+input[type="usfe-search"]:focus{
+	background: #475160;
+	color: #FFF;
+}
+*/
+.seach-icon{
+	display: inline-block;
+	background:url(../img/search-icon.png) 0 0 no-repeat;
+	height: 23px;
+	width: 22px;
+	text-indent: -9999px;
+	cursor: pointer;
+}
 .result-list{
 	position: absolute;
 	top: 30px;
@@ -509,10 +536,6 @@ textarea{
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-}
-input[type="usfe-search"]:focus{
-	background: #475160;
-	color: #FFF;
 }
 .result-list li{
 	padding: 5px;
