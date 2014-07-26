@@ -56,6 +56,7 @@
 			//settings type = search
 			se_animateEffect: true,
 			se_animateSpeed: 400,
+			se_animateToogleSpeed: 200,
 			se_color: '#FFF',
 			se_backgroundcolor: '#475160',
 
@@ -1007,7 +1008,10 @@
 						:
 						$(resultList).css({'overflowY' : 'auto'});	
 
-					(countChar) ? $(resultList).fadeIn(200) : $(resultList).fadeOut(200);
+					(countChar) ? 
+						$(resultList).fadeIn(defaults.se_animateToogleSpeed)
+						: 
+						$(resultList).fadeOut(defaults.se_animateToogleSpeed);
 
 				});
 
@@ -1024,43 +1028,45 @@
 
 				// (3.10.10)
 				$('body').on('click', function(){
-					$(resultList).fadeOut(0);
+					$(resultList).fadeOut(defaults.se_animateToogleSpeed);
 				});
 
 				var searchDefaultBg = $(elem).parent('div').css('backgroundColor');
 				var searchDefaultColor = $(elem).css('color');
 
 				// (3.10.11)
-				$(elem).focus(function(){
-					$(this).parent('.seach-bg').animate({
-						backgroundColor: defaults.se_backgroundcolor,
-						color: defaults.se_color,
-					}, defaults.se_animateSpeed);
+				if(defaults.se_animateEffect){
+					$(elem).focus(function(){
+						$(this).parent('.seach-bg').animate({
+							backgroundColor: defaults.se_backgroundcolor,
+							color: defaults.se_color,
+						}, defaults.se_animateSpeed);
 
-					$(this).animate({
-						color: defaults.se_color,
-					}, defaults.se_animateSpeed);
+						$(this).animate({
+							color: defaults.se_color,
+						}, defaults.se_animateSpeed);
 
-					$(this).next('.seach-icon').css({
-						'backgroundPosition': '0 -23px',
+						$(this).next('.seach-icon').css({
+							'backgroundPosition': '0 -23px',
+						});
 					});
-				});
 
-				// (3.10.12)
-				$(elem).focusout(function(){
-					$(this).parent('.seach-bg').animate({
-						backgroundColor: searchDefaultBg,
-						color: searchDefaultColor,
-					}, defaults.se_animateSpeed);
+					// (3.10.12)
+					$(elem).focusout(function(){
+						$(this).parent('.seach-bg').animate({
+							backgroundColor: searchDefaultBg,
+							color: searchDefaultColor,
+						}, defaults.se_animateSpeed);
 
-					$(this).animate({
-						color: searchDefaultColor,
-					}, defaults.te_animateSpeed);
+						$(this).animate({
+							color: searchDefaultColor,
+						}, defaults.te_animateSpeed);
 
-					$(this).next('.seach-icon').css({
-						'backgroundPosition': '0 0',
+						$(this).next('.seach-icon').css({
+							'backgroundPosition': '0 0',
+						});
 					});
-				});
+				}
 
 			},//end method typeSearch
 
