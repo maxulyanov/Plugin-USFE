@@ -53,6 +53,13 @@
 			cal_animateSwitch: false,
 			cal_animateSwitchSpeed: 300,
 
+			//settings type = search
+			se_animateEffect: true,
+			se_animateSpeed: 400,
+			se_color: '#FFF',
+			se_backgroundcolor: '#475160',
+
+
 		};
 
 		options = $.extend(defaults, options);
@@ -1020,16 +1027,19 @@
 					$(resultList).fadeOut(0);
 				});
 
+				var searchDefaultBg = $(elem).parent('div').css('backgroundColor');
+				var searchDefaultColor = $(elem).css('color');
+
 				// (3.10.11)
 				$(elem).focus(function(){
 					$(this).parent('.seach-bg').animate({
-						backgroundColor: defaults.te_backgroundcolor,
-						color: defaults.te_color,
-					}, defaults.te_animateSpeed);
+						backgroundColor: defaults.se_backgroundcolor,
+						color: defaults.se_color,
+					}, defaults.se_animateSpeed);
 
 					$(this).animate({
-						color: defaults.te_color,
-					}, defaults.te_animateSpeed);
+						color: defaults.se_color,
+					}, defaults.se_animateSpeed);
 
 					$(this).next('.seach-icon').css({
 						'backgroundPosition': '0 -23px',
@@ -1039,12 +1049,12 @@
 				// (3.10.12)
 				$(elem).focusout(function(){
 					$(this).parent('.seach-bg').animate({
-						backgroundColor: textareaDefaultBg,
-						color: textareaDefaultColor,
-					}, defaults.te_animateSpeed);
+						backgroundColor: searchDefaultBg,
+						color: searchDefaultColor,
+					}, defaults.se_animateSpeed);
 
 					$(this).animate({
-						color: textareaDefaultColor,
+						color: searchDefaultColor,
 					}, defaults.te_animateSpeed);
 
 					$(this).next('.seach-icon').css({
