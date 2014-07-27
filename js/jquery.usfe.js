@@ -358,12 +358,20 @@
 						customRadio = $('<span class="custom-radio">'),
 						thisRadioId = $(elem).attr('id'),
 						thisRadioName = $(elem).attr('name'),
-						nextElem = $(elem).next('label');
+						nextElem = $(elem).next('label'),
+						parentElem = $(elem).parent('label');
 
 					// (3.6.2)
-					if(!data){
-						$(elem).wrap(radioWrap);	
-						$(elem).before(customRadio, nextElem);
+					if(!data){						
+						if($(elem).parent('label').length){
+							$(parentElem).wrap(radioWrap);
+							$(elem).before(customRadio);
+						}
+						else{
+							$(elem).wrap(radioWrap);
+							$(elem).before(customRadio, nextElem);
+						}	
+							
 						$(elem).addClass('hidden-radio');
 					};
 
@@ -383,33 +391,57 @@
 					}
 
 					var checked = $(elem).attr('checked');
+					var elemDisabled = $(elem).attr('disabled');
+
 					if(checked){
-						$(elem).parent('div').find('span').addClass('active-radio');
+						var groupName = $(elem).attr('name');
+						$("span[data-radiogroup='" + groupName + "']").removeClass('active-radio');
+						
+						$(elem).parents('.radio-wrap').find('span').addClass('active-radio');
 						$(elem).attr('checked', true);
 					}
 
+					if(elemDisabled){
+						$(elem).parent('.radio-wrap').find('span').addClass('disabled');
+					}
+
+					
+				
+
 					// (3.6.5)
 					$(customRadio).on('click', function(){
+						if(!$(this).hasClass('disabled')){
+							// (3.6.6)
+							var thisGroup = $(this).attr('data-radiogroup');
+							$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio');
+							$(this).addClass('active-radio');
 
-						// (3.6.6)
-						var thisGroup = $(this).attr('data-radiogroup');
-						$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio');
-						$(this).addClass('active-radio');
+							// (3.6.7)
+							var thisElem = $(this).attr('data-radio');
+							$("input[id='" + thisElem + "']").click();
 
-						// (3.6.7)
-						var thisElem = $(this).attr('data-radio');
-						$("input[id='" + thisElem + "']").click();
-
-						// (3.6.8)
-						var thisName = $("input[id='" + thisElem + "']").attr('name');
-						$("input[name='" + thisName + "']").removeAttr('checked');
-						$("input[id='" + thisElem + "']").attr('checked', true);
+							// (3.6.8)
+							var thisName = $("input[id='" + thisElem + "']").attr('name');
+							$("input[name='" + thisName + "']").removeAttr('checked');
+							$("input[id='" + thisElem + "']").attr('checked', true);
+						}
 
 					});
 
 					// (3.6.9)
 					$(nextElem).on('click', function(){
 						customRadio.click();
+					});
+
+					// (3.6.10)
+					$(parentElem).on('click', function(){
+						if(!$(this).find('span').hasClass('disabled')){
+
+							var thisCustom = $(this).find('.custom-radio');
+							var thisGroup = $(thisCustom).attr('data-radiogroup');
+							$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio')
+							$(thisCustom).addClass('active-radio');
+						}
 					});
 				}
 			},

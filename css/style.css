@@ -250,18 +250,24 @@ textarea{
 .hidden-radio{
 	display: none;
 }
-
 .custom-radio{
 	height: 21px;
 	width: 21px;
 	position: relative;
 	top: 9px;
-	background: url(../img/radio-icon.png) 0 -0px no-repeat;
+	background: url(../img/radio-icon.png) 0 -1px no-repeat;
 	display: inline-block;
 	cursor: pointer;
 }
 .custom-radio.active-radio{
-	background-position: 0 -22px;
+	background-position: 0 -23px;
+}
+.custom-radio.disabled{
+	background-position: 0 -46px;
+	cursor: default;
+}
+.custom-radio.active-radio.disabled{
+	background-position: 0 -68px;
 }
 .custom-radio + input +label{
 	cursor: pointer;
