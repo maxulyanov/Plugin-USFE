@@ -25,7 +25,7 @@
 			cal_animateSpeed: 1000,
 		});
 
-		$('#check4, #check5, #check6').usfe({
+		$('#check4, #check5, #check6, #check-6, #check7').usfe({
 			c_styleCheckbox: 'style-2',
 		});
 
@@ -35,14 +35,26 @@
 			f_bgDelete: 'rgb(114, 168, 33)',
 		});
 
-		$('#test2').on('click', function(event){
+		$('.test2').on('click', function(event){
 			event.preventDefault();
-			//$('span').removeClass('disabled');
+			$('span').removeClass('disabled');
+			$('input').removeAttr('disabled')
+			//$('span').addClass('disabled');
+		});
+
+		$('.test3').on('click', function(event){
+			event.preventDefault();
+			$('input').attr('disabled', 'true')
 			$('span').addClass('disabled');
 		});
 
 	});	
 </script>
+<style type="text/css">
+	input{
+		display: block !important;
+	}
+</style>
 </head>
 <body>
 	<div id="wrapper">
@@ -84,7 +96,8 @@
 					<li>Суздаль</li>
 				</ul>
 			</p>
-			<a href="#" id="test2">Переключить</a>	
+			<a href="#" class="test2">Сделать все radio активными</a>
+			<a href="#" class="test3">Сделать все radio неактивными</a>		
 			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
 			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
 				<input name="group1" id="radio1" type="radio"><label for="radio1">Первый вариант</label><br>
@@ -99,14 +112,19 @@
 				<input name="group2" id="radio7" type="radio" disabled><label for="radio7">Неактивный radio</label>
 			</p>
 			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
-				<input id="check1" type="checkbox" checked><label for="check1">HTML, CSS</label>
-				<input id="check2" type="checkbox" value="no"><label for="check2">Javascript</label>
-				<input id="check3" type="checkbox"><label for="check3">PHP, MySQL</label>
+				<input id="check1" type="checkbox"><label for="check1">HTML, CSS</label>
+				<input id="check2" type="checkbox" value="no" checked><label for="check2">Javascript</label>
+				<input id="check3" type="checkbox" disabled><label for="check3">PHP, MySQL</label>
+				<input id="check-3" type="checkbox" disabled checked><label for="check-3">JAVA</label>
+				<label><input type="checkbox">TEST</label>
+				<input type="checkbox"><span>Без лейбла</span>
 			</p>
 			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
 				<input id="check4" type="checkbox"><label for="check4">HTML, CSS</label>
-				<input id="check5" type="checkbox" value="no"><label for="check5">Javascript</label>
-				<input id="check6" type="checkbox"><label for="check6">PHP, MySQL</label>
+				<input id="check5" type="checkbox" value="no" checked><label for="check5">Javascript</label>
+				<input id="check6" type="checkbox" disabled><label for="check6">PHP, MySQL</label>
+				<input id="check-6" type="checkbox" disabled checked><label for="check-6">JAVA</label>
+				<label><input id="check7" type="checkbox">TEST</label>
 			</p>
 			<p><span>Дата поездки:</span><input id="example-calendar-two" type="usfe-calendar"></p>
 			<p style="margin-bottom:150px;">

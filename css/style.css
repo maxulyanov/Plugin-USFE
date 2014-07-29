@@ -288,12 +288,18 @@ textarea{
 	width: 20px;
 	position: relative;
 	top: 6px;
-	background: url(../img/checkbox-icon.png) 0 0px no-repeat;
+	background: url(../img/checkbox-icon.png) 0 -1px no-repeat;
 	display: inline-block;
 	cursor: pointer;
 }
 .custom-checkbox.active-checkbox{
-	background-position: 0 -22px;
+	background-position: 0 -23px;
+}
+.custom-checkbox.disabled-checkbox{
+	background-position: 0 -45px;
+}
+.custom-checkbox.active-checkbox.disabled-checkbox{
+	background-position: 0 -67px;
 }
 .custom-checkbox-2{
 	height: 21px;
@@ -306,6 +312,12 @@ textarea{
 }
 .custom-checkbox-2.active-checkbox{
 	background-position: 0 -21px;
+}
+.custom-checkbox-2.disabled-checkbox{
+	background-position: 0 -44px;
+}
+.custom-checkbox-2.active-checkbox.disabled-checkbox{
+	background-position: 0 -65px;
 }
 .checkbox-wrap > label{
 	cursor: pointer;

@@ -390,6 +390,7 @@
 						}
 					}
 
+					// (3.6.5)
 					var checked = $(elem).attr('checked');
 					var elemDisabled = $(elem).attr('disabled');
 
@@ -403,24 +404,23 @@
 
 					if(elemDisabled){
 						$(elem).parent('.radio-wrap').find('span').addClass('disabled');
-					}
+					}		
 
-					
-				
-
-					// (3.6.5)
+					// (3.6.6)
 					$(customRadio).on('click', function(){
 						if(!$(this).hasClass('disabled')){
-							// (3.6.6)
+
+							// (3.6.7)
 							var thisGroup = $(this).attr('data-radiogroup');
 							$("span[data-radiogroup='" + thisGroup + "']").removeClass('active-radio');
 							$(this).addClass('active-radio');
 
-							// (3.6.7)
+							// (3.6.8)
 							var thisElem = $(this).attr('data-radio');
 							$("input[id='" + thisElem + "']").click();
+							console.log($("input[id='" + thisElem + "']"))
 
-							// (3.6.8)
+							// (3.6.9)
 							var thisName = $("input[id='" + thisElem + "']").attr('name');
 							$("input[name='" + thisName + "']").removeAttr('checked');
 							$("input[id='" + thisElem + "']").attr('checked', true);
@@ -428,12 +428,12 @@
 
 					});
 
-					// (3.6.9)
+					// (3.6.10)
 					$(nextElem).on('click', function(){
 						customRadio.click();
 					});
 
-					// (3.6.10)
+					// (3.6.11)
 					$(parentElem).on('click', function(){
 						if(!$(this).find('span').hasClass('disabled')){
 
@@ -462,14 +462,21 @@
 
 				// (3.7.2)
 				var customCheckbox = $('<span class="' + classCheckbox + '">'),					
-				checkboxWrap = $('<div class="checkbox-wrap">'),
+					checkboxWrap = $('<div class="checkbox-wrap">'),
 					nextElem = $(elem).next('label'),
-					classCheckbox;
+					classCheckbox,
+					parentElem = $(elem).parent('label');
 
 				// (3.7.3)
 				if($(elem).parents('.checkbox-wrap').length < 1){	
-					$(elem).wrap(checkboxWrap);
-					$(elem).before(customCheckbox).after(nextElem);
+					if($(elem).parent('label').length){
+							$(parentElem).wrap(checkboxWrap);
+							$(elem).before(customCheckbox);
+						}
+						else{
+							$(elem).wrap(checkboxWrap);
+							$(elem).before(customCheckbox).after(nextElem);
+						}	
 					$(elem).addClass('hidden-checkbox');
 				}
 				else{
@@ -491,15 +498,20 @@
 					$(elem).prev('span').addClass('active-checkbox');
 				}
 
+				var disabled = $(elem).attr('disabled');
+				if(disabled){
+					$(elem).prev('span').addClass('disabled-checkbox');
+				}
+
 				// (3.7.5)
-				$(customCheckbox).on('click', function(){						
-					$(this).next('input').click();
+				$(customCheckbox).on('click', function(){				
+					$(this).parent('.checkbox-wrap').find('input[type="checkbox"]').click();
 				});
 
 				// (3.7.6)
 				$(elem).on('click', function(){
 
-					var parent = $(this).parent('div');
+					var parent = $(this).parents('.checkbox-wrap');
 					if($(parent).find('input').is(':checked')){
 						$(parent).find(customCheckbox).addClass('active-checkbox');
 						$(this).attr('checked', true);
