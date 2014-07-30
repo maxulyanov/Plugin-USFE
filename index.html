@@ -50,11 +50,6 @@
 
 	});	
 </script>
-<style type="text/css">
-	input{
-		display: block !important;
-	}
-</style>
 </head>
 <body>
 	<div id="wrapper">
@@ -105,11 +100,11 @@
 				<input name="group1" id="radio3" type="radio"><label for="radio3">Третий вариант</label>
 			</p>
 			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
-				<input name="group2" id="radio4" type="radio" checked disabled><label for="radio4">Первый вариант</label><br>
+				<input name="group2" id="radio4" type="radio"><label for="radio4">Первый вариант</label><br>
 				<input name="group2" id="radio5" type="radio" value="two"><label for="radio5">Второй вариант</label><br>
-				<label for="radio6"><input name="group2" id="radio6" type="radio">Третий вариант</label>
+				<label for="radio6"><input name="group2" id="radio6" type="radio" disabled>Третий вариант</label>
+				<input name="group2" id="radio7" type="radio" checked disabled><label for="radio7">Неактивный radio</label>
 				<input name="group2" type="radio">Четвертый вариант
-				<input name="group2" id="radio7" type="radio" disabled><label for="radio7">Неактивный radio</label>
 			</p>
 			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
 				<input id="check1" type="checkbox"><label for="check1">HTML, CSS</label>

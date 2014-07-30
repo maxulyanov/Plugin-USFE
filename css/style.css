@@ -262,11 +262,11 @@ textarea{
 .custom-radio.active-radio{
 	background-position: 0 -23px;
 }
-.custom-radio.disabled{
+.custom-radio.disable-radio{
 	background-position: 0 -46px;
 	cursor: default;
 }
-.custom-radio.active-radio.disabled{
+.custom-radio.active-radio.disable-radio{
 	background-position: 0 -68px;
 }
 .custom-radio + input +label{

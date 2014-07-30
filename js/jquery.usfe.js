@@ -403,12 +403,12 @@
 					}
 
 					if(elemDisabled){
-						$(elem).parent('.radio-wrap').find('span').addClass('disabled');
+						$(elem).parents('.radio-wrap').find('span').addClass('disable-radio');
 					}		
 
 					// (3.6.6)
 					$(customRadio).on('click', function(){
-						if(!$(this).hasClass('disabled')){
+						if(!$(this).hasClass('disable-radio')){
 
 							// (3.6.7)
 							var thisGroup = $(this).attr('data-radiogroup');
@@ -417,25 +417,23 @@
 
 							// (3.6.8)
 							var thisElem = $(this).attr('data-radio');
-							$("input[id='" + thisElem + "']").click();
-							console.log($("input[id='" + thisElem + "']"))
-
-							// (3.6.9)
 							var thisName = $("input[id='" + thisElem + "']").attr('name');
 							$("input[name='" + thisName + "']").removeAttr('checked');
 							$("input[id='" + thisElem + "']").attr('checked', true);
+
+							$("input[id='" + thisElem + "']").click();			
 						}
 
 					});
 
-					// (3.6.10)
+					// (3.6.9)
 					$(nextElem).on('click', function(){
 						customRadio.click();
 					});
 
-					// (3.6.11)
+					// (3.6.10)
 					$(parentElem).on('click', function(){
-						if(!$(this).find('span').hasClass('disabled')){
+						if(!$(this).find('span').hasClass('disable-radio')){
 
 							var thisCustom = $(this).find('.custom-radio');
 							var thisGroup = $(thisCustom).attr('data-radiogroup');
@@ -493,6 +491,7 @@
 					}
 				};
 
+				// (3.7.5)
 				var checked = $(elem).attr('checked');
 				if(checked){
 					$(elem).prev('span').addClass('active-checkbox');
@@ -503,12 +502,12 @@
 					$(elem).prev('span').addClass('disabled-checkbox');
 				}
 
-				// (3.7.5)
+				// (3.7.6)
 				$(customCheckbox).on('click', function(){				
 					$(this).parent('.checkbox-wrap').find('input[type="checkbox"]').click();
 				});
 
-				// (3.7.6)
+				// (3.7.7)
 				$(elem).on('click', function(){
 
 					var parent = $(this).parents('.checkbox-wrap');
