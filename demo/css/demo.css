@@ -1,0 +1,137 @@
+/*---------------------------
+	   GENERAL - Demo Style
+---------------------------*/
+body{
+	font: 13px Arial, sans-serif;
+    background: #3498DB;
+    color: #222;
+}
+#wrapper{
+	margin: 0 auto;
+	width: 960px;
+}
+.clearfix{
+	clear: both;
+	display: block;
+}
+code{
+	display: inline-block;
+	background: #404956;
+	padding: 2px 4px;
+	margin-bottom: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+body > h2{
+	text-align: center;
+	background: #5FAFE4;
+	padding: 10px;
+	color: #313131;
+	font-size: 18px;
+	border-bottom: 2px solid #70BAEB;
+}
+#custom-form{
+	margin: 20px auto;
+	width: 640px;
+	padding: 20px 20px 20px 20px;
+}
+#custom-form > div{
+	padding: 10px;
+	background: #5FAFE4;
+	border: 2px solid #70BAEB;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.demo-block{
+	float: left;
+	color: #FFF;
+}
+.demo-block > p > span{
+	margin-bottom: 5px;
+	display: inline-block;
+}
+.info-block{
+	float: right;
+	width: 300px;
+	color: #FFF;
+}
+.info-block p{
+	margin-bottom: 7px;
+}
+.info-block p > span{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+span.code-style-1{
+	color: #F58C15;
+}
+span.code-style-2 {
+	color: rgb(64, 170, 32);
+}
+span.code-style-type{
+	color: #B0D5FE;
+}
+#custom-form textarea{
+	margin-bottom: 10px;
+}
+#link-git{
+	height: 26px;
+	width: 100px;
+	text-indent: -9999px;
+	display: block;
+	margin: 0 auto;
+	background: url(../img/github.png)  no-repeat;
+}
+.select-wrap .select-dropdown ul li.one{
+	background: rgb(114, 168, 33);
+}
+.select-wrap .select-dropdown ul li.two{
+	background: rgb(66, 164, 195);
+}
+.select-wrap .select-dropdown ul li[class^="flag"]{
+	padding-left: 30px;
+}
+.select-wrap .select-dropdown ul li.flag-rus{
+	background: #4A5864 url(../img/flag-rus.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-rus:hover,
+.select-wrap .select-dropdown ul li.flag-rus.selected{
+	background: #3A4954 url(../img/flag-rus.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-deu{
+	background: #4A5864 url(../img/flag-deu.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-deu:hover,
+.select-wrap .select-dropdown ul li.flag-deu.selected{
+	background: #3A4954 url(../img/flag-deu.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-esp{
+	background: #4A5864 url(../img/flag-esp.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-esp:hover,
+.select-wrap .select-dropdown ul li.flag-esp.selected{
+	background: #3A4954 url(../img/flag-esp.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-fra{
+	background: #4A5864 url(../img/flag-fra.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-fra:hover,
+.select-wrap .select-dropdown ul li.flag-fra.selected{
+	background: #3A4954 url(../img/flag-fra.png) 0 7px no-repeat !important;
+}
+.select-wrap .select-dropdown ul li.flag-grc{
+	background: #4A5864 url(../img/flag-grc.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-grc:hover,
+.select-wrap .select-dropdown ul li.flag-grc.selected{
+	background: #3A4954 url(../img/flag-grc.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-ita{
+	background: #4A5864 url(../img/flag-ita.png) 0 7px no-repeat;
+}
+.select-wrap .select-dropdown ul li.flag-ita:hover,
+.select-wrap .select-dropdown ul li.flag-ita.selected{
+	background: #3A4954 url(../img/flag-ita.png) 0 7px no-repeat !important;;
+}
