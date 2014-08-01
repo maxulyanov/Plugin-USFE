@@ -21,7 +21,7 @@ $(function(){
 		c_styleCheckbox: 'style-2',
 	});
 
-	$('#test').usfe({
+	$('#example-file-2').usfe({
 		f_defaultButtonName: 'Прикрепить',
 		f_defaultFileName: 'Выберите файл',
 		f_bgDelete: 'rgb(114, 168, 33)',

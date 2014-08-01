@@ -24,9 +24,10 @@
 			f_bgDelete: '#f48475',
 
 			//settings type = number
+			n_maxVal: Infinity,
+			n_editBg: true,
 			n_iconPlus: '+',
 			n_iconMinus: '-',
-			n_editBg: true,
 
 			//settings type = text
 			t_animateEffect: true,
@@ -54,6 +55,7 @@
 			cal_animateSwitchSpeed: 300,
 
 			//settings type = search
+			se_height: 200,
 			se_animateEffect: true,
 			se_animateSpeed: 400,
 			se_animateToogleSpeed: 200,
@@ -258,6 +260,8 @@
 						if(isNaN(val)){
 							val = 1;
 						}
+						if(val > defaults.n_maxVal)
+							return false;
 
 						$(elem).parent().find('input[type="usfe-number"]').val(val);
 						$(elem).parent().find('input[type="usfe-number"]').attr('value', val);
@@ -1044,12 +1048,7 @@
 					};
 
 					// (3.10.8)
-					var h = $(resultList).height();
-					(h >= 200)
-						? 
-						$(resultList).css({'overflowY' : 'scroll'})	
-						:
-						$(resultList).css({'overflowY' : 'auto'});	
+					$(resultList).css('max-height', defaults.se_height);	
 
 					(countChar) ? 
 						$(resultList).fadeIn(defaults.se_animateToogleSpeed)

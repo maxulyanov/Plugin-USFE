@@ -38,6 +38,7 @@ body > h2{
 }
 #custom-form > div{
 	padding: 10px;
+	margin-bottom: 20px;
 	background: #5FAFE4;
 	border: 2px solid #70BAEB;
 	-moz-border-radius: 5px;
@@ -50,11 +51,12 @@ body > h2{
 }
 .demo-block > p > span{
 	margin-bottom: 5px;
+	width: 100%;
 	display: inline-block;
 }
 .info-block{
 	float: right;
-	width: 300px;
+	width: 320px;
 	color: #FFF;
 }
 .info-block p{
@@ -63,6 +65,7 @@ body > h2{
 .info-block p > span{
 	display: inline-block;
 	margin-bottom: 5px;
+	width: 100%;
 }
 span.code-style-1{
 	color: #F58C15;

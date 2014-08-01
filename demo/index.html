@@ -38,39 +38,113 @@
 				</div>
 				<span class="clearfix"></span>
 			</div>
-			<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
-			<p><span>Добавить файл:</span><input type="file"></p>
-			<p><span>Добавить файл:</span><input id="test" type="file"></p>
-			<p><span>Введите город:</span>
-			<input type="usfe-search" data-list="city">
-			<span style="font-style: italic;">Например: Москва или Смоленск</span>
-				<ul id="city">
-					<li>Москва</li>
-					<li>Можайск</li>
-					<li>Муром</li>
-					<li>Мытищи</li>
-					<li>Мурманск</li>
-					<li>Москва 2</li>
-					<li>Можайск 2</li>
-					<li>Муром 2</li>
-					<li>Мытищи 2</li>
-					<li>Мурманск 2</li>
-					<li>Санкт-Петербург</li>
-					<li>Симферополь</li>
-					<li>Смоленск</li>
-					<li>Самара</li>
-					<li>Саранск</li>
-					<li>Сочи</li>
-					<li>Суздаль</li>
-					<li>Санкт-Петербург</li>
-					<li>Симферополь</li>
-					<li>Смоленск</li>
-					<li>Самара</li>
-					<li>Саранск</li>
-					<li>Сочи</li>
-					<li>Суздаль</li>
-				</ul>
-			</p>
+			<div>
+				<div class="demo-block">
+					<p><span>Добавить файл:</span><input type="file"></p>
+					<p><span>Добавить файл:</span><input id="example-file-2" type="file"></p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"file"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>f_FileNameLength: <span class="code-style-1">30</span></code><br>
+						<code>f_charDelete: <span class="code-style-2">'&#215;'</span></code><br>
+						<code>f_bgDelete: <span class="code-style-2">'#f48475'</span></code><br>
+						<code>f_defaultButtonName: <span class="code-style-2">'Выбрать'</span></code><br>
+						<code>f_defaultFileName: <span class="code-style-2">'Файл не выбран'</span></code><br>
+						<code>f_editButtonName: <span class="code-style-2">'Изменить'</span></code><br>
+						<code>f_defaultFileNameDel: <span class="code-style-2">'Файл не выбран'</span></code><br>
+					</p>
+					<p>Позволяет задать максимальное кол-во символов в поле, иконку для удаления выбранного файла, цвет поля при удалении, а так же текстовое значение кнопки для выбора в разных состояниях (изначальном и при выбранном файле) и текстовое значение поля для имени файла, так же в разных состояниях (изначальном и если файл был удален)</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"usfe-number"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>n_maxVal: <span class="code-style-1">Infinity</span></code><br>
+						<code>n_editBg: <span class="code-style-1">true</span></code><br>
+						<code>n_iconPlus: <span class="code-style-2">'+'</span></code><br>
+						<code>n_iconMinus: <span class="code-style-2">'-'</span></code><br>
+					</p>
+					<p>Имитация элемента input type number. Возможность задавать максимальное значение для поля, изменение цвета поля при уменьшении/увеличении значения, произвольное значение для кнопок + -.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p><span>Введите город:</span>
+						<input type="usfe-search" data-list="city">
+						<span style="font-style: italic;">Например: Москва или Смоленск</span>
+						<ul id="city">
+							<li>Москва</li>
+							<li>Можайск</li>
+							<li>Муром</li>
+							<li>Мытищи</li>
+							<li>Мурманск</li>
+							<li>Москва 2</li>
+							<li>Можайск 2</li>
+							<li>Муром 2</li>
+							<li>Мытищи 2</li>
+							<li>Мурманск 2</li>
+							<li>Санкт-Петербург</li>
+							<li>Симферополь</li>
+							<li>Смоленск</li>
+							<li>Самара</li>
+							<li>Саранск</li>
+							<li>Сочи</li>
+							<li>Суздаль</li>
+							<li>Санкт-Петербург</li>
+							<li>Симферополь</li>
+							<li>Смоленск</li>
+							<li>Самара</li>
+							<li>Саранск</li>
+							<li>Сочи</li>
+							<li>Суздаль</li>
+						</ul>
+					</p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"usfe-search"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>se_height: <span class="code-style-1">200</span></code><br>
+						<code>se_animateEffect: <span class="code-style-1">true</span></code><br>
+						<code>se_animateSpeed: <span class="code-style-1">400</span></code><br>
+						<code>se_animateToogleSpeed: <span class="code-style-1">200</span></code><br>
+						<code>se_color: <span class="code-style-2">'#FFF'</span></code><br>
+						<code>se_backgroundcolor: <span class="code-style-2">'#475160'</span></code><br>
+					</p>
+					<p>Новый элемент ищет соответствие в строке, которая введена в поле и списком элементов, выводя сразу же результаты.Параметры позволяют задать высоту списка результатов, включение анимации, скорость появления/скрытия результатов, изменения цвета фона и текста поля при фокусе и их скорость.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p style="margin-top: 10px;"><span>Комментарий:</span><textarea></textarea></p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code><span class="code-style-type">textarea</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>te_animateEffect: <span class="code-style-1">true</span></code><br>
+						<code>te_animateSpeed: <span class="code-style-1">400</span></code><br>
+						<code>te_color: <span class="code-style-2">'#FFF'</span></code><br>
+						<code>te_backgroundcolor: <span class="code-style-2">'#475160'</span></code><br>
+					</p>
+					<p>Возможность добавлять кросбраузерную! анимацию для изменения цвета и фона поля textarea и регулировать ее скорость.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
 			<a href="#" class="test2">Сделать все radio активными</a>
 			<a href="#" class="test3">Сделать все radio неактивными</a>		
 			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
@@ -146,7 +220,6 @@
 				    <option class="flag-grc">Греция</option>
 				    <option class="flag-ita">Италия</option>
    			</select></p>
-			<p style="margin-top: 10px;"><span>Комментарий:</span><textarea></textarea></p>
 			<p><span>Кнопки:</span><input style="margin:0 10px;" type="submit" value="input"><button type="button">Button</button></p>
 		</form>
 		<a id="link-git" href="https://github.com/M-Ulyanov/Plugin-USFE" target="_blank">Пример</a>
