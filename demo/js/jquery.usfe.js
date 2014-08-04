@@ -55,7 +55,7 @@
 			cal_animateSwitchSpeed: 300,
 
 			//settings type = search
-			se_height: 200,
+			se_height: 208,
 			se_animateEffect: true,
 			se_animateSpeed: 400,
 			se_animateToogleSpeed: 200,
@@ -356,7 +356,7 @@
 			typeRadio: function(elem){
 
 				if($(elem).parents('.radio-wrap').length < 1){
-
+					
 					// (3.6.1)
 					var radioWrap = $('<div class="radio-wrap">'),
 						customRadio = $('<span class="custom-radio">'),
@@ -365,19 +365,17 @@
 						nextElem = $(elem).next('label'),
 						parentElem = $(elem).parent('label');
 
-					// (3.6.2)
-					if(!data){						
-						if($(elem).parent('label').length){
-							$(parentElem).wrap(radioWrap);
-							$(elem).before(customRadio);
-						}
-						else{
-							$(elem).wrap(radioWrap);
-							$(elem).before(customRadio, nextElem);
-						}	
-							
-						$(elem).addClass('hidden-radio');
-					};
+					// (3.6.2)					
+					if($(elem).parent('label').length){
+						$(parentElem).wrap(radioWrap);
+						$(elem).before(customRadio);
+					}
+					else{
+						$(elem).wrap(radioWrap);
+						$(elem).before(customRadio, nextElem);
+					}	
+						
+					$(elem).addClass('hidden-radio');
 
 					// (3.6.3)	
 					$(customRadio).attr({
@@ -907,7 +905,7 @@
 			  	// (3.9.14)
 			  	$(calendarButton).on('click', function(event){
 			  		event.stopPropagation();
-
+			  		$('.calendar').fadeOut(defaults.cal_animateSpeed);
 			  		$(this).next('.calendar').fadeToggle(defaults.cal_animateSpeed);
 			  	});
 

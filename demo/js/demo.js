@@ -13,8 +13,8 @@ $(function(){
 
 	$('#example-calendar-two').usfe({
 		cal_animateSwitch: true,
-		cal_animateSwitchSpeed: 1000,
-		cal_animateSpeed: 1000,
+		cal_animateSwitchSpeed: 400,
+		cal_animateSpeed: 400,
 	});
 
 	$('#check4, #check5, #check6, #check-6, #check7').usfe({
@@ -38,6 +38,10 @@ $(function(){
 		event.preventDefault();
 		$('input').attr('disabled', 'true')
 		$('span').addClass('disabled');
+	});
+
+	$('.txt-prev-label').each(function(){
+		$(this).appendTo($(this).prev('div'))
 	});
 
 });	

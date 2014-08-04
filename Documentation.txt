@@ -69,6 +69,13 @@ s_height: false
 cal_animateSpeed: 200
 cal_animateSwitch: false
 cal_animateSwitchSpeed: 300
+---
+se_height: 208
+se_animateEffect: true
+se_animateSpeed: 400
+se_animateToogleSpeed: 200
+se_color: '#FFF'
+se_backgroundcolor: '#475160'
 
 ==================================================
 
@@ -107,7 +114,7 @@ cal_animateSwitchSpeed: 300
 2.5.1. - c_styleCheckbox - параметр изменяющий внешний вид элемента input
 
 2.6.Параметры select option
-2.6.1. - s_height - устанавливает высоту выпадающего меню, если контент превышает данное значение - появится полоса прокрутки
+2.6.1. - s_height - устанавливает высоту выпадающего списка, если контент превышает данное значение - появится полоса прокрутки
 
 2.7.Параметры input type="usfe-calendar"
 2.7.1. - cal_animateSpeed - устанавливает скорость появления/скрытия блока с календарем

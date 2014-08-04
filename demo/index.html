@@ -16,25 +16,120 @@
 		<form id="custom-form">
 			<div>
 				<div class="demo-block">
-					<p style="margin-bottom:10px;"><span>Введите имя</span><input type="text"></p>
-					<p style="margin-bottom:10px;"><span>Введите пароль:</span><input type="password"></p>
-					<p style="margin-bottom:10px;"><span>Введите email:</span><input type="email"></p>
+					<p style="margin-bottom:15px;">
+						<span>Стандартный список с неактивным пунктом</span>
+			   			<select>
+						    <option>Выберите пункт</option>
+						    <option disabled>Пункт 1</option>
+						    <option>Пункт 2</option>
+						    <option>Пункт 3</option>
+						    <option>Пункт 4</option>
+			   			</select>
+		   			</p>
+					<p style="margin-bottom:15px;">
+						<span>Список фиксированный высоты</span>
+						<select id="fix-height">
+						    <option>Выберите пункт</option>
+						    <option selected>Пункт 1</option>
+						    <option>Пункт 2</option>
+						    <option>Пункт 3</option>
+						    <option>Пункт 4</option>
+						    <option>Пункт 5</option>
+						    <option>Пункт 6</option>
+						    <option>Пункт 7</option>
+						    <option>Пункт 8</option>
+						    <option>Пункт 9</option>
+						    <option>Пункт 10</option>
+		   				</select>
+		   			</p>
+			   		<p style="margin-bottom:15px;">
+			   			<span>Сгруппированный список</span>
+			   			<select>
+						    <option>Выберите пункт</option>
+						    <optgroup label="Блок 1" class="one">
+							    <option>Пункт 1</option>
+							    <option>Пункт 2</option>
+							    <option>Пункт 3</option>
+							</optgroup>
+						    <optgroup label="Блок 2" class="two">
+							    <option>Пункт 4</option>
+							    <option>Пункт 5</option>
+							    <option>Пункт 6</option>
+							</optgroup>
+			   			</select>
+		   			</p>
+		   			<p>
+		   				<span>Каждый элемент списка индивидуален</span>
+			   			<select>
+						    <option>Выберите страну</option>
+							    <option class="flag-rus">Россия</option>
+							    <option class="flag-deu">Германия</option>
+							    <option class="flag-esp">Испания</option>
+							    <option class="flag-fra">Франция</option>
+							    <option class="flag-grc">Греция</option>
+							    <option class="flag-ita">Италия</option>
+			   			</select>
+		   			</p>
 				</div>
 				<div class="info-block">
-					<p><span>Кастомизация для элементов:</span>
-						<code>input type=<span class="code-style-type">"text"</span></code><br>
-						<code>input type=<span class="code-style-type">"password"</span></code><br>
-						<code>input type=<span class="code-style-type">"email"</span></code><br>
+					<p><span>Кастомизация для элемента:</span>
+						<code><span class="code-style-type">select</span></code><br>
 					</p>
-					<p><span>Параметры для группы элементы:</span>
-						<code>t_animateEffect: <span class="code-style-1">true</span></code><br>
-						<code>t_animateSpeed: <span class="code-style-1">400</span></code><br>
-						<code>t_editW: <span class="code-style-1">12</span></code><br>
-						<code>t_editH: <span class="code-style-1">3</span></code><br>
-						<code>t_color: <span class="code-style-2">'#FFF'</span></code><br>
-						<code>t_backgroundcolor: <span class="code-style-2">'#475160'</span></code><br>
+					<p>
+						<span>Параметры для элемента:</span>
+						<code>s_height: <span class="code-style-1">false</span></code><br>
 					</p>
-					<p>Добавляется кроссбраузерная! плавная анимация изменения размеров, цвета текста и фона элементов.</p>
+					<p>Имитация элемента select с полной поддержкой атрибутов selected, disabled.Есть поддержка тега optgroup, который позволяет группировать элементы option, возможность передать класс с оригинального option для сымитированного и оформить каждый элемент индвидуально.Параметр устанавливает высоту выпадающего списка.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p><span style="margin-bottom: 0;">Выбрать один radio:</span><br>
+						<input name="group1" id="radio1" type="radio"><label for="radio1">Radio с соседним label</label>
+						<label for="radio2"><input name="group1" id="radio2" type="radio">Radio внутри тега label</label>
+						<input name="group1" type="radio"><span class="txt-prev-label">Radio без тега label</span>
+						<input name="group1" id="radio3" type="radio" disabled><label for="radio3">Неактивный radio</label>
+						<input name="group1" id="radio4" type="radio" checked disabled><label for="radio4">Неактивный выбранный radio</label>
+					</p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"radio"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>У элемента нет параметров</code><br
+					</p>
+					<p>Позволяет сымитировать поведение тега input="radio" c поддержкой тегов label и атрибутов disabled и checked</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p><span style="margin-bottom: 0;">Выбрать один или несколько пунктов:</span><br>
+						<input id="check1" type="checkbox"><label for="check1">Checkbox с соседним label</label>
+						<label><input type="checkbox">Checkbox внутри тега label</label>
+						<input type="checkbox"><span class="txt-prev-label">Checkbox без тега label</span>
+						<input id="check2" type="checkbox" value="no" checked><label for="check2">Выбранный checkbox</label>
+						<input id="check3" type="checkbox" disabled><label for="check3">Неактивный checkbox</label>
+						<input id="check-3" type="checkbox" disabled checked><label for="check-3">Неактивный выбранный checkbox</label>
+						
+					</p>
+					<p><span style="margin-bottom: 0;margin-top: 10px;">Пример стилизации radio 2:</span><br>
+						<input id="check4" type="checkbox"><label for="check4">Обычный checkbox</label>
+						<input id="check5" type="checkbox" checkbox><label for="check5">Выбранный checkbox</label>
+						<input id="check6" type="checkbox" disabled><label for="check6">Неактивный checkbox</label>
+						<input id="check7" type="checkbox" checked disabled><label for="check7">Выбранный неактивный checkbox</label>
+					</p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"checkbox"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>c_styleCheckbox: <span class="code-style-2">'style-1'</span></code><br>
+					</p>
+					<p>Позволяет сымитировать поведение тега input="checbox" c поддержкой тегов label и атрибутов disabled и checked.Единственный параметр позволяет изменить отображение чекбокса.</p>
 				</div>
 				<span class="clearfix"></span>
 			</div>
@@ -62,19 +157,19 @@
 			</div>
 			<div>
 				<div class="demo-block">
-					<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
+					<p><span>Билеты туда:</span><input type="usfe-calendar"></p>
+					<p style="margin-top:5px;"><span>Билеты туда:</span><input id="example-calendar-two" type="usfe-calendar"></p>
 				</div>
 				<div class="info-block">
 					<p><span>Кастомизация для элемента:</span>
-						<code>input type=<span class="code-style-type">"usfe-number"</span></code><br>
+						<code>input type=<span class="code-style-type">"usfe-calendar"</span></code><br>
 					</p>
 					<p><span>Параметры для элемента:</span>
-						<code>n_maxVal: <span class="code-style-1">Infinity</span></code><br>
-						<code>n_editBg: <span class="code-style-1">true</span></code><br>
-						<code>n_iconPlus: <span class="code-style-2">'+'</span></code><br>
-						<code>n_iconMinus: <span class="code-style-2">'-'</span></code><br>
+						<code>cal_animateSpeed: <span class="code-style-1">200</span></code><br>
+						<code>cal_animateSwitch: <span class="code-style-1">false</span></code><br>
+						<code>cal_animateSwitchSpeed: <span class="code-style-1">300</span></code><br>
 					</p>
-					<p>Имитация элемента input type number. Возможность задавать максимальное значение для поля, изменение цвета поля при уменьшении/увеличении значения, произвольное значение для кнопок + -.</p>
+					<p>Создает календарь с возможностью выбора даты и переключения месяцев.Параметры позволяют регулировать скорость скрытия/показа блока с календарем, а так же скорость анимации при переключении месяцев, которая по умолчанию выключена.</p>
 				</div>
 				<span class="clearfix"></span>
 			</div>
@@ -123,13 +218,55 @@
 						<code>se_color: <span class="code-style-2">'#FFF'</span></code><br>
 						<code>se_backgroundcolor: <span class="code-style-2">'#475160'</span></code><br>
 					</p>
-					<p>Новый элемент ищет соответствие в строке, которая введена в поле и списком элементов, выводя сразу же результаты.Параметры позволяют задать высоту списка результатов, включение анимации, скорость появления/скрытия результатов, изменения цвета фона и текста поля при фокусе и их скорость.</p>
+					<p>Создает элемент поиска.Ищет соответствие в строке, которая введена в поле и списком элементов, выводя сразу же результаты.Параметры позволяют задать высоту списка результатов, включение анимации, скорость появления/скрытия результатов, изменения цвета фона и текста поля при фокусе и их скорость.</p>
 				</div>
 				<span class="clearfix"></span>
 			</div>
 			<div>
 				<div class="demo-block">
-					<p style="margin-top: 10px;"><span>Комментарий:</span><textarea></textarea></p>
+					<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"usfe-number"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>n_maxVal: <span class="code-style-1">Infinity</span></code><br>
+						<code>n_editBg: <span class="code-style-1">true</span></code><br>
+						<code>n_iconPlus: <span class="code-style-2">'+'</span></code><br>
+						<code>n_iconMinus: <span class="code-style-2">'-'</span></code><br>
+					</p>
+					<p>Имитация элемента input type number. Возможность задавать максимальное значение для поля, изменение цвета поля при уменьшении/увеличении значения, произвольное значение для кнопок + -.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p style="margin-bottom:10px;"><span>Введите имя</span><input type="text"></p>
+					<p style="margin-bottom:10px;"><span>Введите пароль:</span><input type="password"></p>
+					<p style="margin-bottom:10px;"><span>Введите email:</span><input type="email"></p>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элементов:</span>
+						<code>input type=<span class="code-style-type">"text"</span></code><br>
+						<code>input type=<span class="code-style-type">"password"</span></code><br>
+						<code>input type=<span class="code-style-type">"email"</span></code><br>
+					</p>
+					<p><span>Параметры для группы элементы:</span>
+						<code>t_animateEffect: <span class="code-style-1">true</span></code><br>
+						<code>t_animateSpeed: <span class="code-style-1">400</span></code><br>
+						<code>t_editW: <span class="code-style-1">12</span></code><br>
+						<code>t_editH: <span class="code-style-1">3</span></code><br>
+						<code>t_color: <span class="code-style-2">'#FFF'</span></code><br>
+						<code>t_backgroundcolor: <span class="code-style-2">'#475160'</span></code><br>
+					</p>
+					<p>Добавляется кроссбраузерная! плавная анимация изменения размеров, цвета текста и фона элементов.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+			<div>
+				<div class="demo-block">
+					<p><span>Комментарий:</span><textarea></textarea></p>
 				</div>
 				<div class="info-block">
 					<p><span>Кастомизация для элемента:</span>
@@ -145,82 +282,27 @@
 				</div>
 				<span class="clearfix"></span>
 			</div>
-			<a href="#" class="test2">Сделать все radio активными</a>
-			<a href="#" class="test3">Сделать все radio неактивными</a>		
-			<p><span>Дата поездки:</span><input type="usfe-calendar"></p>
-			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
-				<input name="group1" id="radio1" type="radio"><label for="radio1">Первый вариант</label><br>
-				<input name="group1" id="radio2" type="radio" value="two"><label for="radio2">Второй вариант</label><br>
-				<input name="group1" id="radio3" type="radio"><label for="radio3">Третий вариант</label>
-			</p>
-			<p><span style="margin-bottom: 0;">Выбрать вариант:</span><br>
-				<input name="group2" id="radio4" type="radio"><label for="radio4">Первый вариант</label><br>
-				<input name="group2" id="radio5" type="radio" value="two"><label for="radio5">Второй вариант</label><br>
-				<label for="radio6"><input name="group2" id="radio6" type="radio" disabled>Третий вариант</label>
-				<input name="group2" id="radio7" type="radio" checked disabled><label for="radio7">Неактивный radio</label>
-				<input name="group2" type="radio">Четвертый вариант
-			</p>
-			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
-				<input id="check1" type="checkbox"><label for="check1">HTML, CSS</label>
-				<input id="check2" type="checkbox" value="no" checked><label for="check2">Javascript</label>
-				<input id="check3" type="checkbox" disabled><label for="check3">PHP, MySQL</label>
-				<input id="check-3" type="checkbox" disabled checked><label for="check-3">JAVA</label>
-				<label><input type="checkbox">TEST</label>
-				<input type="checkbox"><span>Без лейбла</span>
-			</p>
-			<p style="margin-top:10px;"><span style="margin-bottom: 0;">Я знаю:</span><br>
-				<input id="check4" type="checkbox"><label for="check4">HTML, CSS</label>
-				<input id="check5" type="checkbox" value="no" checked><label for="check5">Javascript</label>
-				<input id="check6" type="checkbox" disabled><label for="check6">PHP, MySQL</label>
-				<input id="check-6" type="checkbox" disabled checked><label for="check-6">JAVA</label>
-				<label><input id="check7" type="checkbox">TEST</label>
-			</p>
-			<p><span>Дата поездки:</span><input id="example-calendar-two" type="usfe-calendar"></p>
-			<p style="margin-bottom:150px;">
-				<select id="fix-height">
-				    <option>Выберите пункт</option>
-				    <option selected>Пункт 1</option>
-				    <option>Пункт 2</option>
-				    <option>Пункт 3</option>
-				    <option>Пункт 4</option>
-				    <option>Пункт 5</option>
-				    <option>Пункт 6</option>
-				    <option>Пункт 7</option>
-				    <option>Пункт 8</option>
-				    <option>Пункт 9</option>
-				    <option>Пункт 10</option>
-   				</select>
-   			</p>
-   			<p style="margin-bottom:150px;"><select>
-			    <option>Выберите пункт</option>
-			    <option disabled>Пункт 1</option>
-			    <option>Пункт 2</option>
-			    <option>Пункт 3</option>
-			    <option>Пункт 4</option>
-   			</select></p>
-   			<p><select>
-			    <option>Выберите пункт</option>
-			    <optgroup label="Блок 1" class="one">
-				    <option>Пункт 1</option>
-				    <option>Пункт 2</option>
-				    <option>Пункт 3</option>
-				</optgroup>
-			    <optgroup label="Блок 2" class="two">
-				    <option>Пункт 4</option>
-				    <option>Пункт 5</option>
-				    <option>Пункт 6</option>
-				</optgroup>
-   			</select></p>
-   			<p><select>
-			    <option>Выберите страну</option>
-				    <option class="flag-rus">Россия</option>
-				    <option class="flag-deu">Германия</option>
-				    <option class="flag-esp">Испания</option>
-				    <option class="flag-fra">Франция</option>
-				    <option class="flag-grc">Греция</option>
-				    <option class="flag-ita">Италия</option>
-   			</select></p>
-			<p><span>Кнопки:</span><input style="margin:0 10px;" type="submit" value="input"><button type="button">Button</button></p>
+			<div>
+				<div class="demo-block">
+					<span style="margin-bottom: 5px;display:inline-block;">Простые кнопки:</span><br>
+					<input style="margin:0 10px 0 0;" type="submit" value="input">
+					<button type="button">Button</button>
+				</div>
+				<div class="info-block">
+					<p><span>Кастомизация для элемента:</span>
+						<code>input type=<span class="code-style-type">"submit"</span></code><br>
+						<code>input type=<span class="code-style-type">"reset"</span></code><br>
+						<code>button type=<span class="code-style-type">"submit"</span></code><br>
+						<code>button type=<span class="code-style-type">"reset"</span></code><br>
+						<code>button type=<span class="code-style-type">"button"</span></code><br>
+					</p>
+					<p><span>Параметры для элемента:</span>
+						<code>У элементов нет параметров</code><br>
+					</p>
+					<p>Добавляет к группе элементов класс, который в свою очередь добавляет стили оформления.</p>
+				</div>
+				<span class="clearfix"></span>
+			</div>	
 		</form>
 		<a id="link-git" href="https://github.com/M-Ulyanov/Plugin-USFE" target="_blank">Пример</a>
 	</div>
