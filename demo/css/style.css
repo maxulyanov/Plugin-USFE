@@ -39,7 +39,7 @@ label{
 	border-radius: 0px 5px 5px 0;
 }
 .file-wrap .file-button{
-	padding:7px;
+	padding:8px;
 	float: left;
 	position: relative;
 	color: #FFF;
@@ -476,6 +476,7 @@ input[type="usfe-search"]{
 	cursor: default;
 	background: #FFF;
 	color: #222;
+	border-left: none !important;
 }
 
 

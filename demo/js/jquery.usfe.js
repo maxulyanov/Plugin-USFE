@@ -980,6 +980,7 @@
 						var strValue = $(this).val().toLowerCase();
 						if(!strValue){
 							$(resultList).stop().fadeIn(200);
+							return false;
 						}
 
 						for(var i = 0 ;i < arr.length; i++){
@@ -1003,7 +1004,6 @@
 
 					// (3.10.7)
 					else if($(resultList).is(':visible')){
-
 						if($(resultList).find('li.no-result').length !== 0)
 							return false;
 
