@@ -80,13 +80,19 @@
 			typeFile : function(elem){
 
 				// (3.1.1)
-				var fileWrap = $('<div class="file-wrap">'),
-					fileButton = $('<button type="button" class="file-button">'+ defaults.f_defaultButtonName + '</button>'),
-					fileName  = $('<div class="file-name">'+ defaults.f_defaultFileName + '</div>'),
-					fileDelete = $('<span class="file-del">'+ defaults.f_charDelete  +'</a>');
+				var fileWrap = $('<div class="file-wrap"></div>'),
+					fileButton = $('<button type="button" class="file-button"></button>'),
+					fileName  = $('<div class="file-name"></div>'),
+					fileDelete = $('<span class="file-del"></a>');
 
-				$(elem).wrap(fileWrap);	
-				$(elem).after(fileButton, fileName);
+				if($(elem).parents('.file-wrap').length < 1){
+					$(elem).wrap(fileWrap);						
+					$(elem).after(fileButton, fileName);
+				}
+
+				$(elem).parents('.file-wrap').find('.file-button').text(defaults.f_defaultButtonName);
+				$(elem).parents('.file-wrap').find('.file-name').text(defaults.f_defaultFileName);
+				$(elem).parents('.file-wrap').find('.file-del').text(defaults.f_charDelete);
 
 				elem = $(elem);
 
@@ -128,9 +134,7 @@
 			            fileName.addClass('select-file').text(fileNameText);
 			            fileButton.text(defaults.f_editButtonName);
 	            
-			            if(document.addEventListener){
-			                $(elem).parent().append(fileDelete);
-			            }
+			            $(elem).parent().append(fileDelete);
 
 			            $(fileDelete).css({
 			            	display: 'block',
@@ -194,15 +198,18 @@
 			// (3.2)
 			typeNumber : function(elem){
 
-				if($(elem).parents('.number-wrap').length < 1){
-
 					// (3.2.1)
 					var numWrap = $('<div class="number-wrap">'),
-						numPlus = $('<button type="button" value="-" class="number-plus">'+ defaults.n_iconPlus +'</button>'),
-						numMinus = $('<button type="button" value="-" class="number-minus">'+ defaults.n_iconMinus +'</button>');
+						numPlus = $('<button type="button" value="-" class="number-plus"></button>'),
+						numMinus = $('<button type="button" value="-" class="number-minus"></button>');
 
-					$(elem).wrap(numWrap);
-					$(elem).before(numMinus).after(numPlus);
+				
+					if($(elem).parents('.number-wrap').length < 1){
+						$(elem).wrap(numWrap);
+						$(elem).before(numMinus).after(numPlus);
+					}
+					$(elem).parents('.number-wrap').find('.number-plus').text(defaults.n_iconPlus);
+					$(elem).parents('.number-wrap').find('.number-minus').text(defaults.n_iconMinus);
 
 					// (3.2.2)
 					$('.number-plus').on('click', function(){
@@ -266,7 +273,6 @@
 						$(elem).parent().find('input[type="usfe-number"]').val(val);
 						$(elem).parent().find('input[type="usfe-number"]').attr('value', val);
 					};
-				};	
 	
 			},
 			//end method typeNumber
@@ -359,7 +365,7 @@
 					
 					// (3.6.1)
 					var radioWrap = $('<div class="radio-wrap">'),
-						customRadio = $('<span class="custom-radio">'),
+						customRadio = $('<span class="custom-radio"></span>'),
 						thisRadioId = $(elem).attr('id'),
 						thisRadioName = $(elem).attr('name'),
 						nextElem = $(elem).next('label'),
@@ -373,7 +379,7 @@
 					else{
 						$(elem).wrap(radioWrap);
 						$(elem).before(customRadio, nextElem);
-					}	
+					}
 						
 					$(elem).addClass('hidden-radio');
 
@@ -461,7 +467,7 @@
 					classCheckbox = 'custom-checkbox';
 
 				// (3.7.2)
-				var customCheckbox = $('<span class="' + classCheckbox + '">'),					
+				var customCheckbox = $('<span class="' + classCheckbox + '"></span>'),					
 					checkboxWrap = $('<div class="checkbox-wrap">'),
 					nextElem = $(elem).next('label'),
 					classCheckbox,
@@ -732,10 +738,10 @@
 			  	var calendar = new Date(),
 			  		month = calendar.getMonth(),
 			  		year = calendar.getFullYear(),
-			      	calendarWrap = $('<div class="calendar-wrap">'),
-			      	calendarTable = $('<table class="calendar">'),
-			      	calendarButton = $('<span class="calendar-button">'),
-			      	calendarIcon = $('<span class="calendar-icon">');
+			      	calendarWrap = $('<div class="calendar-wrap"></div>'),
+			      	calendarTable = $('<table class="calendar"></table>'),
+			      	calendarButton = $('<span class="calendar-button"></span>'),
+			      	calendarIcon = $('<span class="calendar-icon"></span>');
 
 				var arrMonth = ['Январь','Февраль','Март','Апрель','Май','Июнь',
 				              'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
@@ -768,7 +774,8 @@
 					};
 					calendarTr += '</tr>';
 
-					// (3.9.6)       
+					// (3.9.6)
+					calendarTr += '<tr>';      
 				  	if(firstDay == 0){
 				    	for(var i = 0; i < 6; i++){
 				      		calendarTr += '<td class="empty"></td>';
