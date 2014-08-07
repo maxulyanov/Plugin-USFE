@@ -29,6 +29,7 @@ label{
 ---------------------------*/
 .file-wrap{
 	overflow: hidden;
+	position: relative;
 	width: 250px;
 	height: 30px;
 	margin-bottom: 10px;
@@ -66,8 +67,9 @@ label{
 	width: 100%;
 	color: red;
 	cursor: pointer;
-	position: relative;
-	top: 16px;
+	position: absolute;
+	top: 17px;
+	left: 92%;
 	float: right;
 	margin-right: 5px;
 	line-height: 0;
@@ -80,8 +82,7 @@ label{
 	margin-bottom: 10px;
 }
 .number-wrap > button[type="button"]{
-	padding: 4px 7px;
-	width: 30px;
+	padding: 4px 12px;
 	font-weight: bold;
 	color: #FFF;
 	cursor: pointer;
@@ -344,7 +345,7 @@ textarea{
 	height: 180px;
 	z-index: 111;
 }
-.calendar:before{
+.calendar::before{
 	content: ' ';
 	background:url(../img/calendar-arrow-top.png) no-repeat;
 	width: 16px;

@@ -27,6 +27,11 @@ $(function(){
 		f_bgDelete: 'rgb(114, 168, 33)',
 	});
 
+	$('#example-num-2').usfe({
+		n_iconPlus: 'Сюда',
+		n_iconMinus: 'Туда',
+	});
+
 	$('.test2').on('click', function(event){
 		event.preventDefault();
 		$('span').removeClass('disabled');
