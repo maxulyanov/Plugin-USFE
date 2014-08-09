@@ -62,6 +62,16 @@ label{
 .file-wrap input[type=file]{
     display: none;
 }
+.file-wrap.file-disabled{
+	background: #F0F0F0;
+	color: #9B9B9B;
+}
+.file-wrap.file-disabled .file-button,
+.file-wrap.file-disabled .file-button:hover{
+	color: #BABABA;
+	cursor: default;
+	background: #566876;
+}
 .file-del{
 	font-size: 24px;
 	width: 100%;
@@ -73,6 +83,9 @@ label{
 	float: right;
 	margin-right: 5px;
 	line-height: 0;
+}
+.file-wrap.file-disabled .file-del{
+	cursor: default;
 }
 
 /*---------------------------
@@ -288,9 +301,9 @@ textarea{
 	color: #FFF;
 	padding: 7px;
 }
-.select-wrap .select-dropdown ul li:hover,
-.select-wrap .select-dropdown ul li.selected,
-.select-wrap .select-dropdown ul.hover-list li.selected:hover{
+.select-dropdown ul li:hover,
+.select-dropdown ul li.selected,
+.select-dropdown ul.hover-list li.selected:hover{
 	background: #3A4954 !important;
 }
 .select-wrap .select-dropdown ul.hover-list li.selected{

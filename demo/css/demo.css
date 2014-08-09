@@ -48,6 +48,7 @@ body > h2{
 .demo-block{
 	float: left;
 	color: #FFF;
+	width: 260px;
 }
 .demo-block > p > span{
 	margin-bottom: 5px;
@@ -84,7 +85,7 @@ span.code-style-type{
 	width: 100px;
 	text-indent: -9999px;
 	display: block;
-	margin: 0 auto;
+	margin: 20px auto;
 	background: url(../img/github.png)  no-repeat;
 }
 .select-wrap .select-dropdown ul li.one{
@@ -99,8 +100,8 @@ span.code-style-type{
 .select-wrap .select-dropdown ul li.flag-rus{
 	background: #4A5864 url(../img/flag-rus.png) 0 7px no-repeat;
 }
-.select-wrap .select-dropdown ul li.flag-rus:hover,
-.select-wrap .select-dropdown ul li.flag-rus.selected{
+.select-wrap .select-dropdown ul.hover-list li.flag-rus:hover,
+.select-wrap .select-dropdown ul.hover-list li.flag-rus.selected{
 	background: #3A4954 url(../img/flag-rus.png) 0 7px no-repeat !important;
 }
 .select-wrap .select-dropdown ul li.flag-deu{
@@ -129,7 +130,7 @@ span.code-style-type{
 }
 .select-wrap .select-dropdown ul li.flag-grc:hover,
 .select-wrap .select-dropdown ul li.flag-grc.selected{
-	background: #3A4954 url(../img/flag-grc.png) 0 7px no-repeat;
+	background: #3A4954 url(../img/flag-grc.png) 0 7px no-repeat !important;
 }
 .select-wrap .select-dropdown ul li.flag-ita{
 	background: #4A5864 url(../img/flag-ita.png) 0 7px no-repeat;

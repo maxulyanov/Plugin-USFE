@@ -76,13 +76,13 @@ $(function(){
 	});
 
 	$('.button-select-toogle-active-2').on('click', function(){
-		$('.select-wrap').find('li').toggleClass('disabled');
+		$('.demo-block > p:first').find('li').toggleClass('disabled');
 	});
 
 
 	//
 	$('.button-radio-toggle').on('click', function(){
-		$('input[type="radio"]').toggleDisabled().trigger('refresh');
+		$('input[type="radio"]').toggleDisabled();
 		$('.custom-radio').toggleClass('disable-radio');
 	});
 
@@ -95,13 +95,13 @@ $(function(){
 
 	//
 	$('.button-checkbox-toggle').on('click', function(){
-		$('input[type="checkbox"]').toggleDisabled().trigger('refresh');
+		$('input[type="checkbox"]').toggleDisabled();
 		$('.custom-checkbox').toggleClass('disabled-checkbox');
 	});
 
 	$('.button-checkbox-toggle-2').on('click', function(){
 		event.preventDefault();
-		$('input[type="checkbox"]').toggleChecked().trigger('refresh');
+		$('input[type="checkbox"]').toggleChecked();
 		$('.custom-checkbox').toggleClass('active-checkbox');
 	});
 
@@ -117,6 +117,18 @@ $(function(){
 		$('.last-block-d-check').find('input[type=checkbox]').usfe({
 			c_styleCheckbox: 'style-2',
 		});
+	});
+
+	//
+	$('.button-file-toggle').on('click', function(){
+		$('.file-wrap').toggleClass('file-disabled');
+		$('input[type="file"]').toggleDisabled();
+	});
+
+	$('.button-file-new').on('click', function(){
+		var newElem = $('<p><span>Новый элемент file:</span><input type="file"></p>');
+		$(newElem).appendTo($('#custom-form > div').eq(3).find('.demo-block'));
+		$('input[type=file]:not("#example-file-2")').usfe();
 	});
 
 

@@ -95,6 +95,11 @@
 
 				elem = $(elem);
 
+				var disabled = $(elem).attr('disabled');
+				if(disabled){
+					$(elem).parents('.file-wrap').addClass('file-disabled');
+				}
+
 				$(fileButton).on('click', function(){
 
 					// (3.1.2)
@@ -147,6 +152,9 @@
 		        // (3.1.8)
 		        $(fileDelete).on('click', function(){
 
+		        	if($(this).parents('.file-wrap').hasClass('file-disabled'))
+		        		return false;
+		        	
 		            // (3.1.9)
 		            var self = this;
 		            var thisBg = $(fileWrap).css('backgroundColor');
