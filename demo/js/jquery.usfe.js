@@ -83,7 +83,7 @@
 				var fileWrap = $('<div class="file-wrap"></div>'),
 					fileButton = $('<button type="button" class="file-button"></button>'),
 					fileName  = $('<div class="file-name"></div>'),
-					fileDelete = $('<span class="file-del"></a>');
+					fileDelete = $('<span class="file-del">'+defaults.f_charDelete+'</a>');
 
 				if($(elem).parents('.file-wrap').length < 1){
 					$(elem).wrap(fileWrap);						
@@ -92,7 +92,6 @@
 
 				$(elem).parents('.file-wrap').find('.file-button').text(defaults.f_defaultButtonName);
 				$(elem).parents('.file-wrap').find('.file-name').text(defaults.f_defaultFileName);
-				$(elem).parents('.file-wrap').find('.file-del').text(defaults.f_charDelete);
 
 				elem = $(elem);
 
@@ -199,58 +198,61 @@
 			typeNumber : function(elem){
 
 					// (3.2.1)
-					var numWrap = $('<div class="number-wrap">'),
+					var numWrap = $('<div class="number-wrap"></div>'),
 						numPlus = $('<button type="button" value="-" class="number-plus"></button>'),
 						numMinus = $('<button type="button" value="-" class="number-minus"></button>');
 
 				
 					if($(elem).parents('.number-wrap').length < 1){
+
 						$(elem).wrap(numWrap);
 						$(elem).before(numMinus).after(numPlus);
+
+						// (3.2.2)
+						$(elem).next('.number-plus').on('click', function(){
+
+							var thisInput = $(this).parent().find('input[type="usfe-number"]');
+							var thisVal = $(thisInput).val();
+							thisVal++;
+
+							// (3.2.3)
+							if(defaults.n_editBg){
+								$(thisInput).stop(true, true).animate({
+									backgroundColor: '#9bcb1e',
+								},400).stop(true,true).animate({
+									backgroundColor: '#FFF',
+								},400);
+							}
+
+							computation(this, thisVal);
+						});
+					
+
+						// (3.2.4)
+						$(elem).prev('.number-minus').on('click', function(){
+
+							var thisInput = $(this).parent().find('input[type="usfe-number"]');
+							var thisVal = $(thisInput).val();
+							thisVal--; 
+
+							// (3.2.5)
+							if(!thisVal) thisVal = 1;
+
+							// (3.2.6)
+							if(defaults.n_editBg){
+								$(thisInput).stop(true, true).animate({
+									backgroundColor: '#ea6856',
+								},400).stop(true,true).animate({
+									backgroundColor: '#FFF',
+								},400);
+							}
+
+							computation(this, thisVal);
+						});
 					}
+
 					$(elem).parents('.number-wrap').find('.number-plus').text(defaults.n_iconPlus);
 					$(elem).parents('.number-wrap').find('.number-minus').text(defaults.n_iconMinus);
-
-					// (3.2.2)
-					$('.number-plus').on('click', function(){
-
-						var thisInput = $(this).parent().find('input[type="usfe-number"]');
-						var thisVal = $(thisInput).val();
-						thisVal++;
-
-						// (3.2.3)
-						if(defaults.n_editBg){
-							$(thisInput).stop(true, true).animate({
-								backgroundColor: '#9bcb1e',
-							},400).stop(true,true).animate({
-								backgroundColor: '#FFF',
-							},400);
-						}
-
-						computation(this, thisVal);
-					});
-
-					// (3.2.4)
-					$('.number-minus').on('click', function(){
-
-						var thisInput = $(this).parent().find('input[type="usfe-number"]');
-						var thisVal = $(thisInput).val();
-						thisVal--; 
-
-						// (3.2.5)
-						if(!thisVal) thisVal = 1;
-
-						// (3.2.6)
-						if(defaults.n_editBg){
-							$(thisInput).stop(true, true).animate({
-								backgroundColor: '#ea6856',
-							},400).stop(true,true).animate({
-								backgroundColor: '#FFF',
-							},400);
-						}
-
-						computation(this, thisVal);
-					});
 
 					// (3.2.7)
 					$('input[type="usfe-number"]').on('keypress input change', function(event){
@@ -269,7 +271,6 @@
 						}
 						if(val > defaults.n_maxVal)
 							return false;
-
 						$(elem).parent().find('input[type="usfe-number"]').val(val);
 						$(elem).parent().find('input[type="usfe-number"]').attr('value', val);
 					};
@@ -429,7 +430,11 @@
 							$("input[name='" + thisName + "']").removeAttr('checked');
 							$("input[id='" + thisElem + "']").attr('checked', true);
 
-							$("input[id='" + thisElem + "']").click();			
+							$("input[id='" + thisElem + "']").click();
+
+							if(typeof thisElem === 'undefined'){
+								$(this).parents('.radio-wrap').find('input').click();
+							}			
 						}
 
 					});
@@ -458,20 +463,21 @@
 
 				// (3.7.1)
 				if(defaults.c_styleCheckbox == 'style-1'){
-					classCheckbox = 'custom-checkbox';
+					classCheckbox = '';
 				}
 				else if(defaults.c_styleCheckbox == 'style-2'){
-					classCheckbox = 'custom-checkbox-2';
+					classCheckbox = 'c-s-2';
 				}
 				else
-					classCheckbox = 'custom-checkbox';
+					classCheckbox = '';
 
 				// (3.7.2)
-				var customCheckbox = $('<span class="' + classCheckbox + '"></span>'),					
+				var customCheckbox = $('<span class="' + 'custom-checkbox ' + classCheckbox +  '"></span>'),					
 					checkboxWrap = $('<div class="checkbox-wrap">'),
 					nextElem = $(elem).next('label'),
 					classCheckbox,
 					parentElem = $(elem).parent('label');
+
 
 				// (3.7.3)
 				if($(elem).parents('.checkbox-wrap').length < 1){	
@@ -483,7 +489,11 @@
 							$(elem).wrap(checkboxWrap);
 							$(elem).before(customCheckbox).after(nextElem);
 						}	
-					$(elem).addClass('hidden-checkbox');
+					$(elem).css({
+						'opacity': 0,
+						'position': 'absolute',
+						'left': '-9999px',
+					});
 				}
 				else{
 					$(elem).prev('span').remove();
@@ -535,8 +545,6 @@
 			// (3.8)
 			typeSelect: function(elem){
 
-				if($(elem).parents('.select-wrap').length < 1){
-
 					// (3.8.1)
 					var selectWrap = $('<div class="select-wrap">'),
 						selectThis = $('<div class="select-this">'),
@@ -546,10 +554,13 @@
 						selectDropdown = $('<div class="select-dropdown">'),
 						selectUl = $('<ul>');
 
-					// (3.8.2)
-					$(elem).before(selectWrap);
-					$(selectThis).append(selectThisText,$(selectThisTrigger).append(selectThisTriggerArrow));
-					$(selectWrap).append(selectThis, selectDropdown, elem);
+
+					if($(elem).parents('.select-wrap').length < 1){	
+						// (3.8.2)
+						$(elem).before(selectWrap);
+						$(selectThis).append(selectThisText,$(selectThisTrigger).append(selectThisTriggerArrow));
+						$(selectWrap).append(selectThis, selectDropdown, elem);
+					}
 
 					if($(elem).attr('disabled'))
 						$(selectThis).addClass('select-disabled');
@@ -602,7 +613,6 @@
 
 						// (3.8.3.2)
 						else if(this.nodeName.toLowerCase() == 'option'){
-
 							// a
 							var thisClass = $(this).attr('class');
 							if(!thisClass)
@@ -647,7 +657,8 @@
 
 						event.stopPropagation();
 
-						if($(this).hasClass('select-disabled, optgroup')) return false;
+						if($(this).hasClass('select-disabled')) return false;
+						if($(this).hasClass('optgroup')) return false;
 
 						var thisElem = $(this);
 
@@ -716,7 +727,7 @@
 						$(selectThisTrigger).find('div').remove();
 						$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
 					};
-				}
+				
 
 				// (3.8.10)
 				if(defaults.s_height){
@@ -725,6 +736,12 @@
 						'overflowY' : 'scroll',
 					});
 				};
+
+				// (3.8.11)
+				$(elem).on('refresh', function() {
+					$(elem).off().parent().before(elem).remove();
+					methods.typeSelect(elem);
+				});
 
 			},
 			//end method typeSelect
@@ -747,7 +764,7 @@
 				              'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 				var arrDay = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 
-				$(elem).attr('disabled', true);
+				$(elem).attr('readonly', true);
 
 				// (3.9.2)
 				function calendarGenerator(year, month){

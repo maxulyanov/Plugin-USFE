@@ -9,6 +9,13 @@
 <script src="http://code.jquery.com/color/jquery.color-2.1.2.js" type="text/javascript"></script>
 <script src="js/jquery.usfe.js"></script>
 <script src="js/demo.js"></script>
+<!--[if gte IE 9]>
+	<style tyle="text/css">
+		*{
+       		filter: none !important;
+    	}
+	</style>
+<![endif]-->
 </head>
 <body>
 	<h2>Демонстрация плагина jquery.usfe</h2>
@@ -18,7 +25,17 @@
 				<div class="demo-block">
 					<p style="margin-bottom:15px;">
 						<span>Стандартный список с неактивным пунктом</span>
-			   			<select>
+			   			<select class="text">
+						    <option>Выберите пункт</option>
+						    <option disabled>Пункт 1</option>
+						    <option>Пункт 2</option>
+						    <option>Пункт 3</option>
+						    <option>Пункт 4</option>
+			   			</select>
+		   			</p>
+		   			<p style="margin-bottom:15px;">
+						<span>Стандартный неактивный список</span>
+			   			<select disabled>
 						    <option>Выберите пункт</option>
 						    <option disabled>Пункт 1</option>
 						    <option>Пункт 2</option>
@@ -80,6 +97,12 @@
 						<code>s_height: <span class="code-style-1">false</span></code><br>
 					</p>
 					<p>Имитация элемента select с полной поддержкой атрибутов selected, disabled.Есть поддержка тега optgroup, который позволяет группировать элементы option, возможность передать класс с оригинального option для сымитированного и оформить каждый элемент индвидуально.Параметр устанавливает высоту выпадающего списка.</p>
+
+					<p><span>Клик для динамического изменение элементов:</span>
+					<a class="edit-button button-select-new" href="#">Добавить новый список</a>
+					<a class="edit-button button-select-toogle-active" href="#">Переключить активность списков</a>
+					<a class="edit-button button-select-toogle-add" href="#">Добавить элементы в первый список</a>
+					<a class="edit-button button-select-toogle-active-2" href="#">Переключить активность элементов (1 список)</a>
 				</div>
 				<span class="clearfix"></span>
 			</div>
@@ -101,12 +124,15 @@
 						<code>У элемента нет параметров</code><br
 					</p>
 					<p>Позволяет сымитировать поведение тега input="radio" c поддержкой тегов label и атрибутов disabled и checked</p>
+					<p><span>Клик для динамического изменение элементов:</span>
+					<a class="edit-button button-radio-toggle" href="#">Переключить активность</a>
+					<a class="edit-button button-radio-new" href="#">Добавить новый элемент</a>
 				</div>
 				<span class="clearfix"></span>
 			</div>
 			<div>
 				<div class="demo-block">
-					<p><span style="margin-bottom: 0;">Выбрать один или несколько пунктов:</span><br>
+					<p class="first-block-d-check"><span style="margin-bottom: 0;">Выбрать один или несколько пунктов:</span><br>
 						<input id="check1" type="checkbox"><label for="check1">Checkbox с соседним label</label>
 						<label><input type="checkbox">Checkbox внутри тега label</label>
 						<input type="checkbox"><span class="txt-prev-label">Checkbox без тега label</span>
@@ -115,7 +141,7 @@
 						<input id="check-3" type="checkbox" disabled checked><label for="check-3">Неактивный выбранный checkbox</label>
 						
 					</p>
-					<p><span style="margin-bottom: 0;margin-top: 10px;">Пример стилизации radio 2:</span><br>
+					<p class="last-block-d-check" ><span style="margin-bottom: 0;margin-top: 10px;">Пример стилизации 2:</span><br>
 						<input id="check4" type="checkbox"><label for="check4">Обычный checkbox</label>
 						<input id="check5" type="checkbox" checkbox><label for="check5">Выбранный checkbox</label>
 						<input id="check6" type="checkbox" disabled><label for="check6">Неактивный checkbox</label>
@@ -130,6 +156,11 @@
 						<code>c_styleCheckbox: <span class="code-style-2">'style-1'</span></code><br>
 					</p>
 					<p>Позволяет сымитировать поведение тега input="checbox" c поддержкой тегов label и атрибутов disabled и checked.Единственный параметр позволяет изменить отображение чекбокса.</p>
+					<p><span>Клик для динамического изменение элементов:</span>
+					<a class="edit-button button-checkbox-toggle" href="#">Переключить активность</a>
+					<a class="edit-button button-checkbox-toggle-2" href="#">Переключить выбранные</a>
+					<a class="edit-button button-checkbox-new" href="#">Добавить новый элемент верх</a>
+					<a class="edit-button button-checkbox-new-2" href="#">Добавить новый элемент низ</a>
 				</div>
 				<span class="clearfix"></span>
 			</div>
@@ -225,7 +256,7 @@
 			<div>
 				<div class="demo-block">
 					<p><span>Количество товара:</span><input type="usfe-number" value="1"></p>
-					<p><span>Количество товара 2:</span><input id="example-num-2" type="usfe-number" value="1"></p>
+					<p><span>Начнем со 100:</span><input id="example-num-2" type="usfe-number" value="100"></p>
 				</div>
 				<div class="info-block">
 					<p><span>Кастомизация для элемента:</span>

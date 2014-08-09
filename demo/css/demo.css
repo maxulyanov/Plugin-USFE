@@ -138,3 +138,17 @@ span.code-style-type{
 .select-wrap .select-dropdown ul li.flag-ita.selected{
 	background: #3A4954 url(../img/flag-ita.png) 0 7px no-repeat !important;;
 }
+.edit-button{
+	color: white;
+	display: inline-block;
+	background: #318FCE;
+	border-bottom: 1px solid #317DAF;
+	padding: 5px 10px;
+	margin-bottom: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.edit-button:hover{
+	color: #222;
+}
