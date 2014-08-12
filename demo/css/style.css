@@ -360,6 +360,10 @@ textarea{
 	-webkit-border-radius: 3px 0 0 3px;
 	border-radius: 3px 0 0 3px;
 }
+.calendar-wrap.calendar-disabled input{
+	background: #F0F0F0;
+	color: #9B9B9B;
+}
 .calendar-wrap .calendar{
 	display: none;
 	color: #FFF;
@@ -395,6 +399,10 @@ textarea{
 .calendar tr td.today{
 	outline: 1px solid rgb(114, 168, 33);
 	color: rgb(114, 168, 33);
+}
+.calendar tr td.prevday,
+.calendar tr td.nextday{
+	color: #9B9B9B;
 }
 .calendar tr td.day.weekend {
 	color: rgb(114, 168, 33);
@@ -437,6 +445,11 @@ textarea{
 	width: 30px;
 	height: 29px;
 	display: inline-block;
+}
+.calendar-wrap.calendar-disabled .calendar-button{
+	color: #BABABA;
+	cursor: default;
+	background: #566876;
 }
 .calendar-button:hover{
 	background-color: #637481;

@@ -66,7 +66,7 @@ c_styleCheckbox: 'style-1'
 ---
 s_height: false
 ---
-cal_animateSpeed: 200
+cal_animateSpeed: 0
 cal_animateSwitch: false
 cal_animateSwitchSpeed: 300
 ---

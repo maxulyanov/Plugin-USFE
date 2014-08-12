@@ -4,8 +4,7 @@ $(function(){
 	//Различные варианты инициализации плагина для демонстрации
 	$('#custom-form').usfe({
 		c_styleCheckbox: 'style-1',
-		cal_animateSwitchSpeed: 100,
-		cal_animateSpeed: 300,
+		cal_animateSwitchSpeed: 300,
 	});
 
 	$('#fix-height').usfe({
@@ -16,6 +15,7 @@ $(function(){
 		cal_animateSwitch: true,
 		cal_animateSwitchSpeed: 400,
 		cal_animateSpeed: 400,
+		cal_animateSpeed: 500,
 	});
 
 	$('#check4, #check5, #check6, #check-6, #check7').usfe({
@@ -129,6 +129,18 @@ $(function(){
 		var newElem = $('<p><span>Новый элемент file:</span><input type="file"></p>');
 		$(newElem).appendTo($('#custom-form > div').eq(3).find('.demo-block'));
 		$('input[type=file]:not("#example-file-2")').usfe();
+	});
+
+	//
+	$('.button-cal-toggle').on('click', function(){
+		$('.calendar-wrap').toggleClass('calendar-disabled');
+		$('input[type="usfe-calendar"]').toggleDisabled();
+	});
+
+	$('.button-cal-new').on('click', function(){
+		var newElem = $('<p style="margin-top:5px;"><span>Новый календарь:</span><input type="usfe-calendar"></p>');
+		$(newElem).appendTo($('#custom-form > div').eq(4).find('.demo-block'));
+		$('input[type=usfe-calendar]:not("#example-calendar-two")').usfe();
 	});
 
 

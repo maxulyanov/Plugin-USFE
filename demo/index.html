@@ -167,7 +167,8 @@
 			<div>
 				<div class="demo-block">
 					<p><span>Обычный выбор файла:</span><input type="file"></p>
-					<p><span>Неактивный выбор файла с измененным текстом:</span><input disabled id="example-file-2" type="file"></p>
+					<p><span>Выбор файла с изменными текстом:</span><input id="example-file-2" type="file"></p>
+					<p><span>Неактивный выбор файла:</span><input disabled type="file"></p>
 				</div>
 				<div class="info-block">
 					<p><span>Кастомизация для элемента:</span>
@@ -191,8 +192,9 @@
 			</div>
 			<div>
 				<div class="demo-block">
-					<p><span>Билеты туда:</span><input type="usfe-calendar"></p>
-					<p style="margin-top:5px;"><span>Билеты туда:</span><input id="example-calendar-two" type="usfe-calendar"></p>
+					<p><span>Обычный календарь:</span><input type="usfe-calendar"></p>
+					<p style="margin-top:5px;"><span>Календарь с анимацией:</span><input id="example-calendar-two" type="usfe-calendar"></p>
+					<p style="margin-top:5px;"><span>Неактивный календарь:</span><input disabled type="usfe-calendar"></p>
 				</div>
 				<div class="info-block">
 					<p><span>Кастомизация для элемента:</span>
@@ -204,6 +206,9 @@
 						<code>cal_animateSwitchSpeed: <span class="code-style-1">300</span></code><br>
 					</p>
 					<p>Создает календарь с возможностью выбора даты и переключения месяцев.Параметры позволяют регулировать скорость скрытия/показа блока с календарем, а так же скорость анимации при переключении месяцев, которая по умолчанию выключена.</p>
+					<p><span>Клик для динамического изменение элементов:</span>
+					<a class="edit-button button-cal-toggle" href="#">Переключить активность</a>
+					<a class="edit-button button-cal-new" href="#">Добавить новый элемент</a>
 				</div>
 				<span class="clearfix"></span>
 			</div>

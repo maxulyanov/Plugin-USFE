@@ -50,7 +50,7 @@
 			s_height: false,
 
 			//settings type = calendar
-			cal_animateSpeed: 200,
+			cal_animateSpeed: 0,
 			cal_animateSwitch: false,
 			cal_animateSwitchSpeed: 300,
 
@@ -757,7 +757,7 @@
 			// (3.9)
 			typeCalendar: function(elem){
 
-	            methods.init();
+	           // methods.init();
 
 				// (3.9.1)
 			  	var calendar = new Date(),
@@ -783,6 +783,8 @@
 					// (3.9.3)
 					var cal = new Date(year, month);			  		
 					var numDay = new Date(cal.getFullYear(), cal.getMonth()+1, 0).getDate();
+					var numDayPrev = new Date(cal.getFullYear(), cal.getMonth(), 0).getDate();
+					//
 			      	var firstDay = new Date(cal.getFullYear(), cal.getMonth(), 1).getDay();
 			      	var lastDay = new Date(cal.getFullYear(), cal.getMonth(), numDay).getDay();
 
@@ -800,17 +802,29 @@
 					calendarTr += '</tr>';
 
 					// (3.9.6)
-					calendarTr += '<tr>';      
+					calendarTr += '<tr>';    
 				  	if(firstDay == 0){
+				  		var prevM  = numDayPrev - 6;
 				    	for(var i = 0; i < 6; i++){
-				      		calendarTr += '<td class="empty"></td>';
+				      		prevM ++;
+				     		calendarTr += '<td class="prevday">' + prevM + '</td>';
 				    	};
 				  	}
 				  	else{
+					  	if(firstDay == 1){
+					  		var prevM  = numDayPrev - 7;
+					    	for(var i = 0; i < 7; i++){
+					      		prevM ++;
+					     		calendarTr += '<td class="prevday">' + prevM + '</td>';
+					    	};
+					    	calendarTr += '</tr>';
+					  	}
+				  		var prevM  = numDayPrev - firstDay + 1;
 				    	for(var i = 1; i < firstDay; i++){
-				     		calendarTr += '<td class="empty"></td>';
+				    		prevM ++;
+				     		calendarTr += '<td class="prevday">' + prevM + '</td>';
 				    	};
-				  	};
+				  	}
 
 				  	// (3.9.7)
 				  	for(var i = 1; i <= numDay; i++){
@@ -824,9 +838,28 @@
 				  	};
 
 					// (3.9.8)
-				  	if(lastDay != 0) {
-				    	for(var i = lastDay; i < 7; i++)
-				      		calendarTr += '<td class="empty"></td>';
+				  	if(lastDay != 0){
+				  		var d = 1;
+				    	for(d; d <= 7-lastDay; d++){
+				      		calendarTr += '<td class="nextday">' + d + '</td>';
+				      	}
+
+				      	var a = [];
+				      	a = calendarTr.split('</tr>');
+				      	
+				      	if(a.length <= 7){
+				      		calendarTr += '<tr>';
+				      		for(var i = 1; i <= 7; i++){
+					      		calendarTr += '<td class="nextday">' + d + '</td>';
+					      		d++
+				      		}
+
+				      	}
+				  	}
+				  	else{
+				  		for(var i = 1; i <= 7; i++)
+				      		calendarTr += '<td class="nextday">' + i + '</td>';
+				      		calendarTr += '</tr>';
 				  	}
 
 				 	$(calendarTable).append(calendarTr);
@@ -928,17 +961,35 @@
 			  	});
 
 			  	// (3.9.13)
-			  	if(!data){
-            	 	$(elem).wrap(calendarWrap);
+			  	if($(elem).parents('.calendar-wrap').length < 1){            	 	
+			  		$(elem).wrap(calendarWrap);
 			  		$(elem).after(calendarButton, calendarTable);
 			  		$(calendarButton).append(calendarIcon);            	
+			  	}
+			  	else{
+			  		removeOldElems();
+			  		$(elem).after(calendarButton, calendarTable);
+			  		$(calendarButton).append(calendarIcon);   
+			  	}
+
+			  	var disabled = $(elem).attr('disabled');
+				if(disabled){
+					$(elem).parent('.calendar-wrap').addClass('calendar-disabled');
+				}
+
+
+			  	function removeOldElems(){
+			  		var p = $(elem).parents('.calendar-wrap');
+			  		$(p).find('.calendar-button, .calendar').remove();
 			  	}
 			  		
 			  	// (3.9.14)
 			  	$(calendarButton).on('click', function(event){
+			  		if($(this).parents('.calendar-wrap').hasClass('calendar-disabled'))
+		        		return false;
 			  		event.stopPropagation();
-			  		$('.calendar').fadeOut(defaults.cal_animateSpeed);
-			  		$(this).next('.calendar').fadeToggle(defaults.cal_animateSpeed);
+			  		$('.calendar').stop(1).fadeOut(defaults.cal_animateSpeed);
+			  		$(this).next('.calendar').stop(1).fadeToggle(defaults.cal_animateSpeed);
 			  	});
 
 			  	// (3.9.15)
