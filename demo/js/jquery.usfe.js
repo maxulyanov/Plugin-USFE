@@ -157,7 +157,7 @@
 		        	
 		            // (3.1.9)
 		            var self = this;
-		            var thisBg = $(fileWrap).css('backgroundColor');
+		            var thisBg = $(elem).parents('.file-wrap').css('backgroundColor');
 
 		            $(elem).parent(fileWrap).removeAttr('title');
 
@@ -1190,6 +1190,12 @@
 						});
 					});
 				}
+
+				// (3.10.13)
+				$(elem).on('refresh', function() {
+					$(elem).off().parent().before(elem).remove();
+					methods.typeSearch(elem);
+				});
 
 			},//end method typeSearch
 

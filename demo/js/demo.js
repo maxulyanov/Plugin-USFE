@@ -100,7 +100,6 @@ $(function(){
 	});
 
 	$('.button-checkbox-toggle-2').on('click', function(){
-		event.preventDefault();
 		$('input[type="checkbox"]').toggleChecked();
 		$('.custom-checkbox').toggleClass('active-checkbox');
 	});
@@ -141,6 +140,13 @@ $(function(){
 		var newElem = $('<p style="margin-top:5px;"><span>Новый календарь:</span><input type="usfe-calendar"></p>');
 		$(newElem).appendTo($('#custom-form > div').eq(4).find('.demo-block'));
 		$('input[type=usfe-calendar]:not("#example-calendar-two")').usfe();
+	});
+
+	//
+	$('.button-search-new').on('click', function(){
+		var newElem = $('<li>Москва [new elem]</li><li>Можайск [new elem]</li><li>Муром [new elem]</li><li>Мытищи [new elem]</li><li>Мурманск [new elem]</li><li>Санкт-Петербург [new elem]</li><li>Симферополь [new elem]</li><li>Смоленск [new elem]</li><li>Самара [new elem]</li><li>Саранск [new elem]</li><li>Сочи [new elem]</li><li>Суздаль [new elem]</li>');
+		$(newElem).appendTo($('#custom-form').find('#city'));
+		$('input[type=usfe-search]').trigger('refresh');
 	});
 
 

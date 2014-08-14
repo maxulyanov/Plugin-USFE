@@ -31,6 +31,7 @@ body > h2{
 	font-size: 18px;
 	border-bottom: 2px solid #70BAEB;
 }
+
 #custom-form{
 	margin: 20px auto;
 	width: 640px;
@@ -146,9 +147,9 @@ span.code-style-type{
 	border-bottom: 1px solid #317DAF;
 	padding: 5px 10px;
 	margin-bottom: 5px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 .edit-button:hover{
 	color: #222;
