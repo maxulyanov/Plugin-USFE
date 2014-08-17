@@ -1,9 +1,0 @@
-      0 [main] sed 400 open_stackdumpfile: Dumping stack trace to sed.exe.stackdump
-MSYS-1.0.12 Build:2011-07-20 17:52
-Exception: STATUS_ACCESS_VIOLATION at eip=00000000
-eax=00000000 ebx=00000001 ecx=00000000 edx=00000000 esi=6809A16C edi=6809A174
-ebp=0022FE88 esp=0022FE6C program=C:\Users\max\AppData\Local\Atlassian\SourceTree\git_local\bin\sed.exe
-cs=001B ds=0023 es=0023 fs=003B gs=0000 ss=0023
-Stack trace:
-Frame     Function  Args
-End of stack trace
