@@ -4,8 +4,8 @@
  Version: 1.9.13
  Author: M.Ulyanov (web.ulyanov@gmail.com)
  Site: http://web-ulyanov.ru
- Source && Doc: https://github.com/M-Ulyanov/Plugin-USFE/blob/master/js/jquery.usfe.js
- Example: http://example.web-ulyanov.ru/frontend/usfe
+ Source && Doc: https://github.com/M-Ulyanov/Plugin-USFE/
+ Example: http://example.web-ulyanov.ru/frontend/usfe/demo/index.html
 
  */
 

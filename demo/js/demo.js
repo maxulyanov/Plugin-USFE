@@ -87,17 +87,17 @@ $(function(){
 
 
 
-	// Функция переключения активности элементов radio
-	$('.button-radio-toggle').on('click', function(){
-		$('input[type="radio"]').toggleDisabled();
-		$('.custom-radio').toggleClass('disable-radio');
-	});
-
 	// Функция добавления нового элемента
 	$('.button-radio-new').on('click', function(){
 		var newElem = $('<label><input name="group1" type="radio">Новый элемент Radio</label>');
 		$(newElem).appendTo($('#custom-form > div').eq(1).find('.demo-block > p'));
 		$('input[type="radio"]').usfe();
+	});
+
+	// Функция переключения активности элементов radio
+	$('.button-radio-toggle').on('click', function(){
+		$('input[type="radio"]').toggleDisabled();
+		$('.custom-radio').toggleClass('disable-radio');
 	});
 
 
@@ -132,11 +132,6 @@ $(function(){
 
 
 
-	// Функция переключения активности элементов type="file"
-	$('.button-file-toggle').on('click', function(){
-		$('.file-wrap').toggleClass('file-disabled');
-		$('input[type="file"]').toggleDisabled();
-	});
 
 	// Фукция добавления нового элемента
 	$('.button-file-new').on('click', function(){
@@ -145,19 +140,26 @@ $(function(){
 		$('input[type=file]:not("#example-file-2")').usfe();
 	});
 
-
-
-	// Функция переключения активности элемента calendar
-	$('.button-cal-toggle').on('click', function(){
-		$('.calendar-wrap').toggleClass('calendar-disabled');
-		$('input[type="usfe-calendar"]').toggleDisabled();
+	// Функция переключения активности элементов type="file"
+	$('.button-file-toggle').on('click', function(){
+		$('.file-wrap').toggleClass('file-disabled');
+		$('input[type="file"]').toggleDisabled();
 	});
+
+
+
 
 	// Функция добавления нового элемента
 	$('.button-cal-new').on('click', function(){
 		var newElem = $('<p style="margin-top:5px;"><span>Новый календарь:</span><input type="usfe-calendar"></p>');
 		$(newElem).appendTo($('#custom-form > div').eq(4).find('.demo-block'));
 		$('input[type=usfe-calendar]:not("#example-calendar-two")').usfe();
+	});
+
+	// Функция переключения активности элемента calendar
+	$('.button-cal-toggle').on('click', function(){
+		$('.calendar-wrap').toggleClass('calendar-disabled');
+		$('input[type="usfe-calendar"]').toggleDisabled();
 	});
 
 
