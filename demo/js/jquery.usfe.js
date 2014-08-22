@@ -1,7 +1,7 @@
 /*
 
  USFE (User Style Form Elements) — jQuery plugin
- Version: 1.9.13
+ Version: 1.9.14
  Author: M.Ulyanov (web.ulyanov@gmail.com)
  Site: http://web-ulyanov.ru
  Source && Doc: https://github.com/M-Ulyanov/Plugin-USFE/
@@ -288,6 +288,11 @@
 
 			// (3.3)
 			typeText : function(elem){
+
+				var disabled = $(elem).attr('disabled');
+				if(disabled){
+					$(elem).addClass('disabled-input');
+				}
 
 				if(defaults.t_animateEffect){
 

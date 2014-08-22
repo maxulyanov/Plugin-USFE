@@ -134,6 +134,12 @@ input[type="usfe-search"]{
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
+input[type="text"].disabled-input,
+input[type="password"].disabled-input,
+input[type="email"].disabled-input{
+	background: #F0F0F0;
+	color: #9B9B9B;
+}
 
 /*---------------------------
 	   Style BUTTON, SUBMIT
