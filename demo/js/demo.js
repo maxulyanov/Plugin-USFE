@@ -1,21 +1,27 @@
 $(function(){
 
+	// Появление блоков в демо
+	$('#custom-form > div').animate({
+		opacity: 1,
+		left: 0
+	}, 600);
+
 
 	// Различные варианты инициализации плагина для демонстрации
 	$('#custom-form').usfe({
 		c_styleCheckbox: 'style-1',
-		cal_animateSwitchSpeed: 300,
+		cal_animateSwitchSpeed: 300
 	});
 
 	$('#fix-height').usfe({
-		s_height: 120,
+		s_height: 160
 	});
 
 	$('#example-calendar-two').usfe({
 		cal_animateSwitch: true,
 		cal_animateSwitchSpeed: 400,
 		cal_animateSpeed: 400,
-		cal_animateSpeed: 500,
+		cal_animateSpeed: 500
 	});
 
 	$('#check4, #check5, #check6, #check-6, #check7').usfe({

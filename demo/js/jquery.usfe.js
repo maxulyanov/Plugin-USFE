@@ -563,7 +563,7 @@
 						selectThis = $('<div class="select-this">'),
 						selectThisText = $('<div class="select-this-text">'),
 						selectThisTrigger = $('<div class="select-this-trigger">'),
-						selectThisTriggerArrow = $('<div class="select-this-trigger-arrow">'+'&#9660;'+'</div>'),
+						selectThisTriggerArrow = $('<div class="select-this-trigger-arrow"></div>'),
 						selectDropdown = $('<div class="select-dropdown">'),
 						selectUl = $('<ul>');
 
@@ -678,19 +678,21 @@
 						$('.select-this').each(function(){
 							if($(this) !== thisElem){
 								$(this).find('.select-this-trigger-arrow').remove();
-								$(this).find('.select-this-trigger').append('<div class="select-this-trigger-arrow">' + '&#9660' + '</div>');
+								$(this).find('.select-this-trigger').append('<div class="select-this-trigger-arrow"></div>');
 							}
 						});
+
+						$('.select-this').removeClass('open-dropdown');
 
 						var thisDrop = $(this).parent().find('.select-dropdown');
 						if($(thisDrop).is(':hidden')){
 							$('.select-dropdown').hide();
 							$(thisDrop).show();
-							changeArrow(true);
+							$(this).addClass('open-dropdown');
 						}
 						else{
 							$(thisDrop).hide();
-							changeArrow(false);
+							$(this).removeClass('open-dropdown');
 						}
 
 					});
@@ -708,7 +710,7 @@
 						$(selectThisText).text($(this).text());
 						$(this).parents('.select-dropdown').hide();
 
-						changeArrow(false);
+						$(this).parents('.select-wrap').find('.select-this').removeClass('open-dropdown');
 
 					});
 
@@ -724,25 +726,12 @@
 					// (3.8.8)
 					$('html').on('click', function(){
 						$('.select-dropdown').hide();
-						changeArrow(false);
+						$('.select-this').removeClass('open-dropdown');
 					});
 
-					// (3.8.9)
-					function changeArrow(param){
-						var arrow = '';
-						if(param){
-							arrow = '&#9650';
-						}
-						else{
-							arrow = '&#9660';
-
-						}
-						$(selectThisTrigger).find('div').remove();
-						$(selectThisTrigger).append('<div class="select-this-trigger-arrow">' + arrow + '</div>');
-					};
 				
 
-				// (3.8.10)
+				// (3.8.9)
 				if(defaults.s_height){
 					$(elem).parents('.select-wrap').find('ul').css({
 						'height' : defaults.s_height + 'px',
@@ -750,7 +739,7 @@
 					});
 				};
 
-				// (3.8.11)
+				// (3.8.10)
 				$(elem).on('refresh', function() {
 					$(elem).off().parent().before(elem).remove();
 					methods.typeSelect(elem);
