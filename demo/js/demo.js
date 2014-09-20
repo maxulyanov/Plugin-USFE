@@ -9,7 +9,6 @@ $(function(){
 
 	// Различные варианты инициализации плагина для демонстрации
 	$('#custom-form').usfe({
-		c_styleCheckbox: 'style-1',
 		cal_animateSwitchSpeed: 300
 	});
 

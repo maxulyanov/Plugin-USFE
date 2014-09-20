@@ -35,16 +35,13 @@
 			t_editW: 12,
 			t_editH: 3,
 			t_color: '#FFF',
-			t_backgroundcolor: '#475160',
+			t_backgroundcolor: '#727272',
 
 			//settings type = textarea
 			te_animateEffect: true,
 			te_animateSpeed: 400,
 			te_color: '#FFF',
-			te_backgroundcolor: '#475160',
-
-			//settings type = checkbox
-			c_styleCheckbox: 'style-1',
+			te_backgroundcolor: '#727272',
 
 			//settings type = select
 			s_height: false,
@@ -55,12 +52,11 @@
 			cal_animateSwitchSpeed: 300,
 
 			//settings type = search
-			se_height: 208,
 			se_animateEffect: true,
 			se_animateSpeed: 400,
 			se_animateToogleSpeed: 200,
-			se_color: '#FFF',
-			se_backgroundcolor: '#475160'
+			se_color: '#727272',
+			se_backgroundcolor: '#f7f7f7'
 
 
 		};
@@ -473,22 +469,10 @@
 
 			// (3.7)
 			typeCheckbox: function(elem){
-
-				// (3.7.1)
-				if(defaults.c_styleCheckbox == 'style-1'){
-					classCheckbox = '';
-				}
-				else if(defaults.c_styleCheckbox == 'style-2'){
-					classCheckbox = 'c-s-2';
-				}
-				else
-					classCheckbox = '';
-
 				// (3.7.2)
-				var customCheckbox = $('<span class="' + 'custom-checkbox ' + classCheckbox +  '"></span>'),					
+				var customCheckbox = $('<span class="custom-checkbox"></span>'),					
 					checkboxWrap = $('<div class="checkbox-wrap">'),
 					nextElem = $(elem).next('label'),
-					classCheckbox,
 					parentElem = $(elem).parent('label');
 
 
@@ -1029,12 +1013,9 @@
 				$(elem).wrap(searchWrap);
 			  	$(elem).after(resultList, $(dataList));
 			  	$(elem).wrap(searchBg);
-			  	$(elem).after(searchIcon);
+			  	$(elem).before(searchIcon);
 
 			  	// (3.10.2)
-			  	$('.result-list').css({
-			  		'max-height': 208
-			  	});
 				$(dataList).css('display', 'none');
 
 				var resultList = $(elem).closest('.seach-wrap').find('.result-list');
@@ -1042,7 +1023,7 @@
 				// (3.10.3)
 				$(dataList).find('li').each(function(){
 					arr.push($(this).text());
-					$(resultList).append('<li>' + $(this).text() + '</li>');
+					$(resultList).append('<li>' + '<span>' + $(this).text() + '</span>' +  '</li>');
 				});
 
 				// (3.10.4)
@@ -1065,7 +1046,8 @@
 							var subVal = strValue.substr(0, countChar);
 							if(subArr == subVal){
 								if($('li:contains("' + arr[i] + '")').length == 0){
-									$('<li>' + arr[i] + '</li>').appendTo(resultList);
+									console.log('11')
+									$('<li>' + '<span>' + arr[i] + '</span>' +  '</li>').appendTo(resultList);
 								}
 							}
 							else{
@@ -1075,7 +1057,7 @@
 
 						$('.no-result').remove();
 						if($(resultList).find('li').length == 0){
-							$('<li class="no-result">' + 'Совпадений не найдено.' + '</li>').appendTo(resultList)
+							$('<li class="no-result">' + '<span>' + 'Совпадений не найдено.' + '</span>' +  '</li>').appendTo(resultList)
 						};
 					}
 
