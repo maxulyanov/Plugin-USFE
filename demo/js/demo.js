@@ -181,4 +181,41 @@ $(function(){
 		$(this).appendTo($(this).prev('div'))
 	});
 
+
+	// Переключение цветов
+	$('#select-theme').find('a').on('click', function(event){
+		event.preventDefault();
+		if($(this).hasClass('get-theme-default')){
+			console.log('1')
+			$('#custom-form').removeClass('orange-theme green-theme pink-theme');
+		}
+		else if($(this).hasClass('get-theme-orange')){
+			$('#custom-form').removeClass('green-theme pink-theme');
+			$('#custom-form').addClass('orange-theme');
+		}
+		else if($(this).hasClass('get-theme-green')){
+			$('#custom-form').removeClass('orange-theme pink-theme');
+			$('#custom-form').addClass('green-theme');
+		}
+		else if($(this).hasClass('get-theme-pink')){
+			$('#custom-form').removeClass('orange-theme green-theme');
+			$('#custom-form').addClass('pink-theme');
+		}
+	});
+
+	// Блок с выбором темы
+	$('#select-theme').animate({
+		'top' : '0',
+	}, 500);
+
+
+	$(document).scroll(function(){
+  		var sc = $(this).scrollTop();
+		$('#select-theme').stop(true).animate({
+			top : sc
+		}, 400)
+	});
+
+
+
 });	

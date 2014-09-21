@@ -1,7 +1,7 @@
 /*
 
  USFE (User Style Form Elements) — jQuery plugin
- Version: 1.9.14
+ Version: 2.0.1
  Author: M.Ulyanov (web.ulyanov@gmail.com)
  Site: http://web-ulyanov.ru
  Source && Doc: https://github.com/M-Ulyanov/Plugin-USFE/

@@ -9,7 +9,7 @@ body{
 }
 #wrapper{
 	margin: 0 auto;
-	width: 680px;
+	width: 880px;
 }
 .clearfix{
 	clear: both;
@@ -36,9 +36,9 @@ body > h2{
 }
 
 #custom-form{
-	margin: 20px auto;
+	margin: 20px 0;
 	width: 640px;
-	padding: 20px 20px 20px 20px;
+	float: left;
 }
 #custom-form > div{
 	padding: 10px 10px 4px 10px;
@@ -158,4 +158,47 @@ span.code-style-type{
 }
 .edit-button:hover{
 	background: #4A4A4A;
+}
+
+#select-theme{
+	width: 190px;
+	float: right;
+	position: relative;
+	top: -150px;
+	margin-top: 20px;
+}
+#select-theme p{
+	color: #2B2B2B;
+	margin-bottom: 4px;
+}
+#select-theme ul{
+	background: #FFF;
+	padding: 5px 5px 5px 6px;
+}
+#select-theme ul li{
+	display: inline-block;
+	margin: 0 1px;
+}
+#select-theme ul li a{
+	display: inline-block;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	text-indent: -9999px;
+	background: #FFF;
+}
+#select-theme ul li a:active{
+	top: 1px;
+}
+#select-theme ul li a.get-theme-default{
+	background: #31c0fb;
+}
+#select-theme ul li a.get-theme-orange{
+	background: #ffa019;
+}
+#select-theme ul li a.get-theme-green{
+	background: #aae200;
+}
+#select-theme ul li a.get-theme-pink{
+	background: #ff197a;
 }
