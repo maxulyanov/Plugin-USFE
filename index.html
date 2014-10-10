@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Plugin-usfe : Плагин для легкой стилизации сложных элементов форм">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Plugin-usfe</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/M-Ulyanov/Plugin-USFE">View on GitHub</a>
+
+          <h1 id="project_title">Plugin-usfe</h1>
+          <h2 id="project_tagline">Плагин для легкой стилизации сложных элементов форм</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/M-Ulyanov/Plugin-USFE/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/M-Ulyanov/Plugin-USFE/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>&lt;!DOCTYPE html&gt;
+
+</p>
+
+Plugin USFE (User Style Form Elements)
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+</p>
+    <h2>
+<a name="%D0%94%D0%B5%D0%BC%D0%BE%D0%BD%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D0%B0-jqueryusfe" class="anchor" href="#%D0%94%D0%B5%D0%BC%D0%BE%D0%BD%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D0%B0-jqueryusfe"><span class="octicon octicon-link"></span></a>Демонстрация плагина jquery.usfe</h2>
+    <div>
+        
+            <div>
+                <div>
+                    <p>
+                        Стандартный список с неактивным пунктом
+                        
+                            Выберите пункт
+                            Пункт 1
+                            Пункт 2
+                            Пункт 3
+                            Пункт 4
+                        
+                    </p>
+                    <p>
+                        Стандартный неактивный список
+                        
+                            Выберите пункт
+                            Пункт 1
+                            Пункт 2
+                            Пункт 3
+                            Пункт 4
+                        
+                    </p>
+                    <p>
+                        Список фиксированный высоты
+                        
+                            Выберите пункт
+                            Пункт 1
+                            Пункт 2
+                            Пункт 3
+                            Пункт 4
+                            Пункт 5
+                            Пункт 6
+                            Пункт 7
+                            Пункт 8
+                            Пункт 9
+                            Пункт 10
+                        
+                    </p>
+                    <p>
+                        Сгруппированный список
+                        
+                            Выберите пункт
+                            
+                                Пункт 1
+                                Пункт 2
+                                Пункт 3
+                            
+                            
+                                Пункт 4
+                                Пункт 5
+                                Пункт 6
+                            
+                        
+                    </p>
+                    <p>
+                        Каждый элемент списка индивидуален
+                        
+                            Выберите страну
+                                Россия
+                                Германия
+                                Испания
+                                Франция
+                                Греция
+                                Италия
+                        
+                    </p>
+                </div>
+                <div>
+                    <p>Кастомизация для элемента:
+                        <code>select</code><br>
+                    </p>
+                    <p>
+                        Параметры для элемента:
+                        <code>s_height: false</code><br>
+                    </p>
+                    <p>Имитация элемента select с полной поддержкой атрибутов selected, disabled.Есть поддержка тега optgroup, который позволяет группировать элементы option, возможность передать класс с оригинального option для сымитированного и оформить каждый элемент индвидуально.Параметр устанавливает высоту выпадающего списка.</p>
+
+<pre><code>                &lt;p&gt;&lt;span&gt;Клик для динамического изменение элементов:&lt;/span&gt;
+                &lt;a class="edit-button button-select-new" href="#"&gt;Добавить новый список&lt;/a&gt;
+                &lt;a class="edit-button button-select-toogle-active" href="#"&gt;Переключить активность списков&lt;/a&gt;
+                &lt;a class="edit-button button-select-toogle-add" href="#"&gt;Добавить элементы в первый список&lt;/a&gt;
+                &lt;a class="edit-button button-select-toogle-active-2" href="#"&gt;Переключить активность элементов (1 список)&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p&gt;&lt;span style="margin-bottom: 0;"&gt;Выбрать один radio:&lt;/span&gt;&lt;br&gt;
+                    &lt;input name="group1" id="radio1" type="radio"&gt;&lt;label for="radio1"&gt;Radio с соседним label&lt;/label&gt;
+                    &lt;label for="radio2"&gt;&lt;input name="group1" id="radio2" type="radio"&gt;Radio внутри тега label&lt;/label&gt;
+                    &lt;input name="group1" type="radio"&gt;&lt;span class="txt-prev-label"&gt;Radio без тега label&lt;/span&gt;
+                    &lt;input name="group1" id="radio3" type="radio" disabled&gt;&lt;label for="radio3"&gt;Неактивный radio&lt;/label&gt;
+                    &lt;input name="group1" id="radio4" type="radio" checked disabled&gt;&lt;label for="radio4"&gt;Неактивный выбранный radio&lt;/label&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"radio"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;У элемента нет параметров&lt;/code&gt;&lt;br
+                &lt;/p&gt;
+                &lt;p&gt;Позволяет сымитировать поведение тега input="radio" c поддержкой тегов label и атрибутов disabled и checked&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Клик для динамического изменение элементов:&lt;/span&gt;
+                &lt;a class="edit-button button-radio-new" href="#"&gt;Добавить новый элемент&lt;/a&gt;
+                &lt;a class="edit-button button-radio-toggle" href="#"&gt;Переключить активность&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p class="first-block-d-check"&gt;&lt;span style="margin-bottom: 0;"&gt;Выбрать один или несколько пунктов:&lt;/span&gt;&lt;br&gt;
+                    &lt;input id="check1" type="checkbox"&gt;&lt;label for="check1"&gt;Checkbox с соседним label&lt;/label&gt;
+                    &lt;label&gt;&lt;input type="checkbox"&gt;Checkbox внутри тега label&lt;/label&gt;
+                    &lt;input type="checkbox"&gt;&lt;span class="txt-prev-label"&gt;Checkbox без тега label&lt;/span&gt;
+                    &lt;input id="check2" type="checkbox" value="no" checked&gt;&lt;label for="check2"&gt;Выбранный checkbox&lt;/label&gt;
+                    &lt;input id="check3" type="checkbox" disabled&gt;&lt;label for="check3"&gt;Неактивный checkbox&lt;/label&gt;
+                    &lt;input id="check-3" type="checkbox" disabled checked&gt;&lt;label for="check-3"&gt;Неактивный выбранный checkbox&lt;/label&gt;
+
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"checkbox"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;У элемента нет параметров&lt;/code&gt;&lt;br
+                &lt;/p&gt;
+                &lt;p&gt;Позволяет сымитировать поведение тега input="checbox" c поддержкой тегов label и атрибутов disabled и checked.&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Клик для динамического изменение элементов:&lt;/span&gt;
+                &lt;a class="edit-button button-checkbox-toggle" href="#"&gt;Переключить активность&lt;/a&gt;
+                &lt;a class="edit-button button-checkbox-toggle-2" href="#"&gt;Переключить выбранные&lt;/a&gt;
+                &lt;a class="edit-button button-checkbox-new" href="#"&gt;Добавить новый элемент&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p&gt;&lt;span&gt;Обычный выбор файла:&lt;/span&gt;&lt;input type="file"&gt;&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Выбор файла с изменными текстом:&lt;/span&gt;&lt;input id="example-file-2" type="file"&gt;&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Неактивный выбор файла:&lt;/span&gt;&lt;input disabled type="file"&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"file"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;f_FileNameLength: &lt;span class="code-style-1"&gt;30&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;f_charDelete: &lt;span class="code-style-2"&gt;'&amp;#215;'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;f_bgDelete: &lt;span class="code-style-2"&gt;'#f48475'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;f_defaultButtonName: &lt;span class="code-style-2"&gt;'Выбрать'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;f_defaultFileName: &lt;span class="code-style-2"&gt;'Файл не выбран'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;f_editButtonName: &lt;span class="code-style-2"&gt;'Изменить'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;f_defaultFileNameDel: &lt;span class="code-style-2"&gt;'Файл не выбран'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Позволяет задать максимальное кол-во символов в поле, иконку для удаления выбранного файла, цвет поля при удалении, а так же текстовое значение кнопки для выбора в разных состояниях (изначальном и при выбранном файле) и текстовое значение поля для имени файла, так же в разных состояниях (изначальном и если файл был удален)&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Клик для динамического изменение элементов:&lt;/span&gt;
+                &lt;a class="edit-button button-file-new" href="#"&gt;Добавить новый элемент&lt;/a&gt;
+                &lt;a class="edit-button button-file-toggle" href="#"&gt;Переключить активность&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p&gt;&lt;span&gt;Обычный календарь:&lt;/span&gt;&lt;input type="usfe-calendar"&gt;&lt;/p&gt;
+                &lt;p style="margin-top:10px;"&gt;&lt;span&gt;Календарь с анимацией:&lt;/span&gt;&lt;input id="example-calendar-two" type="usfe-calendar"&gt;&lt;/p&gt;
+                &lt;p style="margin-top:10px;"&gt;&lt;span&gt;Неактивный календарь:&lt;/span&gt;&lt;input disabled type="usfe-calendar"&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"usfe-calendar"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;cal_animateSpeed: &lt;span class="code-style-1"&gt;200&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;cal_animateSwitch: &lt;span class="code-style-1"&gt;false&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;cal_animateSwitchSpeed: &lt;span class="code-style-1"&gt;300&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Создает календарь с возможностью выбора даты и переключения месяцев.Параметры позволяют регулировать скорость скрытия/показа блока с календарем, а так же скорость анимации при переключении месяцев, которая по умолчанию выключена.&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Клик для динамического изменение элементов:&lt;/span&gt;
+                &lt;a class="edit-button button-cal-new" href="#"&gt;Добавить новый элемент&lt;/a&gt;
+                &lt;a class="edit-button button-cal-toggle" href="#"&gt;Переключить активность&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p&gt;&lt;span&gt;Введите город:&lt;/span&gt;
+                    &lt;input type="usfe-search" data-list="city"&gt;
+                    &lt;span style="font-style: italic;"&gt;Например: Москва или Смоленск&lt;/span&gt;
+                    &lt;ul id="city"&gt;
+                        &lt;li&gt;Москва&lt;/li&gt;
+                        &lt;li&gt;Можайск&lt;/li&gt;
+                        &lt;li&gt;Муром&lt;/li&gt;
+                        &lt;li&gt;Мытищи&lt;/li&gt;
+                        &lt;li&gt;Мурманск&lt;/li&gt;
+                        &lt;li&gt;Москва 2&lt;/li&gt;
+                        &lt;li&gt;Можайск 2&lt;/li&gt;
+                        &lt;li&gt;Муром 2&lt;/li&gt;
+                        &lt;li&gt;Мытищи 2&lt;/li&gt;
+                        &lt;li&gt;Мурманск 2&lt;/li&gt;
+                        &lt;li&gt;Санкт-Петербург&lt;/li&gt;
+                        &lt;li&gt;Симферополь&lt;/li&gt;
+                        &lt;li&gt;Смоленск&lt;/li&gt;
+                        &lt;li&gt;Самара&lt;/li&gt;
+                        &lt;li&gt;Саранск&lt;/li&gt;
+                        &lt;li&gt;Сочи&lt;/li&gt;
+                        &lt;li&gt;Суздаль&lt;/li&gt;
+                        &lt;li&gt;Санкт-Петербург 2&lt;/li&gt;
+                        &lt;li&gt;Симферополь 2&lt;/li&gt;
+                        &lt;li&gt;Самара 2&lt;/li&gt;
+                        &lt;li&gt;Саранск 2&lt;/li&gt;
+                        &lt;li&gt;Сочи 2&lt;/li&gt;
+                        &lt;li&gt;Суздаль 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"usfe-search"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;se_height: &lt;span class="code-style-1"&gt;200&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;se_animateEffect: &lt;span class="code-style-1"&gt;true&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;se_animateSpeed: &lt;span class="code-style-1"&gt;400&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;se_animateToogleSpeed: &lt;span class="code-style-1"&gt;200&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;se_color: &lt;span class="code-style-2"&gt;'#FFF'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;se_backgroundcolor: &lt;span class="code-style-2"&gt;'#475160'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Создает элемент поиска.Ищет соответствие в строке, которая введена в поле и списком элементов, выводя сразу же результаты.Параметры позволяют задать высоту списка результатов, включение анимации, скорость появления/скрытия результатов, изменения цвета фона и текста поля при фокусе и их скорость.&lt;br&gt;Возможность управлять с клавиатуры.&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Клик для динамического изменение элементов:&lt;/span&gt;
+                &lt;a class="edit-button button-search-new" href="#"&gt;Добавить элементы в список&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p&gt;&lt;span&gt;Количество товара:&lt;/span&gt;&lt;input type="usfe-number" value="1"&gt;&lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Начнем со 100:&lt;/span&gt;&lt;input id="example-num-2" type="usfe-number" value="100"&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"usfe-number"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;n_maxVal: &lt;span class="code-style-1"&gt;Infinity&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;n_editBg: &lt;span class="code-style-1"&gt;true&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;n_iconPlus: &lt;span class="code-style-2"&gt;'+'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;n_iconMinus: &lt;span class="code-style-2"&gt;'-'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Имитация элемента input type number. Возможность задавать максимальное значение для поля, изменение цвета поля при уменьшении/увеличении значения, произвольное значение для кнопок + -.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p style="margin-bottom:10px;"&gt;&lt;span&gt;Введите имя&lt;/span&gt;&lt;input type="text"&gt;&lt;/p&gt;
+                &lt;p style="margin-bottom:10px;"&gt;&lt;span&gt;Введите пароль:&lt;/span&gt;&lt;input type="password"&gt;&lt;/p&gt;
+                &lt;p style="margin-bottom:10px;"&gt;&lt;span&gt;Введите email:&lt;/span&gt;&lt;input type="email"&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элементов:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"text"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"password"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"email"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для группы элементы:&lt;/span&gt;
+                    &lt;code&gt;t_animateEffect: &lt;span class="code-style-1"&gt;true&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;t_animateSpeed: &lt;span class="code-style-1"&gt;400&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;t_editW: &lt;span class="code-style-1"&gt;12&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;t_editH: &lt;span class="code-style-1"&gt;3&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;t_color: &lt;span class="code-style-2"&gt;'#FFF'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;t_backgroundcolor: &lt;span class="code-style-2"&gt;'#475160'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Добавляется кроссбраузерная! плавная анимация изменения размеров, цвета текста и фона элементов.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;p&gt;&lt;span&gt;Комментарий:&lt;/span&gt;&lt;textarea&gt;&lt;/textarea&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элемента:&lt;/span&gt;
+                    &lt;code&gt;&lt;span class="code-style-type"&gt;textarea&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;te_animateEffect: &lt;span class="code-style-1"&gt;true&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;te_animateSpeed: &lt;span class="code-style-1"&gt;400&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;te_color: &lt;span class="code-style-2"&gt;'#FFF'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;te_backgroundcolor: &lt;span class="code-style-2"&gt;'#475160'&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Возможность добавлять кросбраузерную! анимацию для изменения цвета и фона поля textarea и регулировать ее скорость.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;div class="demo-block"&gt;
+                &lt;span style="margin-bottom: 5px;display:inline-block;"&gt;Простые кнопки:&lt;/span&gt;&lt;br&gt;
+                &lt;input style="margin:0 10px 0 0;" type="submit" value="input"&gt;
+                &lt;button type="button"&gt;Button&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="info-block"&gt;
+                &lt;p&gt;&lt;span&gt;Кастомизация для элементов:&lt;/span&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"submit"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;input type=&lt;span class="code-style-type"&gt;"reset"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;button type=&lt;span class="code-style-type"&gt;"submit"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;button type=&lt;span class="code-style-type"&gt;"reset"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                    &lt;code&gt;button type=&lt;span class="code-style-type"&gt;"button"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;&lt;span&gt;Параметры для элемента:&lt;/span&gt;
+                    &lt;code&gt;У элементов нет параметров&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+                &lt;p&gt;Добавляет к группе элементов класс, который в свою очередь добавляет стили оформления.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;span class="clearfix"&gt;&lt;/span&gt;
+        &lt;/div&gt;  
+    &lt;/form&gt;
+    &lt;div id="select-theme"&gt;
+        &lt;p&gt;Выбор темы:&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a class="get-theme-default" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="get-theme-orange" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="get-theme-green" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="get-theme-pink" href="#"&gt;4&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;span class="clearfix"&gt;&lt;/span&gt;
+    &lt;a id="link-git" href="https://github.com/M-Ulyanov/Plugin-USFE" target="_blank"&gt;Пример&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>
+</p>
+</div>
+</div>
+</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Plugin-usfe maintained by <a href="https://github.com/M-Ulyanov">M-Ulyanov</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
