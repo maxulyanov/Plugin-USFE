@@ -199,7 +199,7 @@ IE9+<br>
 IOS<br>
 Android - в разработке.<br>
 ###Демонстрация
-Пример работы можно увидеть <a target="_blank" href="http://example.web-ulyanov.ru/frontend/usfe/demo/index.html">здесь</a>
+Пример работы можно увидеть <a target="_blank" href="http://m-ulyanov.github.io/plugin-usfe/">здесь</a>
 ###Связаться с автором
 Предложения по улучшению и исправлению ошибок - <a href="mailto:web.ulyanov@gmail.com">web.ulyanov@gmail.com</a>
 
